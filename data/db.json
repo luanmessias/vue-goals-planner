@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Create new homepage banner",
+      "details": "Homepage banner details",
+      "complete": false
+    },
+     {
+      "id": 2,
+      "title": "Create new nav",
+      "details": "Nav details",
+      "complete": true
+    }
+  ]
+}
