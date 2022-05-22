@@ -1,0 +1,10 @@
+.main-header {
+  box-sizing: border-box;
+  padding: $default-page-spacing;
+
+  &__title {
+    font-size: em(23);
+    font-weight: 800;
+    color: $color-green-main;
+  }
+}

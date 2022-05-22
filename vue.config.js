@@ -8,7 +8,6 @@ module.exports = defineConfig({
         additionalData: `
           @import "@/scss/_mixins.scss";
           @import "@/scss/_vars.scss";
-          @import "@/scss/_reset.scss";
         `,
       },
     },

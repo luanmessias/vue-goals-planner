@@ -25,7 +25,7 @@ export default {
     MenuIcon,
   },
   data() {
-    return { locales: ['pt-br', 'en'] }
+    return { locales: ['ptBR', 'en'] }
   },
 }
 </script>

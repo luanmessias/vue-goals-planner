@@ -1,15 +1,15 @@
 <template>
   <div class="home-page">
-    <TestComponent />
+    <MainHeader />
   </div>
 </template>
 
 <script>
-import TestComponent from '@/components/TestComponent'
+import MainHeader from '@/components/MainHeader'
 export default {
   name: 'HomePage',
   components: {
-    TestComponent,
+    MainHeader,
   },
 }
 </script>
