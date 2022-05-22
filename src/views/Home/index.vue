@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <TestComponent />
   </div>
 </template>
@@ -14,4 +14,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import './styles';
+</style>

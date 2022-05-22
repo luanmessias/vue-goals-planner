@@ -14,7 +14,6 @@
     "core-js": "^3.8.3",
     "json-server": "^0.17.0",
     "vue": "^3.2.13",
-    "vue-material-design-icons": "^5.0.0",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
@@ -36,6 +35,7 @@
     "jest": "^27.0.5",
     "prettier": "^2.4.1",
     "sass": "^1.32.7",
-    "sass-loader": "^12.0.0"
+    "sass-loader": "^12.0.0",
+    "vue-material-design-icons": "^5.0.0"
   }
 }
