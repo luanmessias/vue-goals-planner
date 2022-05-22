@@ -2,6 +2,17 @@
   <div class="test-component">
     <h1>Hello Vue</h1>
     <MenuIcon />
+    {{ $t('home.main.title') }}
+
+    <select v-model="$i18n.locale">
+      <option
+        v-for="(locale, i) in locales"
+        :key="`locale-${i}`"
+        :value="locale"
+      >
+        {{ locale }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -12,6 +23,9 @@ export default {
   name: 'TestComponent',
   components: {
     MenuIcon,
+  },
+  data() {
+    return { locales: ['pt-br', 'en'] }
   },
 }
 </script>
