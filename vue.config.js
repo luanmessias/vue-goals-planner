@@ -1,4 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
+const path = require('path')
+
 module.exports = defineConfig({
   transpileDependencies: true,
 
@@ -22,6 +24,18 @@ module.exports = defineConfig({
       runtimeOnly: false,
       compositionOnly: false,
       fullInstall: true,
+    },
+  },
+
+  configureWebpack: {
+    resolve: {
+      alias: {
+        icons: path.resolve(
+          __dirname,
+          'node_modules/vue-material-design-icons'
+        ),
+      },
+      extensions: ['.vue'],
     },
   },
 })

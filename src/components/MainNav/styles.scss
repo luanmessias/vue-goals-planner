@@ -1,0 +1,86 @@
+.nav-button {
+  color: #fff;
+  width: em(40);
+  height: em(40);
+  border-radius: em(100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: $default-page-spacing;
+  top: $default-page-spacing;
+  z-index: 1;
+
+  &--open {
+    background-color: $color-green-main;
+  }
+
+  &--close {
+    background-color: $color-orange-main;
+  }
+
+  &__animate {
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.25s ease-out;
+    }
+
+    &-leave-active {
+      transition-delay: 0.25s;
+    }
+
+    &-enter-from {
+      opacity: 0;
+    }
+
+    &-leave-to {
+      opacity: 0;
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: $color-green-main;
+    border-top-left-radius: em(20);
+    border-bottom-left-radius: em(20);
+  }
+
+  &__animate {
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.3s ease-in-out;
+      .nav__container {
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    &-leave-active {
+      transition-delay: 0.25s;
+      .nav__container {
+        transition-delay: 0.25s;
+      }
+    }
+
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      .nav__container {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+  }
+}

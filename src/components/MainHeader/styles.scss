@@ -1,6 +1,7 @@
 .main-header {
   box-sizing: border-box;
   padding: $default-page-spacing;
+  position: relative;
 
   &__title {
     font-size: em(23);

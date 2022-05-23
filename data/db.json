@@ -6,7 +6,7 @@
       "details": "Homepage banner details",
       "complete": false
     },
-     {
+    {
       "id": 2,
       "title": "Create new nav",
       "details": "Nav details",
@@ -28,6 +28,25 @@
       "title": "Lorem ipsum dolor sit amet",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet tellus mi, vel pretium neque ornare in. Quisque pellentesque ac ex at pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc posuere, velit ut bibendum pretium, massa purus luctus ex, quis vestibulum magna elit vitae est. In tristique ante vitae eleifend auctor. Praesent dignissim feugiat rhoncus. Sed ac faucibus sem, eu interdum eros. ",
       "goal": "123fh1g23fh1gf23",
+      "done": false,
+      "created_at": "",
+      "updated_at": ""
+    },
+    {
+      "id": "a12jk1j3j2k",
+      "title": "Lorem ipsum dolor sit amet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet tellus mi, vel pretium neque ornare in. Quisque pellentesque ac ex at pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc posuere, velit ut bibendum pretium, massa purus luctus ex, quis vestibulum magna elit vitae est. In tristique ante vitae eleifend auctor. Praesent dignissim feugiat rhoncus. Sed ac faucibus sem, eu interdum eros. ",
+      "goal": "123fh1g23fh1gf23",
+      "done": false,
+      "created_at": "",
+      "updated_at": ""
+    },
+    {
+      "id": "a12jk1j3j2k",
+      "title": "Lorem ipsum dolor sit amet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet tellus mi, vel pretium neque ornare in. Quisque pellentesque ac ex at pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc posuere, velit ut bibendum pretium, massa purus luctus ex, quis vestibulum magna elit vitae est. In tristique ante vitae eleifend auctor. Praesent dignissim feugiat rhoncus. Sed ac faucibus sem, eu interdum eros. ",
+      "goal": "123fh1g23fh1gf23",
+      "done": true,
       "created_at": "",
       "updated_at": ""
     }
