@@ -1,0 +1,35 @@
+.banner {
+  padding: $default-page-spacing;
+
+  &__container {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: $default-page-spacing;
+    width: 100%;
+    height: 125px;
+    background-color: $color-green-main;
+    border-radius: em(5);
+    background-image: url('./img/banner-bg.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+
+  &__info {
+    &__title {
+      font-weight: 600;
+      font-size: em(23);
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    &__tasks {
+      color: #ffffff;
+
+      span {
+        color: $color-orange-main;
+        font-weight: 500;
+      }
+    }
+  }
+}
