@@ -4,7 +4,7 @@
       <div class="banner__info">
         <h2 class="banner__info__title" v-text="$t('home.banner.title')" />
         <p class="banner__info__tasks">
-          <span>{{ tasksDone }}/{{ tasks.length }}</span>
+          <span>{{ doneTasks.length }} / {{ allTasks.length }}</span>
           {{ $t('home.banner.tasks') }}
         </p>
       </div>
@@ -13,23 +13,26 @@
 </template>
 
 <script>
+import { taskStore } from '@/store/tasks'
+import { computed, onMounted } from 'vue'
 export default {
   name: 'HomeBanner',
-  data() {
+  setup() {
+    const store = taskStore()
+    const getAllDoneTasks = computed(() => {
+      return store.getAllDoneTasks
+    })
+    const getAllTasks = computed(() => {
+      return store.getAllTasks
+    })
+    onMounted(() => {
+      store.fetchTasks()
+    })
+
     return {
-      tasks: [],
+      allTasks: getAllTasks,
+      doneTasks: getAllDoneTasks,
     }
-  },
-  mounted() {
-    fetch('http://localhost:3000/tasks')
-      .then((res) => res.json())
-      .then((data) => (this.tasks = data))
-      .catch((err) => console.log(err.message))
-  },
-  computed: {
-    tasksDone() {
-      return this.tasks.filter((task) => task.done === true).length
-    },
   },
 }
 </script>
