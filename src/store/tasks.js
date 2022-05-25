@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: [],
+    task: null,
+    loading: false,
+    error: null,
   }),
   getters: {
     getAllTasks(state) {
@@ -27,19 +29,47 @@ export const useTaskStore = defineStore('task', {
   },
   actions: {
     async fetchTasks() {
+      this.tasks = []
+      this.loading = true
       try {
-        const data = await axios.get('http://localhost:3000/tasks')
-        this.tasks = data.data
+        this.tasks = await fetch('http://localhost:3000/tasks').then(
+          (response) => response.json()
+        )
       } catch (error) {
-        console.log(error)
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    async fetchTask(id) {
+      this.task = []
+      this.loading = true
+      try {
+        this.authors = await fetch(`http://localhost:3000/tasks/${id}`).then(
+          (response) => response.json()
+        )
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
       }
     },
     toggleTaskStatus(taskId) {
-      const taskStatus = this.tasks.find((t) => t.id === taskId).done
-      const data = {
-        done: taskStatus,
-      }
-      axios.patch(`http://localhost:3000/tasks/${taskId}`, data)
+      this.tasks.find((t) => {
+        if (t.id === taskId) {
+          t.done = !t.done
+
+          fetch(`http://localhost:3000/tasks/${taskId}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              done: t.done,
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+        }
+      })
     },
   },
 })
