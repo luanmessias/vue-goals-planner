@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-export const goalStore = defineStore('goal', {
+export const useGoalStore = defineStore('goal', {
   state: () => ({
     goals: [],
   }),

@@ -11,8 +11,8 @@
 <script>
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
-import { goalStore } from '@/store/goals'
-import { computed, onMounted } from 'vue'
+import { useGoalStore } from '@/store/goals'
+import { computed, onBeforeMount } from 'vue'
 
 export default {
   name: 'HomePage',
@@ -21,12 +21,12 @@ export default {
     HomeBanner,
   },
   setup() {
-    const store = goalStore()
+    const store = useGoalStore()
     const getGoals = computed(() => {
       return store.getGoals
     })
 
-    onMounted(() => {
+    onBeforeMount(() => {
       store.fetchGoals()
     })
 
