@@ -13,6 +13,11 @@
     background-image: url('./img/banner-bg.svg');
     background-repeat: no-repeat;
     background-position: bottom right;
+    transition: all 0.3s ease-in-out;
+
+    &--dark {
+      background-color: $color-green-light;
+    }
   }
 
   &__info {
@@ -21,15 +26,27 @@
       font-size: em(23);
       color: #ffffff;
       margin-bottom: 3px;
+      transition: all 0.3s ease-in-out;
+
+
+      &--dark {
+        color: $color-green-main;
+      }
     }
 
     &__tasks {
       color: #ffffff;
+      transition: all 0.3s ease-in-out;
 
       span {
         color: $color-orange-main;
         font-weight: 500;
       }
+
+      &--dark {
+        color: $color-green-main;
+      }
+
     }
   }
 }

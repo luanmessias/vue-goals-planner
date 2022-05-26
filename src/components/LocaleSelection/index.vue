@@ -13,6 +13,9 @@
         {{ locale }}
       </option>
     </select>
+    <button @click="locale" v-for="(locale, i) in locales" :key="`locale-${i}`">
+      {{ locale }}
+    </button>
   </div>
 </template>
 
@@ -20,7 +23,7 @@
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 
 export default {
-  name: 'TestComponent',
+  name: 'LocaleSelection',
   components: {
     MenuIcon,
   },

@@ -7,5 +7,10 @@
     font-size: em(23);
     font-weight: 800;
     color: $color-green-main;
+    transition: all 0.3s ease-in-out;
+
+    &--dark {
+      color: $color-green-light;
+    }
   }
 }

@@ -20,6 +20,7 @@
   }
 
   &__animate {
+
     &-enter-active,
     &-leave-active {
       transition: all 0.25s ease-out;
@@ -48,20 +49,48 @@
   background-color: rgba(0, 0, 0, 0.5);
 
   &__container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-content: flex-start;
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
-    height: 100%;
+    width: auto;
+    height: auto;
     background-color: $color-green-main;
     border-top-left-radius: em(20);
     border-bottom-left-radius: em(20);
+    padding: em(70) $default-page-spacing $default-page-spacing;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: em(40);
+    height: em(40);
+    background-color: $color-green-light;
+    border-radius: em(100);
+    margin: em(10) 0;
+    transition: all .3 ease;
+
+    &--active {
+      background-color: $color-orange-main;
+    }
+
+    &__icon {
+      color: $color-green-main;
+    }
   }
 
   &__animate {
+
     &-enter-active,
     &-leave-active {
       transition: all 0.3s ease-in-out;
+
       .nav__container {
         transition: all 0.3s ease-in-out;
       }
@@ -69,6 +98,7 @@
 
     &-leave-active {
       transition-delay: 0.25s;
+
       .nav__container {
         transition-delay: 0.25s;
       }
@@ -77,6 +107,7 @@
     &-enter-from,
     &-leave-to {
       opacity: 0;
+
       .nav__container {
         transform: translateX(100%);
         opacity: 0;

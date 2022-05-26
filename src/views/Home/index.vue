@@ -1,37 +1,29 @@
 <template>
-  <div class="home-page">
+  <div :class="['home-page', { 'home-page--dark': isThemeDark }]">
     <MainHeader />
     <HomeBanner />
-    <div v-for="goal in goals" :key="goal.id">
-      {{ goal.name }}
-    </div>
+    <LocaleSelection />
   </div>
 </template>
 
 <script>
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
-import { useGoalStore } from '@/store/goals'
-import { computed, onBeforeMount } from 'vue'
+import LocaleSelection from '@/components/LocaleSelection'
+import { storeToRefs } from 'pinia'
+import { useThemeStore } from '@/store/theme'
 
 export default {
   name: 'HomePage',
   components: {
     MainHeader,
     HomeBanner,
+    LocaleSelection,
   },
   setup() {
-    const store = useGoalStore()
-    const getGoals = computed(() => {
-      return store.getGoals
-    })
-
-    onBeforeMount(() => {
-      store.fetchGoals()
-    })
-
+    const { isThemeDark } = storeToRefs(useThemeStore())
     return {
-      goals: getGoals,
+      isThemeDark,
     }
   },
 }

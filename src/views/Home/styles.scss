@@ -2,4 +2,9 @@
   width: 100vw;
   height: 100vh;
   background-color: $light-theme-bg;
+  transition: all 0.3s ease-in-out;
+
+  &--dark {
+    background-color: $color-green-main;
+  }
 }
