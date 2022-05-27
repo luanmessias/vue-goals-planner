@@ -2,14 +2,14 @@
   <div :class="['home-page', { 'home-page--dark': isThemeDark }]">
     <MainHeader />
     <HomeBanner />
-    <LocaleSelection />
+
+    <div style="height: 1000px; width: 100%; display: block" />
   </div>
 </template>
 
 <script>
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
-import LocaleSelection from '@/components/LocaleSelection'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
 
@@ -18,7 +18,6 @@ export default {
   components: {
     MainHeader,
     HomeBanner,
-    LocaleSelection,
   },
   setup() {
     const { isThemeDark } = storeToRefs(useThemeStore())

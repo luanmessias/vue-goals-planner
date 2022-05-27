@@ -10,6 +10,7 @@
   right: $default-page-spacing;
   top: $default-page-spacing;
   z-index: 1;
+  position: fixed;
 
   &--open {
     background-color: $color-green-main;
@@ -69,12 +70,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     width: em(40);
     height: em(40);
     background-color: $color-green-light;
     border-radius: em(100);
     margin: em(10) 0;
-    transition: all .3 ease;
+    transition: all .3s ease;
+
+    &__flag {
+      position: absolute;
+      display: block;
+      width: em(20);
+      height: em(20);
+      top: em(-5);
+      right: em(-20);
+    }
 
     &--active {
       background-color: $color-orange-main;
@@ -82,6 +93,29 @@
 
     &__icon {
       color: $color-green-main;
+    }
+  }
+
+  &__locales {
+    position: absolute;
+    transform: translateX(-65%);
+
+    &__animate {
+
+      &-enter-active,
+      &-leave-active {
+        transition: all 0.25s ease-out;
+      }
+
+      &-enter-from {
+        opacity: 0;
+        transform: translateX(-50%);
+      }
+
+      &-leave-to {
+        opacity: 0;
+        transform: translateX(-50%);
+      }
     }
   }
 

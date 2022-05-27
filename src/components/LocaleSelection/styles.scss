@@ -1,4 +1,3 @@
-$langs: 'en', 'es', 'ptBR', 'pt', 'jp', 'de';
 
 .locales {
   padding: em(10);
@@ -16,11 +15,5 @@ $langs: 'en', 'es', 'ptBR', 'pt', 'jp', 'de';
     background-position: center;
     background-size: cover;
     margin-right: em(10);
-
-    @each $lang in $langs {
-      &--#{$lang} {
-        background-image: url('./img/flags/#{$lang}.svg');
-      }
-    }
   }
 }

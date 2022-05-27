@@ -4,6 +4,8 @@
   position: relative;
 
   &__title {
+    display: block;
+    max-width: calc(100% - em(30));
     font-size: em(23);
     font-weight: 800;
     color: $color-green-main;
