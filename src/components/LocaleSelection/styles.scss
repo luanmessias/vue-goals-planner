@@ -1,6 +1,26 @@
-.test-component {
-  h1 {
-    font-size: 30px;
-    font-weight: 700;
+$langs: 'en', 'es', 'ptBR', 'pt', 'jp', 'de';
+
+.locales {
+  padding: em(10);
+  background-color: $color-green-main;
+  width: auto;
+  border-radius: em(30);
+  display: flex;
+
+  &__item {
+    display: block;
+    width: em(35);
+    height: em(35);
+    border-radius: em(100);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-right: em(10);
+
+    @each $lang in $langs {
+      &--#{$lang} {
+        background-image: url('./img/flags/#{$lang}.svg');
+      }
+    }
   }
 }

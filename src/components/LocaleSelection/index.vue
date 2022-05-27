@@ -1,35 +1,19 @@
 <template>
-  <div class="test-component">
-    <h1>Hello Vue</h1>
-    <MenuIcon />
-    {{ $t('home.main.title') }}
+  <h1>{{ $t('home.main.title') }}</h1>
 
-    <select v-model="$i18n.locale">
-      <option
-        v-for="(locale, i) in locales"
-        :key="`locale-${i}`"
-        :value="locale"
-      >
-        {{ locale }}
-      </option>
-    </select>
-    <button @click="locale" v-for="(locale, i) in locales" :key="`locale-${i}`">
-      {{ locale }}
-    </button>
+  <div class="locales">
+    <div
+      :key="`locale-${i}`"
+      v-for="(locale, i) in $i18n.availableLocales"
+      :class="['locales__item', `locales__item--${locale}`]"
+      @click="$i18n.locale = locale"
+    ></div>
   </div>
 </template>
 
 <script>
-import MenuIcon from 'vue-material-design-icons/Menu.vue'
-
 export default {
   name: 'LocaleSelection',
-  components: {
-    MenuIcon,
-  },
-  data() {
-    return { locales: ['ptBR', 'en'] }
-  },
 }
 </script>
 
