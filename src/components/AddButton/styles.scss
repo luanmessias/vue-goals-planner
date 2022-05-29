@@ -1,17 +1,13 @@
 $button-color-text: #ffffff;
 
 .add-bt {
-  position: fixed;
-  bottom: em(30);
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $color-orange-main;
   border: none;
-  width: em(120);
-  height: em(50);
+  width: em(110);
+  height: em(45);
   border-radius: em(10);
   color: $button-color-text;
   font-weight: 900;
