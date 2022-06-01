@@ -17,7 +17,15 @@
               v-text="$t('add.goal.page.title')"
             />
           </div>
-          <FormInput class="goal__name" :label="$t('add.goal.form.name')" />
+          <pre>
+            {{ goal }}
+          </pre>
+          <BaseInput
+            class="goal__name"
+            :label="$t('add.goal.form.name')"
+            v-model="goal.title"
+            type="text"
+          />
           <div class="goal__deadline">
             <DateSelector :label="$t('add.goal.form.deadline')" />
           </div>
@@ -31,7 +39,7 @@
 <script>
 import AddButton from '@/components/AddButton'
 import ArrowLeft from 'icons/ArrowLeft.vue'
-import FormInput from '@/components/FormInput'
+import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
 
 import { ref } from 'vue'
@@ -41,8 +49,16 @@ export default {
   components: {
     AddButton,
     ArrowLeft,
-    FormInput,
+    BaseInput,
     DateSelector,
+  },
+  data() {
+    return {
+      goal: {
+        title: '',
+        deadline: '',
+      },
+    }
   },
   setup() {
     const isGoalFormActive = ref(false)
