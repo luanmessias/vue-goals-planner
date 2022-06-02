@@ -2,10 +2,12 @@
   <div class="date-selector">
     <span class="date-selector__label" v-text="label" />
     <DatePicker
+      v-bind="$attrs"
       class="date-selector__input"
       :enableTimePicker="false"
-      v-model="datePickerConfig.date"
-      :minDate="datePickerConfig.minDate"
+      v-model="date"
+      :minDate="minDate"
+      :format="format"
       noToday
       autoApply
     />
@@ -15,6 +17,7 @@
 <script>
 import DatePicker from '@vuepic/vue-datepicker'
 import { ref } from 'vue'
+import dayjs from 'dayjs'
 
 export default {
   name: 'DateSelector',
@@ -28,12 +31,14 @@ export default {
     },
   },
   setup() {
-    const datePickerConfig = {
-      date: ref(new Date()),
-      minDate: new Date(),
-    }
+    const date = ref(new Date())
+    const minDate = new Date()
+    const format = () => dayjs(date.value).format('DD/MM/YYYY')
+
     return {
-      datePickerConfig,
+      date,
+      minDate,
+      format,
     }
   },
 }

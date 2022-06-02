@@ -27,7 +27,10 @@
             type="text"
           />
           <div class="goal__deadline">
-            <DateSelector :label="$t('add.goal.form.deadline')" />
+            <DateSelector
+              :label="$t('add.goal.form.deadline')"
+              v-model="goal.deadline"
+            />
           </div>
           <AddButton :label="$t('button.add.goal')" class="goal__add-button" />
         </div>
