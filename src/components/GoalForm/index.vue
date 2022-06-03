@@ -22,17 +22,25 @@
           </pre>
           <BaseInput
             class="goal__name"
-            :label="$t('add.goal.form.name')"
-            v-model="goal.title"
+            :label="$t('add.goal.form.title')"
+            v-model="goal.title.value"
+            :error="goal.title.error"
+            :error-message="goal.title.message"
             type="text"
           />
           <div class="goal__deadline">
             <DateSelector
               :label="$t('add.goal.form.deadline')"
-              v-model="goal.deadline"
+              v-model="goal.deadline.value"
+              :error="goal.deadline.error"
+              :error-message="goal.deadline.message"
             />
           </div>
-          <AddButton :label="$t('button.add.goal')" class="goal__add-button" />
+          <AddButton
+            @click="addGoalAction"
+            :label="$t('button.add.goal')"
+            class="goal__add-button"
+          />
         </div>
       </div>
     </transition>
@@ -55,24 +63,56 @@ export default {
     BaseInput,
     DateSelector,
   },
-  data() {
-    return {
-      goal: {
-        title: '',
-        deadline: '',
-      },
-    }
-  },
   setup() {
     const isGoalFormActive = ref(false)
+    const goal = ref({
+      title: {
+        value: '',
+        error: false,
+        errorMsg: '',
+      },
+      deadline: {
+        value: '',
+        error: false,
+        errorMsg: '',
+      },
+    })
 
     const toggleGoalForm = () => {
       isGoalFormActive.value = !isGoalFormActive.value
     }
 
+    const checkTitle = () => {
+      const { title } = goal.value
+      if (!title.value) {
+        title.error = true
+        title.errorMsg = 'add.goal.title.error.empty'
+        return false
+      }
+      return true
+    }
+
+    const checkDeadline = () => {
+      const { title } = goal.value
+      if (!title.value) {
+        title.error = true
+        title.errorMsg = 'add.goal.title.error.empty'
+        return false
+      }
+      return true
+    }
+
+    const addGoalAction = () => {
+      console.log(goal.value)
+      checkTitle()
+      checkDeadline()
+    }
+
     return {
+      goal: goal.value,
       toggleGoalForm,
       isGoalFormActive,
+      addGoalAction,
     }
   },
 }

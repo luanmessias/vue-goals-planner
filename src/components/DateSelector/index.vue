@@ -31,7 +31,7 @@ export default {
     },
   },
   setup() {
-    const date = ref(new Date())
+    const date = ref('')
     const minDate = new Date()
     const format = () => dayjs(date.value).format('DD/MM/YYYY')
 
