@@ -23,6 +23,12 @@
         border: none;
       }
     }
+
+    &__error {
+      .dp__input_wrap {
+        border-color: $general-border-color-error;
+      }
+    }
   }
 }
 

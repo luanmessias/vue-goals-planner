@@ -25,15 +25,14 @@
             :label="$t('add.goal.form.title')"
             v-model="goal.title.value"
             :error="goal.title.error"
-            :error-message="goal.title.message"
             type="text"
+            @input="checkTitle"
           />
           <div class="goal__deadline">
             <DateSelector
               :label="$t('add.goal.form.deadline')"
               v-model="goal.deadline.value"
               :error="goal.deadline.error"
-              :error-message="goal.deadline.message"
             />
           </div>
           <AddButton
@@ -68,13 +67,11 @@ export default {
     const goal = ref({
       title: {
         value: '',
-        error: false,
-        errorMsg: '',
+        error: '',
       },
       deadline: {
         value: '',
-        error: false,
-        errorMsg: '',
+        error: '',
       },
     })
 
@@ -85,25 +82,25 @@ export default {
     const checkTitle = () => {
       const { title } = goal.value
       if (!title.value) {
-        title.error = true
-        title.errorMsg = 'add.goal.title.error.empty'
+        title.error = 'add.goal.title.error.empty'
         return false
       }
+      title.error = ''
       return true
     }
 
     const checkDeadline = () => {
-      const { title } = goal.value
-      if (!title.value) {
-        title.error = true
-        title.errorMsg = 'add.goal.title.error.empty'
+      const { deadline } = goal.value
+      if (!deadline.value) {
+        deadline.error = 'add.goal.title.error.empty'
         return false
       }
+
+      deadline.error = ''
       return true
     }
 
     const addGoalAction = () => {
-      console.log(goal.value)
       checkTitle()
       checkDeadline()
     }
@@ -113,6 +110,7 @@ export default {
       toggleGoalForm,
       isGoalFormActive,
       addGoalAction,
+      checkTitle,
     }
   },
 }

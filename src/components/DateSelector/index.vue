@@ -3,7 +3,10 @@
     <span class="date-selector__label" v-text="label" />
     <DatePicker
       v-bind="$attrs"
-      class="date-selector__input"
+      :class="[
+        'date-selector__input',
+        { 'date-selector__input--error': error },
+      ]"
       :enableTimePicker="false"
       v-model="date"
       :minDate="minDate"
@@ -28,6 +31,10 @@ export default {
     label: {
       type: String,
       default: '',
+    },
+    error: {
+      type: String,
+      value: '',
     },
   },
   setup() {
