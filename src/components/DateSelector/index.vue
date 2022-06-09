@@ -1,6 +1,9 @@
 <template>
   <div class="date-selector">
     <span class="date-selector__label" v-text="label" />
+    <transition name="date-selector__error__animate">
+      <span v-if="error" class="date-selector__error" v-text="$t(error)" />
+    </transition>
     <DatePicker
       v-bind="$attrs"
       :class="[
@@ -11,6 +14,7 @@
       v-model="date"
       :minDate="minDate"
       :format="format"
+      :locale="$i18n.locale"
       noToday
       autoApply
     />

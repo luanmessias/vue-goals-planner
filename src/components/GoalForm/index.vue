@@ -17,9 +17,6 @@
               v-text="$t('add.goal.page.title')"
             />
           </div>
-          <pre>
-            {{ goal }}
-          </pre>
           <BaseInput
             class="goal__name"
             :label="$t('add.goal.form.title')"
@@ -33,6 +30,7 @@
               :label="$t('add.goal.form.deadline')"
               v-model="goal.deadline.value"
               :error="goal.deadline.error"
+              @update:modelValue="checkDeadline"
             />
           </div>
           <AddButton
@@ -75,8 +73,16 @@ export default {
       },
     })
 
+    const clearForm = () => {
+      goal.value.title.value = ''
+      goal.value.title.error = ''
+      goal.value.deadline.value = ''
+      goal.value.deadline.error = ''
+    }
+
     const toggleGoalForm = () => {
       isGoalFormActive.value = !isGoalFormActive.value
+      clearForm()
     }
 
     const checkTitle = () => {
@@ -92,10 +98,9 @@ export default {
     const checkDeadline = () => {
       const { deadline } = goal.value
       if (!deadline.value) {
-        deadline.error = 'add.goal.title.error.empty'
+        deadline.error = 'add.goal.deadline.error.empty'
         return false
       }
-
       deadline.error = ''
       return true
     }
@@ -109,6 +114,7 @@ export default {
       goal: goal.value,
       toggleGoalForm,
       isGoalFormActive,
+      checkDeadline,
       addGoalAction,
       checkTitle,
     }

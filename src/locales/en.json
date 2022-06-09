@@ -6,5 +6,6 @@
   "add.goal.page.title": "Add new goal",
   "add.goal.form.title": "Goal Title",
   "add.goal.title.error.empty": "Please, set a title for your goal",
+  "add.goal.deadline.error.empty": "Please, set a deadline for your goal",
   "add.goal.form.deadline": "Goal Finish Date"
 }

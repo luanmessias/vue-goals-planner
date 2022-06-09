@@ -45,7 +45,7 @@ export const useTaskStore = defineStore('task', {
       this.task = []
       this.loading = true
       try {
-        this.authors = await fetch(`http://localhost:3000/tasks/${id}`).then(
+        this.task = await fetch(`http://localhost:3000/tasks/${id}`).then(
           (response) => response.json()
         )
       } catch (error) {
