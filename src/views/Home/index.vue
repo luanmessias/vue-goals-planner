@@ -1,5 +1,6 @@
 <template>
   <div :class="['home-page', { 'home-page--dark': isThemeDark }]">
+    <CallbackMessage />
     <MainHeader />
     <HomeBanner />
     <GoalForm />
@@ -11,6 +12,7 @@
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
 import GoalForm from '@/components/GoalForm'
+import CallbackMessage from '@/components/CallbackMessage'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
 
@@ -20,6 +22,7 @@ export default {
     MainHeader,
     HomeBanner,
     GoalForm,
+    CallbackMessage,
   },
   setup() {
     const { isThemeDark } = storeToRefs(useThemeStore())
