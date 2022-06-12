@@ -49,7 +49,7 @@ import AddButton from '@/components/AddButton'
 import ArrowLeft from 'icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
-
+import { useMessageStore } from '@/store/message'
 import { ref } from 'vue'
 
 export default {
@@ -72,6 +72,8 @@ export default {
         error: '',
       },
     })
+
+    const { setMessage } = useMessageStore()
 
     const clearForm = () => {
       goal.value.title.value = ''
@@ -108,6 +110,11 @@ export default {
     const addGoalAction = () => {
       checkTitle()
       checkDeadline()
+      setMessage({
+        active: true,
+        text: 'asdasasasd',
+        error: true,
+      })
     }
 
     return {
