@@ -11,6 +11,7 @@
   transform: translateX(-50%);
   z-index: 2;
   background-color: $color-msg-bg-info;
+  overflow: hidden;
 
   &--error {
     background-color: $color-msg-bg-error;
@@ -21,6 +22,19 @@
     color: $color-green-main;
     &--error {
       color: $color-red-main;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background-color: $color-green-main;
+
+    &--error {
+      background-color: $color-red-main;
     }
   }
 
