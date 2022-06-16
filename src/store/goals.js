@@ -1,18 +1,8 @@
 import { defineStore } from 'pinia'
+import { useMessageStore } from '@/store/message'
+import { v4 as uuid_v4 } from 'uuid'
 
-// ADD NEW GOAL
-// [] - create a component to manage all state errors and show them
-// [] - receive data
-// [] - check if goal's title is already exists
-// [] - - exists: true
-// [] - - set feedback state with the error true and the message
-// [] - - don't save the goal
-// [] - exists: false
-// [] - - update the goals[] state with the new information
-// [] - - POST the goal 
-// [] - - set feedback state with the error false (default) and the message
-
-export const useTaskStore = defineStore('task', {
+export const useGoalStore = defineStore('goal', {
   state: () => ({
     goals: [],
     goal: null,
@@ -20,7 +10,7 @@ export const useTaskStore = defineStore('task', {
     feedback: {
       error: false,
       message: '',
-    }
+    },
   }),
   getters: {
     getAllGoals(state) {
@@ -54,15 +44,46 @@ export const useTaskStore = defineStore('task', {
         this.loading = false
       }
     },
-    async addGoal(goal) {
-      const 
-       try {
-         this.goals.push()
-       } catch (error) {
-         this.error = error
-       } finally {
-         this.loading = false
-       }
-    }
+    async addGoal(data) {
+      const { setMessage } = useMessageStore()
+      await this.fetchGoals()
+      const goals = [...this.getAllGoals]
+      const alreadyExists = goals.some(({ title }) => title === data.title)
+
+      if (alreadyExists) {
+        setMessage({
+          active: true,
+          text: 'add.goal.form.error.exists',
+          error: true,
+        })
+      } else {
+        const newGoal = {
+          id: uuid_v4(),
+          title: data.title,
+          deadline: data.deadline,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }
+        try {
+          this.goals = [...goals, newGoal]
+          fetch('http://localhost:3000/goals', {
+            method: 'POST',
+            body: JSON.stringify(newGoal),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+          setMessage({
+            active: true,
+            text: 'add.goal.form.success',
+            error: false,
+          })
+        } catch (error) {
+          this.error = error
+        }
+      }
+    },
   },
 })

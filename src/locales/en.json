@@ -7,5 +7,8 @@
   "add.goal.form.title": "Goal Title",
   "add.goal.title.error.empty": "Please, set a title for your goal",
   "add.goal.deadline.error.empty": "Please, set a deadline for your goal",
-  "add.goal.form.deadline": "Goal Finish Date"
+  "add.goal.form.deadline": "Goal Finish Date",
+  "add.goal.form.error": "Please fill all the fields",
+  "add.goal.form.error.exists": "This Goal is already registered, please add another",
+  "add.goal.form.success": "Goal added successfully"
 }

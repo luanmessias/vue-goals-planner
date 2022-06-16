@@ -10,15 +10,14 @@
           class="message__icon message__icon--error"
         />
         <CheckCircleOutline v-else class="message__icon" />
-        <span class="message__text" v-text="message.text" />
+        <span class="message__text" v-text="$t(message.text)" />
         <div
           :class="[
             'message__loading',
             { 'message__loading--error': message.error },
           ]"
-          :styles="`width:${loadingPercent}%`"
+          :style="`width:${loadingPercent}%`"
         />
-        <pre v-text="loadingPercent" />
       </div>
     </transition>
   </Teleport>
@@ -29,7 +28,7 @@ import CloseIcon from 'icons/Close.vue'
 import CheckCircleOutline from 'icons/CheckCircleOutline.vue'
 import { useMessageStore } from '@/store/message'
 import { storeToRefs } from 'pinia'
-import { watch, ref, onMounted } from 'vue'
+import { watch, ref } from 'vue'
 
 export default {
   name: 'CallbackMessage',
@@ -41,10 +40,8 @@ export default {
     const { message, countdown } = storeToRefs(useMessageStore())
     let loadingPercent = ref(100)
 
-    watch(message, () => {})
-
-    onMounted(() => {
-      if (message.value.active) {
+    watch(message, () => {
+      if (message.value.active && loadingPercent.value === 100) {
         const errorLoading = setInterval(() => {
           loadingPercent.value -= 1
 
@@ -59,7 +56,7 @@ export default {
 
     return {
       message,
-      loadingPercent: loadingPercent.value,
+      loadingPercent,
     }
   },
 }

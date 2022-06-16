@@ -3,11 +3,11 @@ import { defineStore } from 'pinia'
 export const useMessageStore = defineStore('message', {
   state: () => ({
     message: {
-      active: true,
+      active: false,
       text: '',
       error: false,
     },
-    countdown: 2000,
+    countdown: 4000,
   }),
   getters: {
     getMessage(state) {
@@ -16,10 +16,15 @@ export const useMessageStore = defineStore('message', {
   },
   actions: {
     setMessage(data) {
+      let timer
       this.$state.message = data
-      setTimeout(() => {
-        this.clearMessage()
-      }, this.$state.countdown)
+      const runTimer = () => {
+        timer = window.setTimeout(() => {
+          this.clearMessage()
+        }, this.$state.countdown)
+      }
+      runTimer()
+      clearTimeout(timer)
     },
     clearMessage() {
       this.$state.message = {

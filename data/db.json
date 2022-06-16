@@ -15,11 +15,32 @@
   ],
   "goals": [
     {
-      "id": "123fh1g23fh1gf23",
-      "name": "Create new homepage banner",
-      "created_at": "",
-      "updated_at": "",
-      "deadline": ""
+      "id": "d6faadbf-400d-4cb1-8d1f-d0d5cd4aad85",
+      "title": "asdasdasdad",
+      "deadline": "2022-06-23T17:01:00.000Z",
+      "created_at": "2022-06-16T17:01:08.505Z",
+      "updated_at": "2022-06-16T17:01:08.505Z"
+    },
+    {
+      "id": "4c94cc94-a9b9-41a2-aa9d-d77baf89ce82",
+      "title": "qweqweqwe",
+      "deadline": "2022-06-22T17:02:00.000Z",
+      "created_at": "2022-06-16T17:02:15.103Z",
+      "updated_at": "2022-06-16T17:02:15.103Z"
+    },
+    {
+      "id": "f1e2218a-c910-44ab-a794-d02baf2e2408",
+      "title": "Test Goal",
+      "deadline": "2022-06-16T17:02:00.000Z",
+      "created_at": "2022-06-16T17:02:52.178Z",
+      "updated_at": "2022-06-16T17:02:52.178Z"
+    },
+    {
+      "id": "56bb0358-0e3b-41f2-8155-71f1fa11b789",
+      "title": "axxcvxcvxcv",
+      "deadline": "2022-06-22T17:03:00.000Z",
+      "created_at": "2022-06-16T17:03:52.691Z",
+      "updated_at": "2022-06-16T17:03:52.691Z"
     }
   ],
   "tasks": [
