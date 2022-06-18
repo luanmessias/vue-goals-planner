@@ -1,18 +1,4 @@
 {
-  "projects": [
-    {
-      "id": 1,
-      "title": "Create new homepage banner",
-      "details": "Homepage banner details",
-      "complete": false
-    },
-    {
-      "id": 2,
-      "title": "Create new nav",
-      "details": "Nav details",
-      "complete": true
-    }
-  ],
   "goals": [
     {
       "id": "d6faadbf-400d-4cb1-8d1f-d0d5cd4aad85",
@@ -41,6 +27,20 @@
       "deadline": "2022-06-22T17:03:00.000Z",
       "created_at": "2022-06-16T17:03:52.691Z",
       "updated_at": "2022-06-16T17:03:52.691Z"
+    },
+    {
+      "id": "88997b29-28e4-4d9b-acf6-e916aed11c86",
+      "title": "asdasdasd",
+      "deadline": "2022-06-21T13:33:00.000Z",
+      "created_at": "2022-06-18T13:33:17.355Z",
+      "updated_at": "2022-06-18T13:33:17.355Z"
+    },
+    {
+      "id": "73ec649e-0890-4673-bd69-c6ca9c1174b0",
+      "title": "111111111",
+      "deadline": "2022-06-23T13:33:00.000Z",
+      "created_at": "2022-06-18T13:33:23.233Z",
+      "updated_at": "2022-06-18T13:33:23.233Z"
     }
   ],
   "tasks": [

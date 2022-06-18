@@ -10,5 +10,6 @@
   "add.goal.form.deadline": "Goal Finish Date",
   "add.goal.form.error": "Please fill all the fields",
   "add.goal.form.error.exists": "This Goal is already registered, please add another",
-  "add.goal.form.success": "Goal added successfully"
+  "add.goal.form.success": "Goal added successfully",
+  "goals.to.start.title": "Goals to start"
 }
