@@ -46,7 +46,6 @@ export const useGoalStore = defineStore('goal', {
     },
     async addGoal(data) {
       const { setMessage } = useMessageStore()
-      await this.fetchGoals()
       const goals = [...this.getAllGoals]
       const alreadyExists = goals.some(({ title }) => title === data.title)
 
@@ -65,16 +64,14 @@ export const useGoalStore = defineStore('goal', {
           updated_at: new Date(),
         }
         try {
-          this.goals = [...goals, newGoal]
+          this.goals.push(newGoal)
           fetch(`${process.env.VUE_APP_API_HOST}/goals`, {
             method: 'POST',
             body: JSON.stringify(newGoal),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
+          }).then((res) => res.json())
           setMessage({
             active: true,
             text: 'add.goal.form.success',
