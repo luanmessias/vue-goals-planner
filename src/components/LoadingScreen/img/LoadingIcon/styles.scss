@@ -1,0 +1,9 @@
+.loading-icon {
+  &__line {
+    stroke: $color-green-light;
+  }
+  &__circle {
+    fill: $color-orange-main;
+    stroke: $color-green-main;
+  }
+}

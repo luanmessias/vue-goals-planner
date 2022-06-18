@@ -3,7 +3,6 @@
     <CallbackMessage />
     <MainHeader />
     <HomeBanner />
-    <GoalsToStart />
     <GoalForm />
     <div style="height: 1000px; width: 100%; display: block" />
   </div>
@@ -13,7 +12,6 @@
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
 import GoalForm from '@/components/GoalForm'
-import GoalsToStart from '@/components/GoalsToStart'
 import CallbackMessage from '@/components/CallbackMessage'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
@@ -25,7 +23,6 @@ export default {
     HomeBanner,
     GoalForm,
     CallbackMessage,
-    GoalsToStart,
   },
   setup() {
     const { isThemeDark } = storeToRefs(useThemeStore())

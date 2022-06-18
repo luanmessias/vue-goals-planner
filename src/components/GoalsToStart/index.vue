@@ -20,9 +20,7 @@
 <script>
 import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
-import { useTaskStore } from '@/store/tasks'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
 export default {
   name: 'GoalsToStart',
   components: {
@@ -37,15 +35,6 @@ export default {
   },
   setup() {
     const { goals } = storeToRefs(useGoalStore())
-    const { tasks } = storeToRefs(useTaskStore())
-    const { fetchGoals } = useGoalStore()
-    const { fetchTasks } = useTaskStore()
-    fetchTasks()
-    fetchGoals()
-
-    onMounted(() => {
-      console.log(tasks.value)
-    })
 
     return { goals }
   },

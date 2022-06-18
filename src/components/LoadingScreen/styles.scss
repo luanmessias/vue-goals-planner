@@ -1,0 +1,15 @@
+.loading {
+  z-index: 9999;
+  background-color: $color-green-main;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    width: em(100);
+    height: em(100);
+  }
+}

@@ -36,9 +36,6 @@ export default {
       useTaskStore()
     )
     const { isThemeDark } = storeToRefs(useThemeStore())
-    const { fetchTasks } = useTaskStore()
-
-    fetchTasks()
 
     return {
       tasks,
