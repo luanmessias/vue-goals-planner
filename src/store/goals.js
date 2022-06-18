@@ -22,7 +22,7 @@ export const useGoalStore = defineStore('goal', {
       this.goals = []
       this.loading = true
       try {
-        this.goals = await fetch('http://localhost:3000/goals').then(
+        this.goals = await fetch(`${process.env.VUE_APP_API_HOST}goals`).then(
           (response) => response.json()
         )
       } catch (error) {
@@ -35,9 +35,9 @@ export const useGoalStore = defineStore('goal', {
       this.goal = []
       this.loading = true
       try {
-        this.goal = await fetch(`http://localhost:3000/goals/${id}`).then(
-          (response) => response.json()
-        )
+        this.goal = await fetch(
+          `${process.env.VUE_APP_API_HOST}/goals/${id}`
+        ).then((response) => response.json())
       } catch (error) {
         this.error = error
       } finally {
@@ -66,7 +66,7 @@ export const useGoalStore = defineStore('goal', {
         }
         try {
           this.goals = [...goals, newGoal]
-          fetch('http://localhost:3000/goals', {
+          fetch(`${process.env.VUE_APP_API_HOST}/goals`, {
             method: 'POST',
             body: JSON.stringify(newGoal),
             headers: {

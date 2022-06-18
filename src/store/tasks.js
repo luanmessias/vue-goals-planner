@@ -32,7 +32,7 @@ export const useTaskStore = defineStore('task', {
       this.tasks = []
       this.loading = true
       try {
-        this.tasks = await fetch('http://localhost:3000/tasks').then(
+        this.tasks = await fetch(`${process.env.VUE_APP_API_HOST}/tasks`).then(
           (response) => response.json()
         )
       } catch (error) {
@@ -45,9 +45,9 @@ export const useTaskStore = defineStore('task', {
       this.task = []
       this.loading = true
       try {
-        this.task = await fetch(`http://localhost:3000/tasks/${id}`).then(
-          (response) => response.json()
-        )
+        this.task = await fetch(
+          `${process.env.VUE_APP_API_HOST}/tasks/${id}`
+        ).then((response) => response.json())
       } catch (error) {
         this.error = error
       } finally {
@@ -59,7 +59,7 @@ export const useTaskStore = defineStore('task', {
         if (t.id === taskId) {
           t.done = !t.done
 
-          fetch(`http://localhost:3000/tasks/${taskId}`, {
+          fetch(`${process.env.VUE_APP_API_HOST}/tasks/${taskId}`, {
             method: 'PATCH',
             body: JSON.stringify({
               done: t.done,
