@@ -64,14 +64,16 @@ export const useGoalStore = defineStore('goal', {
           updated_at: new Date(),
         }
         try {
-          this.goals.push(newGoal)
           fetch(`${process.env.VUE_APP_API_HOST}/goals`, {
             method: 'POST',
             body: JSON.stringify(newGoal),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
-          }).then((res) => res.json())
+          })
+            .then((res) => res.json())
+            .then(this.fetchGoals())
+
           setMessage({
             active: true,
             text: 'add.goal.form.success',

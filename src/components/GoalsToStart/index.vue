@@ -35,6 +35,7 @@ export default {
   },
   setup() {
     const { goals } = storeToRefs(useGoalStore())
+    console.log('🚀 ~ file: index.vue ~ line 38 ~ setup ~ goals', goals.value)
 
     return { goals }
   },
