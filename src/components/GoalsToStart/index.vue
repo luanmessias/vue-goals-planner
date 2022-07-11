@@ -5,12 +5,13 @@
       <span class="goals__length" v-text="goalsLength" />
     </header>
     <Carousel class="goals__carousel" :items-to-show="2.6" :wrap-around="false">
-      <Slide v-for="(goal, index) in goals" :key="index">
-        <div
-          style="width: 110px; height: 110px; background-color: #ffe5c7"
-          class="carousel__item"
-        >
-          {{ goal.title }}
+      <Slide v-for="(goal, index) in getNewGoals" :key="index">
+        <div class="goals__item">
+          <strong class="goals__item__title" v-text="goal.title" />
+          <div class="goals__item__date">
+            <CalendarIcon />
+            <span v-text="new Date(goal.deadline)" />
+          </div>
         </div>
       </Slide>
     </Carousel>
@@ -20,12 +21,13 @@
 <script>
 import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
-import { storeToRefs } from 'pinia'
+import CalendarIcon from 'icons/CalendarMonth.vue'
 export default {
   name: 'GoalsToStart',
   components: {
     Carousel,
     Slide,
+    CalendarIcon,
   },
   props: {
     goalsLength: {
@@ -34,10 +36,9 @@ export default {
     },
   },
   setup() {
-    const { goals } = storeToRefs(useGoalStore())
-    console.log('🚀 ~ file: index.vue ~ line 38 ~ setup ~ goals', goals.value)
+    const { getNewGoals } = useGoalStore()
 
-    return { goals }
+    return { getNewGoals }
   },
 }
 </script>

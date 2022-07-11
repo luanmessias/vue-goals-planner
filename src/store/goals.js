@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useMessageStore } from '@/store/message'
+import { useTaskStore } from '@/store/tasks'
 import { v4 as uuid_v4 } from 'uuid'
 
 export const useGoalStore = defineStore('goal', {
@@ -16,13 +17,28 @@ export const useGoalStore = defineStore('goal', {
     getAllGoals(state) {
       return state.goals
     },
+    getNewGoals() {
+      const { tasks } = useTaskStore()
+      const goalsToIgnore = [
+        ...new Set(
+          tasks.map((task) => {
+            return task.goal
+          })
+        ),
+      ]
+      const goalsToStart = this.goals.filter((goal) => {
+        return !goalsToIgnore.includes(goal.id)
+      })
+
+      return goalsToStart
+    },
   },
   actions: {
     async fetchGoals() {
       this.goals = []
       this.loading = true
       try {
-        this.goals = await fetch(`${process.env.VUE_APP_API_HOST}goals`).then(
+        this.goals = await fetch(`${process.env.VUE_APP_API_HOST}/goals`).then(
           (response) => response.json()
         )
       } catch (error) {

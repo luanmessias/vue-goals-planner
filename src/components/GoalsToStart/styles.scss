@@ -40,4 +40,20 @@
       margin-right: em(15);
     }
   }
+
+  &__item {
+    box-sizing: border-box;
+    width: em(110);
+    height: em(110);
+    padding: em(10);
+    background-color: $color-orange-light;
+    border-radius: em(5);
+    &__title {
+      word-break: break-all;
+      text-align: left;
+      font-size: em(12);
+      font-weight: 700;
+      color: $color-green-main;
+    }
+  }
 }
