@@ -14,7 +14,6 @@
       v-model="date"
       :minDate="minDate"
       :format="format"
-      :locale="$i18n.locale"
       noToday
       autoApply
     />
@@ -24,7 +23,7 @@
 <script>
 import DatePicker from '@vuepic/vue-datepicker'
 import { ref } from 'vue'
-import dayjs from 'dayjs'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'DateSelector',
@@ -44,8 +43,8 @@ export default {
   setup() {
     const date = ref('')
     const minDate = new Date()
-    const format = () => dayjs(date.value)
-
+    const { d } = useI18n()
+    const format = () => d(date.value)
     return {
       date,
       minDate,

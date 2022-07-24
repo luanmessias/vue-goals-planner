@@ -43,12 +43,11 @@
     font-size: em(12);
     color: $color-red-main;
     position: absolute;
-    right: em(10);
-    bottom: em(20);
+    left: 0;
+    bottom: em(-25);
     z-index: 1;
 
     &__animate {
-
       &-enter-active,
       &-leave-active {
         transition: all 0.3s ease-in-out;

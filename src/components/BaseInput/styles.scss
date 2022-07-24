@@ -12,8 +12,7 @@
     border: 2px solid $general-border-color;
     padding: em(5) em(10);
     width: 100%;
-    height: 100%;
-    height: 50px;
+    height: em(60);
     border-radius: em(12);
     font-size: em(14);
     outline: none;
@@ -32,8 +31,8 @@
     font-size: em(12);
     color: $color-red-main;
     position: absolute;
-    right: em(10);
-    bottom: em(20);
+    left: 0;
+    bottom: em(-25);
     z-index: 1;
 
     &__animate {
