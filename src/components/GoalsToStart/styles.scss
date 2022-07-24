@@ -1,3 +1,5 @@
+$date-color: #787878;
+
 .goals {
   &__header {
     display: flex;
@@ -15,7 +17,9 @@
     }
 
     &--dark {
-      color: $color-green-light;
+      h1 {
+        color: $color-green-light;
+      }
     }
   }
 
@@ -35,13 +39,13 @@
   &__carousel {
     display: flex;
     overflow-x: auto;
-
-    &__item {
-      margin-right: em(15);
-    }
+    padding-left: em(9);
   }
 
   &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
     width: em(110);
     height: em(110);
@@ -51,9 +55,25 @@
     &__title {
       word-break: break-all;
       text-align: left;
-      font-size: em(12);
+      font-size: em(14);
+      padding: em(2);
       font-weight: 700;
       color: $color-green-main;
+    }
+    &__date {
+      display: flex;
+      align-items: center;
+      &__icon {
+        &::v-deep {
+          svg {
+            fill: $date-color;
+          }
+        }
+      }
+      &__txt {
+        color: $date-color;
+        font-size: em(12);
+      }
     }
   }
 }

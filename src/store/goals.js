@@ -26,9 +26,16 @@ export const useGoalStore = defineStore('goal', {
           })
         ),
       ]
-      const goalsToStart = this.goals.filter((goal) => {
-        return !goalsToIgnore.includes(goal.id)
-      })
+      const goalsToStart = this.goals
+        .filter((goal) => {
+          return !goalsToIgnore.includes(goal.id)
+        })
+        .sort((a, b) => {
+          let da = new Date(a.deadline)
+          let db = new Date(b.deadline)
+
+          return da - db
+        })
 
       return goalsToStart
     },
@@ -87,8 +94,8 @@ export const useGoalStore = defineStore('goal', {
               'Content-type': 'application/json; charset=UTF-8',
             },
           })
+            .then(this.goals.push(newGoal))
             .then((res) => res.json())
-            .then(this.fetchGoals())
 
           setMessage({
             active: true,

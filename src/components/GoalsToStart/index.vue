@@ -1,16 +1,16 @@
 <template>
   <section class="goals">
-    <header class="goals__header">
+    <header :class="['goals__header', { 'goals__header--dark': isThemeDark }]">
       <h1 v-text="$t('goals.to.start.title')" />
-      <span class="goals__length" v-text="goalsLength" />
+      <span class="goals__length" v-text="getNewGoals.length" />
     </header>
-    <Carousel class="goals__carousel" :items-to-show="2.6" :wrap-around="false">
+    <Carousel class="goals__carousel" :items-to-show="2.9" :wrap-around="false">
       <Slide v-for="(goal, index) in getNewGoals" :key="index">
         <div class="goals__item">
-          <strong class="goals__item__title" v-text="goal.title" />
+          <strong class="goals__item__title" v-text="cropTitle(goal.title)" />
           <div class="goals__item__date">
-            <CalendarIcon />
-            <span v-text="new Date(goal.deadline)" />
+            <CalendarIcon class="goals__item__date__icon" />
+            <span class="goals__item__date__txt" v-text="$d(goal.deadline)" />
           </div>
         </div>
       </Slide>
@@ -22,6 +22,9 @@
 import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
 import CalendarIcon from 'icons/CalendarMonth.vue'
+import { storeToRefs } from 'pinia'
+import { useThemeStore } from '@/store/theme'
+
 export default {
   name: 'GoalsToStart',
   components: {
@@ -29,16 +32,20 @@ export default {
     Slide,
     CalendarIcon,
   },
-  props: {
-    goalsLength: {
-      type: Number,
-      default: 0,
-    },
-  },
   setup() {
-    const { getNewGoals } = useGoalStore()
+    const { getNewGoals } = storeToRefs(useGoalStore())
+    const { isThemeDark } = storeToRefs(useThemeStore())
 
-    return { getNewGoals }
+    const cropTitle = (title) => {
+      const titleLength = title.length
+      const maxLength = 28
+      if (titleLength > maxLength) {
+        return `${title.substring(0, maxLength)}...`
+      }
+      return title
+    }
+
+    return { getNewGoals, cropTitle, isThemeDark }
   },
 }
 </script>
