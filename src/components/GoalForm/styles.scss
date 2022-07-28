@@ -35,6 +35,9 @@
     padding: $default-page-spacing;
     border-top-left-radius: em(20);
     border-top-right-radius: em(20);
+    &--dark {
+      background-color: $color-green-main;
+    }
   }
 
   &__button {

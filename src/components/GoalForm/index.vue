@@ -6,8 +6,13 @@
   />
   <Teleport to="#modal">
     <transition name="goal__animate">
-      <div v-if="isGoalFormActive" class="goal">
-        <div class="goal__container">
+      <div
+        v-if="isGoalFormActive"
+        :class="['goal', { 'goal--dark': isThemeDark }]"
+      >
+        <div
+          :class="['goal__container', { 'goal__container--dark': isThemeDark }]"
+        >
           <div class="goal__header">
             <div class="goal__header__return" @click="toggleGoalForm">
               <ArrowLeft />
@@ -52,6 +57,8 @@ import DateSelector from '@/components/DateSelector'
 import { useMessageStore } from '@/store/message'
 import { useGoalStore } from '@/store/goals'
 import { ref } from 'vue'
+import { useThemeStore } from '@/store/theme'
+import { storeToRefs } from 'pinia'
 
 export default {
   name: 'GoalForm',
@@ -63,6 +70,7 @@ export default {
   },
   setup() {
     const isGoalFormActive = ref(false)
+    const { isThemeDark } = storeToRefs(useThemeStore())
     const goal = ref({
       title: {
         value: '',
@@ -129,6 +137,7 @@ export default {
     }
 
     return {
+      isThemeDark,
       goal: goal.value,
       toggleGoalForm,
       isGoalFormActive,

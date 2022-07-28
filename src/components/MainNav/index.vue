@@ -42,6 +42,7 @@
             </transition>
           </div>
         </div>
+        <div class="nav__overlay" @click="closeAMenu" />
       </div>
     </transition>
   </Teleport>
