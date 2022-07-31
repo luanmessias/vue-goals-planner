@@ -10,7 +10,10 @@
           <strong class="goals__item__title" v-text="cropTitle(goal.title)" />
           <div class="goals__item__date">
             <CalendarIcon class="goals__item__date__icon" />
-            <span class="goals__item__date__txt" v-text="$d(goal.deadline)" />
+            <span
+              class="goals__item__date__txt"
+              v-text="$d(new Date(+goal.deadline))"
+            />
           </div>
         </div>
       </Slide>
