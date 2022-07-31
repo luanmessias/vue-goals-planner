@@ -50,6 +50,9 @@ $date-color: #787878;
     padding: em(10);
     background-color: $color-orange-light;
     border-radius: em(5);
+    &__link {
+      text-decoration: none;
+    }
     &__title {
       word-break: break-all;
       text-align: left;

@@ -6,16 +6,18 @@
     </header>
     <Carousel class="goals__carousel" :items-to-show="2.9" :wrap-around="false">
       <Slide v-for="(goal, index) in getNewGoals" :key="index">
-        <div class="goals__item">
-          <strong class="goals__item__title" v-text="cropTitle(goal.title)" />
-          <div class="goals__item__date">
-            <CalendarIcon class="goals__item__date__icon" />
-            <span
-              class="goals__item__date__txt"
-              v-text="$d(new Date(+goal.deadline))"
-            />
+        <router-link class="goals__item__link" :to="`/goal/${goal.id}`">
+          <div class="goals__item">
+            <strong class="goals__item__title" v-text="cropTitle(goal.title)" />
+            <div class="goals__item__date">
+              <CalendarIcon class="goals__item__date__icon" />
+              <span
+                class="goals__item__date__txt"
+                v-text="$d(new Date(+goal.deadline))"
+              />
+            </div>
           </div>
-        </div>
+        </router-link>
       </Slide>
     </Carousel>
   </section>
