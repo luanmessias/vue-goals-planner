@@ -13,7 +13,7 @@
               <CalendarIcon class="goals__item__date__icon" />
               <span
                 class="goals__item__date__txt"
-                v-text="$d(new Date(+goal.deadline))"
+                v-text="$d(timeStampToDate(goal.deadline.seconds))"
               />
             </div>
           </div>
@@ -29,6 +29,7 @@ import { useGoalStore } from '@/store/goals'
 import CalendarIcon from 'icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
+import { timeStampToDate } from '@/utils/timeStampToDate'
 
 export default {
   name: 'GoalsToStart',
@@ -50,7 +51,7 @@ export default {
       return title
     }
 
-    return { getNewGoals, cropTitle, isThemeDark }
+    return { getNewGoals, cropTitle, isThemeDark, timeStampToDate }
   },
 }
 </script>
