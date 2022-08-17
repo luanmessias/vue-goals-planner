@@ -1,7 +1,14 @@
 import { defineStore } from 'pinia'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
-import { query, collection, getDocs, getDoc, addDoc } from 'firebase/firestore'
+import {
+  query,
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  addDoc,
+} from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 
 export const useGoalStore = defineStore('goal', {
@@ -60,8 +67,9 @@ export const useGoalStore = defineStore('goal', {
       this.goal = []
       this.loading = true
       try {
-        const doc = getDoc(query(collection(projectFirestore, 'goals').doc(id)))
-        this.goal = { id: doc.id, ...doc.data() }
+        const docRef = doc(projectFirestore, 'goals', id)
+        const docSnap = await getDoc(docRef)
+        this.goal = { id: docSnap.id, ...docSnap.data() }
       } catch (error) {
         this.error = error
       } finally {
@@ -89,7 +97,8 @@ export const useGoalStore = defineStore('goal', {
         try {
           const colRef = collection(projectFirestore, 'goals')
           const docRef = await addDoc(colRef, newGoal)
-          this.goals.push({ id: docRef.id, ...newGoal })
+          await this.fetchGoal(docRef.id)
+          this.goals.push(this.goal)
 
           setMessage({
             active: true,

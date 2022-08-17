@@ -65,10 +65,8 @@ $date-color: #787878;
       display: flex;
       align-items: center;
       &__icon {
-        &::v-deep {
-          svg {
-            fill: $date-color;
-          }
+        &:deep(svg) {
+          fill: $date-color;
         }
       }
       &__txt {
