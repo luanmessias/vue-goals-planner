@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { query, collection, getDocs, doc, getDoc } from 'firebase/firestore'
+import projectFirestore from '@/firebase/config'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
@@ -32,9 +34,10 @@ export const useTaskStore = defineStore('task', {
       this.tasks = []
       this.loading = true
       try {
-        this.tasks = await fetch(`${process.env.VUE_APP_API_HOST}/tasks`).then(
-          (response) => response.json()
-        )
+        const res = await getDocs(query(collection(projectFirestore, 'tasks')))
+        res.forEach((doc) => {
+          this.tasks.push({ id: doc.id, ...doc.data() })
+        })
       } catch (error) {
         this.error = error
       } finally {
@@ -45,31 +48,14 @@ export const useTaskStore = defineStore('task', {
       this.task = []
       this.loading = true
       try {
-        this.task = await fetch(
-          `${process.env.VUE_APP_API_HOST}/tasks/${id}`
-        ).then((response) => response.json())
+        const docRef = doc(projectFirestore, 'tasks', id)
+        const docSnap = await getDoc(docRef)
+        this.task = { id: docSnap.id, ...docSnap.data() }
       } catch (error) {
         this.error = error
       } finally {
         this.loading = false
       }
-    },
-    toggleTaskStatus(taskId) {
-      this.tasks.find((t) => {
-        if (t.id === taskId) {
-          t.done = !t.done
-
-          fetch(`${process.env.VUE_APP_API_HOST}/tasks/${taskId}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-              done: t.done,
-            }),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-            },
-          })
-        }
-      })
     },
   },
 })
