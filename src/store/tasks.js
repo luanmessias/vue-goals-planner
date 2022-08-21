@@ -13,20 +13,34 @@ export const useTaskStore = defineStore('task', {
     getAllTasks(state) {
       return state.tasks
     },
-    getAllDoneTasks(state) {
-      return state.tasks.filter((task) => task.done === true)
-    },
-    getAllUndoneTasks(state) {
-      return state.tasks.filter((task) => task.done === false)
-    },
     getAllTasksLength(state) {
       return state.tasks.length
     },
-    getAllDoneTasksLength(state) {
-      return state.tasks.filter((task) => task.done === true).length
+    getAllGoalTasks(state, goalId) {
+      return state.tasks.filter((task) => task.goal === goalId)
     },
-    getAllUndoneTasksLength(state) {
-      return state.tasks.filter((task) => task.done === false).length
+    getAllGoalTasksLength(state, goalId) {
+      return state.tasks.filter((task) => task.goal === goalId).length
+    },
+    getToDoGoalTasks(state, goalId) {
+      return state.tasks.filter(
+        (task) => task.goal === goalId && task.done === false
+      )
+    },
+    getTodoGoalTasksLength(state, goalId) {
+      return state.tasks.filter(
+        (task) => task.goal === goalId && task.done === false
+      ).length
+    },
+    getDoneGoalTasks(state, goalId) {
+      return state.tasks.filter(
+        (task) => task.goal === goalId && task.done === true
+      )
+    },
+    getDoneGoalTasksLength(state, goalId) {
+      return state.tasks.filter(
+        (task) => task.goal === goalId && task.done === true
+      ).length
     },
   },
   actions: {

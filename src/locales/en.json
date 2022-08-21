@@ -3,6 +3,7 @@
   "home.banner.title": "Total",
   "home.banner.tasks": "tasks done",
   "button.add.goal": "Goal",
+  "button.add.task": "Task",
   "add.goal.page.title": "Add new goal",
   "add.goal.form.title": "Goal Title",
   "add.goal.title.error.empty": "Please, set a title for your goal",
@@ -11,5 +12,10 @@
   "add.goal.form.error": "Please fill all the fields",
   "add.goal.form.error.exists": "This Goal is already registered, please add another",
   "add.goal.form.success": "Goal added successfully",
-  "goals.to.start.title": "Goals to start"
+  "goals.to.start.title": "Goals to start",
+  "task.filter.all": "All",
+  "task.filter.to.do": "To do",
+  "task.filter.in.progress": "In progress",
+  "task.filter.done": "Done",
+  "add.task.page.title": "Add new task"
 }

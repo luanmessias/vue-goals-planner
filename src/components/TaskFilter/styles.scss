@@ -1,0 +1,25 @@
+.task-filter {
+  display: flex;
+  box-sizing: border-box;
+  padding: $default-page-spacing;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  &__opt {
+    background-color: $color-green-light;
+    color: $color-green-main;
+    padding: em(5) em(15);
+    border-radius: em(5);
+    margin-right: em(5);
+    margin-bottom: em(5);
+
+    &--active {
+      background-color: $color-green-main;
+      color: $color-green-light;
+    }
+
+    &__title {
+      margin-right: em(10);
+    }
+  }
+}

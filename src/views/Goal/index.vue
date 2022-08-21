@@ -11,10 +11,9 @@
       <CalendarIcon class="goal-page__until-date__icon" />
       <span>Until 18/05</span>
     </div>
+    <TaskFilter />
+    <TaskForm />
   </div>
-  <pre>
-    {{ goal }}
-  </pre>
 </template>
 
 <script>
@@ -25,6 +24,8 @@ import { useThemeStore } from '@/store/theme'
 import { useGoalStore } from '@/store/goals'
 import { useRoute } from 'vue-router'
 import MainNav from '@/components/MainNav'
+import TaskFilter from '@/components/TaskFilter'
+import TaskForm from '@/components/TaskForm'
 
 export default {
   name: 'GoalPage',
@@ -32,6 +33,8 @@ export default {
     ArrowLeftIcon,
     CalendarIcon,
     MainNav,
+    TaskFilter,
+    TaskForm,
   },
   setup() {
     const { isThemeDark } = storeToRefs(useThemeStore())
