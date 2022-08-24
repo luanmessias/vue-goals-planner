@@ -13,6 +13,7 @@ import { useMessageStore } from './message'
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: [],
+    filteredTasks: null,
     task: null,
     loading: false,
     error: null,
@@ -29,9 +30,6 @@ export const useTaskStore = defineStore('task', {
     },
     getAllDoneTasksLength(state) {
       return state.tasks.filter((task) => task.done).length
-    },
-    getAllGoalTasks(state, goalId) {
-      return state.tasks.filter((task) => task.goal === goalId)
     },
     getAllGoalTasksLength(state, goalId) {
       return state.tasks.filter((task) => task.goal === goalId).length
@@ -85,6 +83,16 @@ export const useTaskStore = defineStore('task', {
         this.loading = false
       }
     },
+    getAllGoalTasks(goalId) {
+      this.loading = true
+      try {
+        this.filteredTasks = this.tasks.filter((task) => task.goal === goalId)
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
     async addTask(data) {
       const { setMessage } = useMessageStore()
       const tasks = [...this.getAllTasks]
@@ -109,6 +117,7 @@ export const useTaskStore = defineStore('task', {
           const docRef = await addDoc(colRef, newTask)
           await this.fetchTask(docRef.id)
           this.tasks.push(this.task)
+          this.getAllGoalTasks(newTask.goal)
 
           setMessage({
             active: true,

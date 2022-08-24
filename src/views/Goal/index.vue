@@ -12,6 +12,7 @@
       <span>Until 18/05</span>
     </div>
     <TaskFilter />
+    <TaskList />
     <TaskForm />
   </div>
 </template>
@@ -26,6 +27,7 @@ import { useRoute } from 'vue-router'
 import MainNav from '@/components/MainNav'
 import TaskFilter from '@/components/TaskFilter'
 import TaskForm from '@/components/TaskForm'
+import TaskList from '@/components/TaskList'
 
 export default {
   name: 'GoalPage',
@@ -35,6 +37,7 @@ export default {
     MainNav,
     TaskFilter,
     TaskForm,
+    TaskList,
   },
   setup() {
     const { isThemeDark } = storeToRefs(useThemeStore())
