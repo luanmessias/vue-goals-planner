@@ -17,5 +17,12 @@
   "task.filter.to.do": "To do",
   "task.filter.in.progress": "In progress",
   "task.filter.done": "Done",
-  "add.task.page.title": "Add new task"
+  "add.task.page.title": "Add new task",
+  "add.task.form.title": "Task Title",
+  "add.task.form.title.error.empty": "Please, set a title for your task",
+  "add.task.form.description": "Task Description",
+  "add.task.form.description.error.empty": "Please, set a description for your task",
+  "add.task.form.error": "Please fill all the fields",
+  "add.task.form.error.exists": "This Task is already registered, please add another",
+  "add.task.form.success": "Task added successfully"
 }

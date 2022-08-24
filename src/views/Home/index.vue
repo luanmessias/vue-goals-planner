@@ -1,7 +1,6 @@
 <template>
   <div :class="['home-page', { 'home-page--dark': isThemeDark }]">
     <MainNav />
-    <CallbackMessage />
     <MainHeader />
     <HomeBanner />
     <GoalsToStart />
@@ -15,7 +14,6 @@ import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
 import GoalForm from '@/components/GoalForm'
 import GoalsToStart from '@/components/GoalsToStart'
-import CallbackMessage from '@/components/CallbackMessage'
 import MainNav from '@/components/MainNav'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
@@ -26,7 +24,6 @@ export default {
     MainHeader,
     HomeBanner,
     GoalForm,
-    CallbackMessage,
     GoalsToStart,
     MainNav,
   },

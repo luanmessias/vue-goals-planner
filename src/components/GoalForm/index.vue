@@ -5,6 +5,7 @@
     :label="$t('button.add.goal')"
   />
   <Teleport to="#modal">
+    <CallbackMessage />
     <transition name="goal__animate">
       <div
         v-if="isGoalFormActive"
@@ -51,6 +52,7 @@
 
 <script>
 import AddButton from '@/components/AddButton'
+import CallbackMessage from '@/components/CallbackMessage'
 import ArrowLeft from 'icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
@@ -67,6 +69,7 @@ export default {
     ArrowLeft,
     BaseInput,
     DateSelector,
+    CallbackMessage,
   },
   setup() {
     const isGoalFormActive = ref(false)

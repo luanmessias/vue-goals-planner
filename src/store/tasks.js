@@ -1,6 +1,14 @@
 import { defineStore } from 'pinia'
-import { query, collection, getDocs, doc, getDoc } from 'firebase/firestore'
+import {
+  query,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+} from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
+import { useMessageStore } from './message'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
@@ -15,6 +23,12 @@ export const useTaskStore = defineStore('task', {
     },
     getAllTasksLength(state) {
       return state.tasks.length
+    },
+    getAllDoneTasks(state) {
+      return state.tasks.filter((task) => task.done)
+    },
+    getAllDoneTasksLength(state) {
+      return state.tasks.filter((task) => task.done).length
     },
     getAllGoalTasks(state, goalId) {
       return state.tasks.filter((task) => task.goal === goalId)
@@ -69,6 +83,41 @@ export const useTaskStore = defineStore('task', {
         this.error = error
       } finally {
         this.loading = false
+      }
+    },
+    async addTask(data) {
+      const { setMessage } = useMessageStore()
+      const tasks = [...this.getAllTasks]
+      const alreadyExists = tasks.some(({ title }) => title === data.title)
+
+      if (alreadyExists) {
+        setMessage({
+          active: true,
+          error: true,
+          message: 'add.task.form.error.exists',
+        })
+      } else {
+        const newTask = {
+          title: data.title,
+          description: data.description,
+          goal: data.goal,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }
+        try {
+          const colRef = collection(projectFirestore, 'tasks')
+          const docRef = await addDoc(colRef, newTask)
+          await this.fetchTask(docRef.id)
+          this.tasks.push(this.task)
+
+          setMessage({
+            active: true,
+            text: 'add.task.form.success',
+            error: false,
+          })
+        } catch (error) {
+          this.error = error
+        }
       }
     },
   },
