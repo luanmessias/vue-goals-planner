@@ -1,30 +1,22 @@
 <template>
   <div class="task-list">
-    <div v-for="(task, index) in filteredTasks" :key="index" class="task">
-      {{ task.title }}
-
-      <TaskCircleIcon />
-      <TaskCircleDoneIcon />
-      <MoreHorizIcon />
-    </div>
+    <template v-for="(task, index) in filteredTasks" :key="index">
+      <TaskItem :task="task" />
+    </template>
   </div>
 </template>
 
 <script>
-import TaskCircleIcon from 'icons/PanoramaFisheye.vue'
-import TaskCircleDoneIcon from 'icons/CheckCircle.vue'
-import MoreHorizIcon from 'icons/More.vue'
 import { useRoute } from 'vue-router'
 import { useTaskStore } from '@/store/tasks'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
+import TaskItem from '@/components/TaskItem'
 
 export default {
   name: 'TaskList',
   components: {
-    TaskCircleIcon,
-    TaskCircleDoneIcon,
-    MoreHorizIcon,
+    TaskItem,
   },
   setup() {
     const { getAllGoalTasks } = useTaskStore()

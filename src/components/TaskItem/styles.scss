@@ -1,0 +1,140 @@
+$color-task-title: #686868;
+$color-task-description: #959595;
+$color-task-active-bg: #ededed;
+
+.task {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: em(60);
+  height: auto;
+  position: relative;
+  padding: $default-page-spacing;
+  transition: all 0.2s ease-in-out;
+
+  &--active {
+    background-color: $color-task-active-bg;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 1px;
+    background-color: $color-task-active-bg;
+    margin-top: em(1);
+    margin-bottom: em(1);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__details {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding-left: em(40);
+    padding-top: em(10);
+
+    &__info {
+      color: $color-task-description;
+      font-size: em(14);
+    }
+
+    &__menu {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: em(40);
+      margin-left: 10px;
+
+      &:deep(svg) {
+        fill: $color-task-title;
+        margin-bottom: em(10);
+      }
+    }
+  }
+
+  &__title {
+    flex: 1;
+    font-size: em(14);
+    color: $color-task-title;
+    margin-left: $default-page-spacing;
+  }
+
+  &__options {
+    margin-left: auto;
+
+    &::before,
+    &::after,
+    &__dot,
+    &__close-dot {
+      content: '';
+      display: inline-block;
+      border-radius: em(50);
+      width: em(5);
+      height: em(5);
+      background-color: $color-task-title;
+    }
+
+    &__dot {
+      margin: 0 em(3);
+    }
+
+    &__close-dot:first-of-type {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &__close-dot:last-of-type {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    &--active {
+      width: em(15);
+      height: em(15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+
+  &__animate {
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.3s ease-in-out;
+    }
+
+    &-leave-active {
+      transition-delay: 0.25s;
+    }
+
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+    }
+  }
+}
