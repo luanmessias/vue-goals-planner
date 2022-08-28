@@ -2,6 +2,7 @@
   display: flex;
   box-sizing: border-box;
   padding: $default-page-spacing;
+  padding-bottom: 0;
   justify-content: flex-start;
   flex-wrap: wrap;
 
@@ -12,6 +13,7 @@
     border-radius: em(5);
     margin-right: em(5);
     margin-bottom: em(5);
+    transition: background-color 0.2s ease-in-out;
 
     &--active {
       background-color: $color-green-main;

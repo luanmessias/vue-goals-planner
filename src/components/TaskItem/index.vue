@@ -1,31 +1,29 @@
 <template>
-  <transition-group name="task__animate">
-    <div :class="['task', { 'task--active': taskActive }]">
-      <div class="task__toggle">
-        <TaskCircleDoneIcon v-if="task.done" />
-        <TaskCircleIcon v-else />
-      </div>
+  <div :class="['task', { 'task--active': taskActive }]" :key="task.id">
+    <div class="task__toggle" @click="toggleTaskDone(task)">
+      <TaskCircleDoneIcon v-if="task.done" />
+      <TaskCircleIcon v-else />
+    </div>
 
-      <span class="task__title" v-text="task.title" />
+    <span class="task__title" v-text="task.title" />
 
-      <div
-        :class="['task__options', { 'task__options--active': taskActive }]"
-        @click="taskActive = !taskActive"
-      >
-        <div v-if="taskActive" class="task__options__close-dot" />
-        <div class="task__options__dot" />
-        <div v-if="taskActive" class="task__options__close-dot" />
-      </div>
+    <div
+      :class="['task__options', { 'task__options--active': taskActive }]"
+      @click="taskActive = !taskActive"
+    >
+      <div v-if="taskActive" class="task__options__close-dot" />
+      <div class="task__options__dot" />
+      <div v-if="taskActive" class="task__options__close-dot" />
+    </div>
 
-      <div class="task__details" v-if="taskActive">
-        <div class="task__details__info" v-text="task.description" />
-        <div class="task__details__menu">
-          <ModeEditIcon />
-          <DeleteOutlineIcon />
-        </div>
+    <div class="task__details" v-if="taskActive">
+      <div class="task__details__info" v-text="task.description" />
+      <div class="task__details__menu">
+        <ModeEditIcon />
+        <DeleteOutlineIcon />
       </div>
     </div>
-  </transition-group>
+  </div>
 </template>
 
 <script>
@@ -34,6 +32,8 @@ import TaskCircleDoneIcon from 'icons/CheckCircle.vue'
 import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
 import ModeEditIcon from 'icons/Pen.vue'
 import { ref } from 'vue'
+import { useTaskStore } from '@/store/tasks'
+
 export default {
   name: 'TaskItem',
   components: {
@@ -49,8 +49,9 @@ export default {
     },
   },
   setup() {
+    const { toggleTaskDone } = useTaskStore()
     const taskActive = ref(false)
-    return { taskActive }
+    return { taskActive, toggleTaskDone }
   },
 }
 </script>

@@ -8,7 +8,10 @@
       <Slide v-for="(goal, index) in getNewGoals" :key="index">
         <router-link class="goals__item__link" :to="`/goal/${goal.id}`">
           <div class="goals__item">
-            <strong class="goals__item__title" v-text="cropTitle(goal.title)" />
+            <strong
+              class="goals__item__title"
+              v-text="cropString(goal.title, 28)"
+            />
             <div class="goals__item__date">
               <CalendarIcon class="goals__item__date__icon" />
               <span
@@ -29,7 +32,8 @@ import { useGoalStore } from '@/store/goals'
 import CalendarIcon from 'icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/store/theme'
-import { timeStampToDate } from '@/utils/timeStampToDate'
+import { timeStampToDate } from '@/utils/TimesStampToDate'
+import { cropString } from '@/utils/CropString'
 
 export default {
   name: 'GoalsToStart',
@@ -42,16 +46,7 @@ export default {
     const { getNewGoals } = storeToRefs(useGoalStore())
     const { isThemeDark } = storeToRefs(useThemeStore())
 
-    const cropTitle = (title) => {
-      const titleLength = title.length
-      const maxLength = 28
-      if (titleLength > maxLength) {
-        return `${title.substring(0, maxLength)}...`
-      }
-      return title
-    }
-
-    return { getNewGoals, cropTitle, isThemeDark, timeStampToDate }
+    return { getNewGoals, cropString, isThemeDark, timeStampToDate }
   },
 }
 </script>

@@ -6,7 +6,7 @@
       :key="index"
       @click="activeOption(index)"
     >
-      <span class="task-filter__opt__title" v-text="opt.title" />
+      <span class="task-filter__opt__title" v-text="$t(opt.title)" />
       <span class="task-filter__opt__length" v-text="opt.length" />
     </div>
   </div>
@@ -14,6 +14,8 @@
 
 <script>
 import { ref } from 'vue'
+import { useTaskStore } from '@/store/tasks'
+import { useRoute } from 'vue-router'
 export default {
   name: 'TaskFilter',
   props: {
@@ -23,21 +25,34 @@ export default {
     },
   },
   setup() {
+    const {
+      getAllGoalTasks,
+      getAllGoalTasksLength,
+      getAllToDoGoalTasks,
+      getAllToDoGoalTasksLength,
+      getAllDoneGoalTasks,
+      getAllDoneGoalTasksLength,
+    } = useTaskStore()
+    const route = useRoute()
+    const goalId = route.params.id
     const options = ref([
       {
-        title: 'All',
-        length: 5,
+        title: 'task.filter.all',
+        length: getAllGoalTasksLength(goalId),
         active: true,
+        action: () => getAllGoalTasks(goalId),
       },
       {
-        title: 'To Do',
-        length: 5,
+        title: 'task.filter.to.do',
+        length: getAllToDoGoalTasksLength(goalId),
         active: false,
+        action: () => getAllToDoGoalTasks(goalId),
       },
       {
-        title: 'Done',
-        length: 5,
+        title: 'task.filter.done',
+        length: getAllDoneGoalTasksLength(goalId),
         active: false,
+        action: () => getAllDoneGoalTasks(goalId),
       },
     ])
 
@@ -46,6 +61,7 @@ export default {
         opt.active = false
       })
       options.value[index].active = true
+      options.value[index].action()
     }
 
     return {

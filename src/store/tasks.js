@@ -6,15 +6,17 @@ import {
   doc,
   getDoc,
   addDoc,
+  setDoc,
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
+import { sortArrayByDate } from '@/utils/DateArraySorter'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: [],
-    filteredTasks: null,
     task: null,
+    filteredTasks: null,
     loading: false,
     error: null,
   }),
@@ -24,35 +26,6 @@ export const useTaskStore = defineStore('task', {
     },
     getAllTasksLength(state) {
       return state.tasks.length
-    },
-    getAllDoneTasks(state) {
-      return state.tasks.filter((task) => task.done)
-    },
-    getAllDoneTasksLength(state) {
-      return state.tasks.filter((task) => task.done).length
-    },
-    getAllGoalTasksLength(state, goalId) {
-      return state.tasks.filter((task) => task.goal === goalId).length
-    },
-    getToDoGoalTasks(state, goalId) {
-      return state.tasks.filter(
-        (task) => task.goal === goalId && task.done === false
-      )
-    },
-    getTodoGoalTasksLength(state, goalId) {
-      return state.tasks.filter(
-        (task) => task.goal === goalId && task.done === false
-      ).length
-    },
-    getDoneGoalTasks(state, goalId) {
-      return state.tasks.filter(
-        (task) => task.goal === goalId && task.done === true
-      )
-    },
-    getDoneGoalTasksLength(state, goalId) {
-      return state.tasks.filter(
-        (task) => task.goal === goalId && task.done === true
-      ).length
     },
   },
   actions: {
@@ -86,7 +59,71 @@ export const useTaskStore = defineStore('task', {
     getAllGoalTasks(goalId) {
       this.loading = true
       try {
-        this.filteredTasks = this.tasks.filter((task) => task.goal === goalId)
+        const filteredData = this.tasks.filter((task) => task.goal === goalId)
+        this.filteredTasks = sortArrayByDate(filteredData, true)
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    getAllGoalTasksLength(goalId) {
+      this.loading = true
+      try {
+        const filteredData = this.tasks.filter((task) => task.goal === goalId)
+        return filteredData.length
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    getAllToDoGoalTasks(goalId) {
+      this.loading = true
+      try {
+        const filteredData = this.tasks.filter(
+          (task) => task.goal === goalId && task.done === false
+        )
+        this.filteredTasks = sortArrayByDate(filteredData, true)
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    getAllToDoGoalTasksLength(goalId) {
+      this.loading = true
+      try {
+        const filteredData = this.tasks.filter(
+          (task) => task.goal === goalId && task.done === false
+        )
+        return filteredData.length
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    getAllDoneGoalTasks(goalId) {
+      this.loading = true
+      try {
+        const filteredData = this.tasks.filter(
+          (task) => task.goal === goalId && task.done === true
+        )
+        this.filteredTasks = sortArrayByDate(filteredData, true)
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
+    getAllDoneGoalTasksLength(goalId) {
+      this.loading = true
+      try {
+        const filteredData = this.tasks.filter(
+          (task) => task.goal === goalId && task.done === true
+        )
+        return filteredData.length
       } catch (error) {
         this.error = error
       } finally {
@@ -109,6 +146,7 @@ export const useTaskStore = defineStore('task', {
           title: data.title,
           description: data.description,
           goal: data.goal,
+          done: false,
           created_at: new Date(),
           updated_at: new Date(),
         }
@@ -127,6 +165,29 @@ export const useTaskStore = defineStore('task', {
         } catch (error) {
           this.error = error
         }
+      }
+    },
+    async toggleTaskDone(task) {
+      const { id, done } = task
+      const { setMessage } = useMessageStore()
+      try {
+        const updatedTask = {
+          ...task,
+          done: done ? false : true,
+          updated_at: new Date(),
+        }
+        await setDoc(doc(projectFirestore, 'tasks', id), updatedTask, {
+          merge: true,
+        })
+        const taskIndex = this.tasks.findIndex((t) => t.id === id)
+        this.tasks[taskIndex] = updatedTask
+        setMessage({
+          active: true,
+          text: 'update.task.form.success',
+          error: false,
+        })
+      } catch (error) {
+        this.error = error
       }
     },
   },
