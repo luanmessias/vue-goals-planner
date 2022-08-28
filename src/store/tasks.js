@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
-import { sortArrayByDate } from '@/utils/DateArraySorter'
+import { useFilterStore } from './filter'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
@@ -56,81 +56,8 @@ export const useTaskStore = defineStore('task', {
         this.loading = false
       }
     },
-    getAllGoalTasks(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter((task) => task.goal === goalId)
-        this.filteredTasks = sortArrayByDate(filteredData, true)
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
-    getAllGoalTasksLength(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter((task) => task.goal === goalId)
-        return filteredData.length
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
-    getAllToDoGoalTasks(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter(
-          (task) => task.goal === goalId && task.done === false
-        )
-        this.filteredTasks = sortArrayByDate(filteredData, true)
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
-    getAllToDoGoalTasksLength(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter(
-          (task) => task.goal === goalId && task.done === false
-        )
-        return filteredData.length
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
-    getAllDoneGoalTasks(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter(
-          (task) => task.goal === goalId && task.done === true
-        )
-        this.filteredTasks = sortArrayByDate(filteredData, true)
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
-    getAllDoneGoalTasksLength(goalId) {
-      this.loading = true
-      try {
-        const filteredData = this.tasks.filter(
-          (task) => task.goal === goalId && task.done === true
-        )
-        return filteredData.length
-      } catch (error) {
-        this.error = error
-      } finally {
-        this.loading = false
-      }
-    },
     async addTask(data) {
+      const { updateFilters } = useFilterStore()
       const { setMessage } = useMessageStore()
       const tasks = [...this.getAllTasks]
       const alreadyExists = tasks.some(({ title }) => title === data.title)
@@ -155,7 +82,7 @@ export const useTaskStore = defineStore('task', {
           const docRef = await addDoc(colRef, newTask)
           await this.fetchTask(docRef.id)
           this.tasks.push(this.task)
-          this.getAllGoalTasks(newTask.goal)
+          updateFilters(data.goal)
 
           setMessage({
             active: true,
@@ -168,6 +95,7 @@ export const useTaskStore = defineStore('task', {
       }
     },
     async toggleTaskDone(task) {
+      const { updateFilters } = useFilterStore()
       const { id, done } = task
       const { setMessage } = useMessageStore()
       try {
@@ -181,6 +109,7 @@ export const useTaskStore = defineStore('task', {
         })
         const taskIndex = this.tasks.findIndex((t) => t.id === id)
         this.tasks[taskIndex] = updatedTask
+        updateFilters(updatedTask.goal)
         setMessage({
           active: true,
           text: 'update.task.form.success',

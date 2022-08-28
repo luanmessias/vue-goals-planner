@@ -1,16 +1,14 @@
 <template>
   <div class="task-list">
-    <template v-for="(task, index) in filteredTasks" :key="index">
+    <template v-for="(task, index) in activeFilter.data" :key="index">
       <TaskItem :task="task" />
     </template>
   </div>
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
-import { useTaskStore } from '@/store/tasks'
+import { useFilterStore } from '@/store/filter'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
 import TaskItem from '@/components/TaskItem'
 
 export default {
@@ -19,15 +17,9 @@ export default {
     TaskItem,
   },
   setup() {
-    const { getAllGoalTasks } = useTaskStore()
-    const { filteredTasks } = storeToRefs(useTaskStore())
-    const route = useRoute()
+    const { activeFilter } = storeToRefs(useFilterStore())
 
-    onMounted(() => {
-      getAllGoalTasks(route.params.id)
-    })
-
-    return { filteredTasks }
+    return { activeFilter }
   },
 }
 </script>

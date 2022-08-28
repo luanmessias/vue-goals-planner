@@ -50,6 +50,7 @@ export default {
   },
   setup() {
     const { toggleTaskDone } = useTaskStore()
+
     const taskActive = ref(false)
     return { taskActive, toggleTaskDone }
   },
