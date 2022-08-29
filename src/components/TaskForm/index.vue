@@ -1,21 +1,16 @@
 <template>
-  <AddButton
-    class="task__button"
-    :clickAction="toggleTaskForm"
-    :label="$t('button.add.task')"
-  />
   <Teleport to="#modal">
     <CallbackMessage />
     <transition name="task__animate">
       <transition name="task__animate">
         <div
           v-if="isTaskFormActive"
-          :class="['task', { 'task--dark': isThemeDark }]"
+          :class="['task', { 'task--dark': isThemeDarkActive }]"
         >
           <div
             :class="[
               'task__container',
-              { 'task__container--dark': isThemeDark },
+              { 'task__container--dark': isThemeDarkActive },
             ]"
           >
             <div class="task__header">
@@ -67,7 +62,7 @@
 import AddButton from '@/components/AddButton'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 import ArrowLeft from 'icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import { useMessageStore } from '@/store/message'
@@ -84,8 +79,9 @@ export default {
     CallbackMessage,
   },
   setup() {
-    const { isThemeDark } = storeToRefs(useThemeStore())
-    const isTaskFormActive = ref(false)
+    const { isThemeDarkActive, isTaskFormActive } = storeToRefs(
+      useToggleStore()
+    )
     const route = useRoute()
     const task = ref({
       title: {
@@ -154,7 +150,7 @@ export default {
     }
 
     return {
-      isThemeDark,
+      isThemeDarkActive,
       isTaskFormActive,
       toggleTaskForm,
       task,

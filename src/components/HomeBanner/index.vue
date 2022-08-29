@@ -1,20 +1,23 @@
 <template>
   <div class="banner">
     <div
-      :class="['banner__container', { 'banner__container--dark': isThemeDark }]"
+      :class="[
+        'banner__container',
+        { 'banner__container--dark': isThemeDarkActive },
+      ]"
     >
       <div class="banner__info">
         <h2
           :class="[
             'banner__info__title',
-            { 'banner__info__title--dark': isThemeDark },
+            { 'banner__info__title--dark': isThemeDarkActive },
           ]"
           v-text="$t('home.banner.title')"
         />
         <p
           :class="[
             'banner__info__tasks',
-            { 'banner__info__tasks--dark': isThemeDark },
+            { 'banner__info__tasks--dark': isThemeDarkActive },
           ]"
         >
           <span>{{ getAllDoneTasksLength }} / {{ getAllTasksLength }}</span>
@@ -27,7 +30,7 @@
 
 <script>
 import { useTaskStore } from '@/store/tasks'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 export default {
   name: 'HomeBanner',
@@ -35,13 +38,13 @@ export default {
     const { tasks, getAllTasksLength, getAllDoneTasksLength } = storeToRefs(
       useTaskStore()
     )
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
 
     return {
       tasks,
       getAllTasksLength,
       getAllDoneTasksLength,
-      isThemeDark,
+      isThemeDarkActive,
     }
   },
 }

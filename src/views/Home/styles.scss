@@ -7,4 +7,11 @@
   &--dark {
     background-color: $color-green-main;
   }
+
+  &__button {
+    position: fixed;
+    bottom: em(30);
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

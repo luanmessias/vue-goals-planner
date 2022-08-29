@@ -3,7 +3,7 @@
     <h1
       :class="[
         'main-header__title',
-        { 'main-header__title--dark': isThemeDark },
+        { 'main-header__title--dark': isThemeDarkActive },
       ]"
       v-text="$t('home.main.title')"
     />
@@ -12,15 +12,15 @@
 
 <script>
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 export default {
   name: 'MainHeader',
 
   setup() {
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
 
     return {
-      isThemeDark,
+      isThemeDarkActive,
     }
   },
 }

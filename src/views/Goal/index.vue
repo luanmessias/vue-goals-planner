@@ -1,5 +1,5 @@
 <template>
-  <div :class="['goal-page', { 'goal-page--dark': isThemeDark }]">
+  <div :class="['goal-page', { 'goal-page--dark': isThemeDarkActive }]">
     <MainNav />
     <div class="goal-page__return">
       <router-link to="/">
@@ -14,6 +14,11 @@
     <TaskFilter />
     <TaskList />
     <TaskForm />
+    <AddButton
+      class="goal-page__button"
+      :clickAction="toggleTaskForm"
+      :label="$t('button.add.task')"
+    />
   </div>
 </template>
 
@@ -21,13 +26,14 @@
 import ArrowLeftIcon from 'icons/ArrowLeft.vue'
 import CalendarIcon from 'icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 import { useGoalStore } from '@/store/goals'
 import { useRoute } from 'vue-router'
 import MainNav from '@/components/MainNav'
 import TaskFilter from '@/components/TaskFilter'
 import TaskForm from '@/components/TaskForm'
 import TaskList from '@/components/TaskList'
+import AddButton from '@/components/AddButton'
 
 export default {
   name: 'GoalPage',
@@ -38,16 +44,18 @@ export default {
     TaskFilter,
     TaskForm,
     TaskList,
+    AddButton,
   },
   setup() {
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
+    const { toggleTaskForm } = useToggleStore()
     const { fetchGoal } = useGoalStore()
     const { goal } = storeToRefs(useGoalStore())
     const route = useRoute()
 
     fetchGoal(route.params.id)
 
-    return { isThemeDark, goal }
+    return { isThemeDarkActive, goal, toggleTaskForm }
   },
 }
 </script>

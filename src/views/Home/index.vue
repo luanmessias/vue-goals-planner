@@ -1,10 +1,15 @@
 <template>
-  <div :class="['home-page', { 'home-page--dark': isThemeDark }]">
+  <div :class="['home-page', { 'home-page--dark': isThemeDarkActive }]">
     <MainNav />
     <MainHeader />
     <HomeBanner />
     <GoalsToStart />
     <GoalForm />
+    <AddButton
+      class="home-page__button"
+      :clickAction="toggleGoalForm"
+      :label="$t('button.add.goal')"
+    />
     <div style="height: 1000px; width: 100%; display: block" />
   </div>
 </template>
@@ -16,7 +21,8 @@ import GoalForm from '@/components/GoalForm'
 import GoalsToStart from '@/components/GoalsToStart'
 import MainNav from '@/components/MainNav'
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
+import AddButton from '@/components/AddButton'
 
 export default {
   name: 'HomePage',
@@ -26,12 +32,15 @@ export default {
     GoalForm,
     GoalsToStart,
     MainNav,
+    AddButton,
   },
   setup() {
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
+    const { toggleGoalForm } = useToggleStore()
 
     return {
-      isThemeDark,
+      isThemeDarkActive,
+      toggleGoalForm,
     }
   },
 }

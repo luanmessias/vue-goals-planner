@@ -22,10 +22,10 @@
         <div class="nav__container">
           <div
             @click="toggleTheme"
-            :class="['nav__item', { 'nav__item--active': !isThemeDark }]"
+            :class="['nav__item', { 'nav__item--active': !isThemeDarkActive }]"
           >
             <LightOffIcon
-              v-if="isThemeDark"
+              v-if="isThemeDarkActive"
               class="nav__item__icon"
               :size="24"
             />
@@ -58,7 +58,7 @@ import LocaleFlag from '@/components/LocaleFlag'
 import LocaleSelection from '@/components/LocaleSelection'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 
 export default {
   name: 'MainNav',
@@ -72,10 +72,10 @@ export default {
     LocaleSelection,
   },
   setup() {
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const isMenuActive = ref(false)
     const isLocalesActive = ref(false)
-    const { toggleTheme } = useThemeStore()
+    const { toggleTheme } = useToggleStore()
 
     const closeAMenu = () => {
       isMenuActive.value = false
@@ -84,7 +84,7 @@ export default {
 
     return {
       isMenuActive,
-      isThemeDark,
+      isThemeDarkActive,
       toggleTheme,
       isLocalesActive,
       closeAMenu,

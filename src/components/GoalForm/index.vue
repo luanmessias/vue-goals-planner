@@ -1,21 +1,19 @@
 <template>
-  <AddButton
-    class="goal__button"
-    :clickAction="toggleGoalForm"
-    :label="$t('button.add.goal')"
-  />
   <Teleport to="#modal">
     <CallbackMessage />
     <transition name="goal__animate">
       <div
         v-if="isGoalFormActive"
-        :class="['goal', { 'goal--dark': isThemeDark }]"
+        :class="['goal', { 'goal--dark': isThemeDarkActive }]"
       >
         <div
-          :class="['goal__container', { 'goal__container--dark': isThemeDark }]"
+          :class="[
+            'goal__container',
+            { 'goal__container--dark': isThemeDarkActive },
+          ]"
         >
           <div class="goal__header">
-            <div class="goal__header__return" @click="toggleGoalForm">
+            <div class="goal__header__return" @click="closeGoalForm">
               <ArrowLeft />
             </div>
             <h1
@@ -59,7 +57,7 @@ import DateSelector from '@/components/DateSelector'
 import { useMessageStore } from '@/store/message'
 import { useGoalStore } from '@/store/goals'
 import { ref } from 'vue'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 
 export default {
@@ -72,8 +70,10 @@ export default {
     CallbackMessage,
   },
   setup() {
-    const isGoalFormActive = ref(false)
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive, isGoalFormActive } = storeToRefs(
+      useToggleStore()
+    )
+    const { toggleGoalForm } = useToggleStore()
     const goal = ref({
       title: {
         value: '',
@@ -95,8 +95,8 @@ export default {
       goal.value.deadline.error = ''
     }
 
-    const toggleGoalForm = () => {
-      isGoalFormActive.value = !isGoalFormActive.value
+    const closeGoalForm = () => {
+      toggleGoalForm()
       clearForm()
     }
 
@@ -135,14 +135,14 @@ export default {
           title: goal.value.title.value,
           deadline: goal.value.deadline.value,
         })
-        toggleGoalForm()
+        closeGoalForm()
       }
     }
 
     return {
-      isThemeDark,
+      isThemeDarkActive,
       goal: goal.value,
-      toggleGoalForm,
+      closeGoalForm,
       isGoalFormActive,
       checkDeadline,
       addGoalAction,

@@ -1,6 +1,8 @@
 <template>
   <section class="goals">
-    <header :class="['goals__header', { 'goals__header--dark': isThemeDark }]">
+    <header
+      :class="['goals__header', { 'goals__header--dark': isThemeDarkActive }]"
+    >
       <h1 v-text="$t('goals.to.start.title')" />
       <span class="goals__length" v-text="getNewGoals.length" />
     </header>
@@ -31,7 +33,7 @@ import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
 import CalendarIcon from 'icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
-import { useThemeStore } from '@/store/theme'
+import { useToggleStore } from '@/store/toggle'
 import { timeStampToDate } from '@/utils/TimesStampToDate'
 import { cropString } from '@/utils/CropString'
 
@@ -44,9 +46,9 @@ export default {
   },
   setup() {
     const { getNewGoals } = storeToRefs(useGoalStore())
-    const { isThemeDark } = storeToRefs(useThemeStore())
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
 
-    return { getNewGoals, cropString, isThemeDark, timeStampToDate }
+    return { getNewGoals, cropString, isThemeDarkActive, timeStampToDate }
   },
 }
 </script>

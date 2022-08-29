@@ -40,13 +40,6 @@
     }
   }
 
-  &__button {
-    position: fixed;
-    bottom: em(30);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   &__name {
     margin: $default-page-spacing 0px;
   }
