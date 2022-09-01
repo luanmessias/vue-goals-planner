@@ -5,7 +5,7 @@
     <HomeBanner />
     <GoalsToStart />
     <GoalForm />
-    <AddButton
+    <BaseButton
       class="home-page__button"
       :clickAction="toggleGoalForm"
       :label="$t('button.add.goal')"
@@ -22,7 +22,7 @@ import GoalsToStart from '@/components/GoalsToStart'
 import MainNav from '@/components/MainNav'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
-import AddButton from '@/components/AddButton'
+import BaseButton from '@/components/BaseButton'
 
 export default {
   name: 'HomePage',
@@ -32,7 +32,7 @@ export default {
     GoalForm,
     GoalsToStart,
     MainNav,
-    AddButton,
+    BaseButton,
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())

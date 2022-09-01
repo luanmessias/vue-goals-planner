@@ -46,7 +46,7 @@
                 :rows="10"
               />
             </div>
-            <AddButton
+            <BaseButton
               @click="addTaskAction"
               :label="$t('button.add.task')"
               class="task__add-button"
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import AddButton from '@/components/AddButton'
+import BaseButton from '@/components/BaseButton'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
@@ -73,7 +73,7 @@ import CallbackMessage from '@/components/CallbackMessage'
 export default {
   name: 'AddTaskForm',
   components: {
-    AddButton,
+    BaseButton,
     ArrowLeft,
     BaseInput,
     CallbackMessage,

@@ -37,7 +37,7 @@
               @update:modelValue="checkDeadline"
             />
           </div>
-          <AddButton
+          <BaseButton
             @click="addGoalAction"
             :label="$t('button.add.goal')"
             class="goal__add-button"
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import AddButton from '@/components/AddButton'
+import BaseButton from '@/components/BaseButton'
 import CallbackMessage from '@/components/CallbackMessage'
 import ArrowLeft from 'icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
@@ -63,7 +63,7 @@ import { storeToRefs } from 'pinia'
 export default {
   name: 'GoalForm',
   components: {
-    AddButton,
+    BaseButton,
     ArrowLeft,
     BaseInput,
     DateSelector,

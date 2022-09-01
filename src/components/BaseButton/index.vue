@@ -1,12 +1,13 @@
 <template>
-  <button @click="clickAction" class="add-bt">
-    <span class="add-bt__plus">+</span> {{ label }}
+  <button @click="clickAction" class="base-bt">
+    <slot class="base-bt__icon" />
+    <span v-text="label" />
   </button>
 </template>
 
 <script>
 export default {
-  name: 'AddButton',
+  name: 'BaseButton',
   props: {
     label: {
       type: String,

@@ -15,7 +15,7 @@
     <TaskList />
     <AddTaskForm />
     <EditTaskForm />
-    <AddButton
+    <BaseButton
       class="goal-page__button"
       :clickAction="toggleTaskForm"
       :label="$t('button.add.task')"
@@ -35,7 +35,7 @@ import TaskFilter from '@/components/TaskFilter'
 import AddTaskForm from '@/components/AddTaskForm'
 import EditTaskForm from '@/components/EditTaskForm'
 import TaskList from '@/components/TaskList'
-import AddButton from '@/components/AddButton'
+import BaseButton from '@/components/BaseButton'
 
 export default {
   name: 'GoalPage',
@@ -47,7 +47,7 @@ export default {
     AddTaskForm,
     EditTaskForm,
     TaskList,
-    AddButton,
+    BaseButton,
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
