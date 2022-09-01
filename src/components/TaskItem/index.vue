@@ -19,7 +19,7 @@
     <div class="task__details" v-if="taskActive">
       <div class="task__details__info" v-text="task.description" />
       <div class="task__details__menu">
-        <ModeEditIcon />
+        <ModeEditIcon @click="toggleEditTaskFormAction" />
         <DeleteOutlineIcon />
       </div>
     </div>
@@ -33,6 +33,7 @@ import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
 import ModeEditIcon from 'icons/Pen.vue'
 import { ref } from 'vue'
 import { useTaskStore } from '@/store/tasks'
+import { useToggleStore } from '@/store/toggle'
 
 export default {
   name: 'TaskItem',
@@ -48,11 +49,17 @@ export default {
       required: true,
     },
   },
-  setup() {
-    const { toggleTaskDone } = useTaskStore()
-
+  setup(props) {
+    const { toggleTaskDone, setEditTask } = useTaskStore()
+    const { toggleEditTaskForm } = useToggleStore()
     const taskActive = ref(false)
-    return { taskActive, toggleTaskDone }
+
+    const toggleEditTaskFormAction = () => {
+      setEditTask(props.task.id)
+      toggleEditTaskForm()
+    }
+
+    return { taskActive, toggleTaskDone, toggleEditTaskFormAction }
   },
 }
 </script>

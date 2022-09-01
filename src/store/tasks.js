@@ -11,12 +11,13 @@ import {
 import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
 import { useFilterStore } from './filter'
+import { useToggleStore } from './toggle'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: [],
     task: null,
-    filteredTasks: null,
+    editTask: null,
     loading: false,
     error: null,
   }),
@@ -57,16 +58,16 @@ export const useTaskStore = defineStore('task', {
       }
     },
     async addTask(data) {
+      const { toggleTaskForm } = useToggleStore()
       const { updateFilters } = useFilterStore()
       const { setMessage } = useMessageStore()
-      const tasks = [...this.getAllTasks]
-      const alreadyExists = tasks.some(({ title }) => title === data.title)
+      const alreadyExists = this.tasks.some(({ title }) => title === data.title)
 
       if (alreadyExists) {
         setMessage({
           active: true,
+          text: 'add.task.form.error.exists',
           error: true,
-          message: 'add.task.form.error.exists',
         })
       } else {
         const newTask = {
@@ -83,12 +84,48 @@ export const useTaskStore = defineStore('task', {
           await this.fetchTask(docRef.id)
           this.tasks.push(this.task)
           updateFilters(data.goal)
-
           setMessage({
             active: true,
             text: 'add.task.form.success',
             error: false,
           })
+          toggleTaskForm()
+        } catch (error) {
+          this.error = error
+        }
+      }
+    },
+    async updateTask(data) {
+      const { toggleEditTaskForm } = useToggleStore()
+      const { updateFilters } = useFilterStore()
+      const { setMessage } = useMessageStore()
+      const alreadyExists = this.tasks.some(({ title }) => title === data.title)
+
+      if (alreadyExists) {
+        setMessage({
+          active: true,
+          text: 'task.form.error.exists',
+          error: true,
+        })
+      } else {
+        try {
+          const updatedTask = {
+            ...data,
+            updated_at: new Date(),
+          }
+          console.log(updatedTask)
+          await setDoc(doc(projectFirestore, 'tasks', data.id), updatedTask, {
+            merge: true,
+          })
+          const taskIndex = this.tasks.findIndex((t) => t.id === data.id)
+          this.tasks[taskIndex] = updatedTask
+          updateFilters(data.goal)
+          setMessage({
+            active: true,
+            text: 'update.task.form.success',
+            error: false,
+          })
+          toggleEditTaskForm()
         } catch (error) {
           this.error = error
         }
@@ -118,6 +155,13 @@ export const useTaskStore = defineStore('task', {
       } catch (error) {
         this.error = error
       }
+    },
+    setEditTask(taskId) {
+      const task = this.tasks.find((task) => task.id === taskId)
+      this.editTask = { ...task }
+    },
+    clearEditTask() {
+      this.editTask = null
     },
   },
 })

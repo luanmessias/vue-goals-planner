@@ -13,7 +13,8 @@
     </div>
     <TaskFilter />
     <TaskList />
-    <TaskForm />
+    <AddTaskForm />
+    <EditTaskForm />
     <AddButton
       class="goal-page__button"
       :clickAction="toggleTaskForm"
@@ -31,7 +32,8 @@ import { useGoalStore } from '@/store/goals'
 import { useRoute } from 'vue-router'
 import MainNav from '@/components/MainNav'
 import TaskFilter from '@/components/TaskFilter'
-import TaskForm from '@/components/TaskForm'
+import AddTaskForm from '@/components/AddTaskForm'
+import EditTaskForm from '@/components/EditTaskForm'
 import TaskList from '@/components/TaskList'
 import AddButton from '@/components/AddButton'
 
@@ -42,7 +44,8 @@ export default {
     CalendarIcon,
     MainNav,
     TaskFilter,
-    TaskForm,
+    AddTaskForm,
+    EditTaskForm,
     TaskList,
     AddButton,
   },

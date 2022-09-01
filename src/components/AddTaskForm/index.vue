@@ -14,7 +14,7 @@
             ]"
           >
             <div class="task__header">
-              <div class="task__header__return" @click="toggleTaskForm">
+              <div class="task__header__return" @click="toggleTaskFormAction">
                 <ArrowLeft />
               </div>
               <h1
@@ -71,7 +71,7 @@ import { useRoute } from 'vue-router'
 import CallbackMessage from '@/components/CallbackMessage'
 
 export default {
-  name: 'TaskForm',
+  name: 'AddTaskForm',
   components: {
     AddButton,
     ArrowLeft,
@@ -82,6 +82,9 @@ export default {
     const { isThemeDarkActive, isTaskFormActive } = storeToRefs(
       useToggleStore()
     )
+    const { toggleTaskForm } = useToggleStore()
+    const { setMessage } = useMessageStore()
+    const { addTask } = useTaskStore()
     const route = useRoute()
     const task = ref({
       title: {
@@ -94,9 +97,6 @@ export default {
       },
     })
 
-    const { setMessage } = useMessageStore()
-    const { addTask } = useTaskStore()
-
     const clearForm = () => {
       task.value.title.value = ''
       task.value.title.error = ''
@@ -104,8 +104,8 @@ export default {
       task.value.description.error = ''
     }
 
-    const toggleTaskForm = () => {
-      isTaskFormActive.value = !isTaskFormActive.value
+    const toggleTaskFormAction = () => {
+      toggleTaskForm()
       clearForm()
     }
 
@@ -145,14 +145,14 @@ export default {
           description: task.value.description.value,
           goal: route.params.id,
         })
-        toggleTaskForm()
+        toggleTaskFormAction()
       }
     }
 
     return {
       isThemeDarkActive,
       isTaskFormActive,
-      toggleTaskForm,
+      toggleTaskFormAction,
       task,
       checkTitle,
       checkDescription,
