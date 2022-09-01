@@ -1,5 +1,8 @@
 <template>
-  <button @click="clickAction" class="base-bt">
+  <button
+    @click="clickAction"
+    :class="['base-bt', `base-bt--${type}`, `base-bt--${size}`]"
+  >
     <slot class="base-bt__icon" />
     <span v-text="label" />
   </button>
@@ -16,6 +19,14 @@ export default {
     clickAction: {
       type: Function,
       default: () => {},
+    },
+    type: {
+      type: String,
+      default: 'default',
+    },
+    size: {
+      type: String,
+      default: 'medium',
     },
   },
 }

@@ -20,7 +20,7 @@
       <div class="task__details__info" v-text="task.description" />
       <div class="task__details__menu">
         <ModeEditIcon @click="toggleEditTaskFormAction" />
-        <DeleteOutlineIcon />
+        <DeleteOutlineIcon @click="toggleConfirmDialogAction" />
       </div>
     </div>
   </div>
@@ -50,8 +50,8 @@ export default {
     },
   },
   setup(props) {
-    const { toggleTaskDone, setEditTask } = useTaskStore()
-    const { toggleEditTaskForm } = useToggleStore()
+    const { toggleTaskDone, setEditTask, setDelTask } = useTaskStore()
+    const { toggleEditTaskForm, toggleConfirmDialog } = useToggleStore()
     const taskActive = ref(false)
 
     const toggleEditTaskFormAction = () => {
@@ -59,7 +59,17 @@ export default {
       toggleEditTaskForm()
     }
 
-    return { taskActive, toggleTaskDone, toggleEditTaskFormAction }
+    const toggleConfirmDialogAction = () => {
+      setDelTask(props.task.id)
+      toggleConfirmDialog()
+    }
+
+    return {
+      taskActive,
+      toggleTaskDone,
+      toggleEditTaskFormAction,
+      toggleConfirmDialogAction,
+    }
   },
 }
 </script>

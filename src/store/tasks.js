@@ -7,6 +7,7 @@ import {
   getDoc,
   addDoc,
   setDoc,
+  deleteDoc,
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
@@ -18,6 +19,7 @@ export const useTaskStore = defineStore('task', {
     tasks: [],
     task: null,
     editTask: null,
+    delTask: null,
     loading: false,
     error: null,
   }),
@@ -131,6 +133,24 @@ export const useTaskStore = defineStore('task', {
         }
       }
     },
+    async deleteTask() {
+      const { setMessage } = useMessageStore()
+      const { updateFilters } = useFilterStore()
+      const task = this.delTask
+      try {
+        await deleteDoc(doc(projectFirestore, 'tasks', task.id))
+        const taskIndex = this.tasks.findIndex((t) => t.id === task.id)
+        this.tasks.splice(taskIndex, 1)
+        updateFilters(task.goal)
+        setMessage({
+          active: true,
+          text: 'delete.task.form.success',
+          error: false,
+        })
+      } catch (error) {
+        this.error = error
+      }
+    },
     async toggleTaskDone(task) {
       const { updateFilters } = useFilterStore()
       const { id, done } = task
@@ -162,6 +182,13 @@ export const useTaskStore = defineStore('task', {
     },
     clearEditTask() {
       this.editTask = null
+    },
+    setDelTask(taskId) {
+      const task = this.tasks.find((task) => task.id === taskId)
+      this.delTask = { ...task }
+    },
+    clearDelTask() {
+      this.delTask = null
     },
   },
 })

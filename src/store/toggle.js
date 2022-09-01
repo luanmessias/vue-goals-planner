@@ -6,6 +6,7 @@ export const useToggleStore = defineStore('toggle', {
     isGoalFormActive: false,
     isTaskFormActive: false,
     isEditTaskFormActive: false,
+    isConfirmDialogActive: false,
   }),
   actions: {
     toggleTheme() {
@@ -19,6 +20,9 @@ export const useToggleStore = defineStore('toggle', {
     },
     toggleEditTaskForm() {
       this.isEditTaskFormActive = !this.isEditTaskFormActive
+    },
+    toggleConfirmDialog() {
+      this.isConfirmDialogActive = !this.isConfirmDialogActive
     },
   },
 })
