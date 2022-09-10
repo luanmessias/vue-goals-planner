@@ -31,5 +31,6 @@
   "delete.task.confirmation.message": "Are you sure you want to delete this task?",
   "delete.task.button.confirm": "Delete",
   "delete.task.button.cancel": "Cancel",
-  "delete.task.form.success": "Task deleted successfully"
+  "delete.task.form.success": "Task deleted successfully",
+  "goals.in.progress.title": "Goals in progress"
 }

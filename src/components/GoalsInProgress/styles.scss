@@ -1,0 +1,41 @@
+.goals {
+  padding-top: $default-page-spacing;
+  &__header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: em(5) em(15);
+    overflow-x: auto;
+
+    h1 {
+      font-size: em(23);
+      font-weight: 800;
+      color: $color-green-main;
+    }
+
+    &--dark {
+      h1 {
+        color: $color-green-light;
+      }
+    }
+  }
+
+  &__length {
+    background-color: $color-orange-light;
+    font-size: em(12);
+    font-weight: 700;
+    color: $color-green-main;
+    padding: em(5) em(10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: em(4);
+    margin-left: em(10);
+  }
+
+  &__container {
+    padding: $default-page-spacing;
+  }
+}

@@ -1,4 +1,5 @@
 $until-date-color: #bdbdbd;
+$return-arrow-color: #717171;
 
 .goal-page {
   width: 100%;
@@ -26,6 +27,7 @@ $until-date-color: #bdbdbd;
 
     &__icon {
       size: 300;
+      color: $return-arrow-color;
     }
   }
 

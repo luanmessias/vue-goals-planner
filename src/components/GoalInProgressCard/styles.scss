@@ -1,0 +1,75 @@
+$goal-title-color: #686868;
+$goal-date-color: #bdbdbd;
+$goal-percent-size: 95;
+$goal-percent-bg-color: #ededed;
+$goal-percent-overlay-color: #fff;
+$goal-percent-color: $color-orange-main;
+$goal-percent-txt-color: #686868;
+
+.goal {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: em(10);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: $default-page-spacing;
+  padding: em(15);
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: em(14);
+    color: $goal-title-color;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    margin-top: em(15);
+    &__icon {
+      &:deep(svg) {
+        fill: $goal-date-color;
+      }
+    }
+    &__txt {
+      color: $goal-date-color;
+      font-size: em(12);
+    }
+  }
+
+  &__percent {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: em($goal-percent-size);
+    min-width: em($goal-percent-size);
+    height: em($goal-percent-size);
+    border-radius: 50%;
+    background: conic-gradient(
+      $goal-percent-color 14deg,
+      $goal-percent-bg-color 0deg
+    );
+    margin-right: em(10);
+
+    &::before {
+      content: '';
+      display: block;
+      width: em(calc($goal-percent-size - 16));
+      height: em(calc($goal-percent-size - 16));
+      border-radius: 50%;
+      background: $goal-percent-overlay-color;
+      position: absolute;
+    }
+
+    &__value {
+      position: relative;
+      font-size: em(20);
+      font-weight: 700;
+      color: $goal-percent-txt-color;
+    }
+  }
+}

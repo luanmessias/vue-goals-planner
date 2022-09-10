@@ -47,6 +47,27 @@ export const useGoalStore = defineStore('goal', {
 
       return goalsToStart
     },
+    getStartedGoals() {
+      const { tasks } = useTaskStore()
+      const goalsToIgnore = [
+        ...new Set(
+          tasks.map((task) => {
+            return task.goal
+          })
+        ),
+      ]
+      const startedGoals = this.goals
+        .filter((goal) => {
+          return goalsToIgnore.includes(goal.id)
+        })
+        .sort((a, b) => {
+          let da = new Date(+a.deadline)
+          let db = new Date(+b.deadline)
+
+          return da - db
+        })
+      return startedGoals
+    },
   },
   actions: {
     async fetchGoals() {
@@ -109,6 +130,13 @@ export const useGoalStore = defineStore('goal', {
           this.error = error
         }
       }
+    },
+    getGoalDonePercentage(goalId) {
+      const { tasks } = useTaskStore()
+      const goalTasks = tasks.filter((task) => task.goal === goalId)
+      const doneTasks = goalTasks.filter((task) => task.done === true)
+      const percentage = Math.round((doneTasks.length / goalTasks.length) * 100)
+      return percentage
     },
   },
 })

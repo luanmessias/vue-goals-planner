@@ -115,7 +115,6 @@ export const useTaskStore = defineStore('task', {
             ...data,
             updated_at: new Date(),
           }
-          console.log(updatedTask)
           await setDoc(doc(projectFirestore, 'tasks', data.id), updatedTask, {
             merge: true,
           })
