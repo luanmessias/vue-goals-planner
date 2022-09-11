@@ -22,6 +22,7 @@
   "update.task.page.title": "Update task",
   "add.task.form.title": "Task Title",
   "add.task.form.title.error.empty": "Please, set a title for your task",
+  "add.task.form.error.exists": "This Task is already registered, please add another",
   "add.task.form.description": "Task Description",
   "add.task.form.description.error.empty": "Please, set a description for your task",
   "add.task.form.error": "Please fill all the fields",
@@ -32,5 +33,12 @@
   "delete.task.button.confirm": "Delete",
   "delete.task.button.cancel": "Cancel",
   "delete.task.form.success": "Task deleted successfully",
-  "goals.in.progress.title": "Goals in progress"
+  "goals.in.progress.title": "Goals in progress",
+  "delete.goal.confirmation.message": "Are you sure you want to delete this goal? All tasks will be deleted too.",
+  "delete.goal.button.confirm": "Delete",
+  "delete.goal.button.cancel": "Cancel",
+  "delete.goal.success": "Goal deleted successfully",
+  "button.update.goal": "Update Goal",
+  "update.goal.form.error": "Please fill all the fields",
+  "update.goal.form.success": "Goal updated successfully"
 }

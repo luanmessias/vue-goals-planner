@@ -4,8 +4,9 @@
     <MainHeader />
     <HomeBanner />
     <GoalsToStart />
-    <GoalsInProgress />
+    <GoalsInProgressList />
     <GoalForm />
+    <EditGoalForm />
     <BaseButton
       class="home-page__button"
       :clickAction="toggleGoalForm"
@@ -23,7 +24,8 @@ import MainNav from '@/components/MainNav'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import BaseButton from '@/components/BaseButton'
-import GoalsInProgress from '@/components/GoalsInProgress'
+import GoalsInProgressList from '@/components/GoalsInProgressList'
+import EditGoalForm from '@/components/EditGoalForm'
 
 export default {
   name: 'HomePage',
@@ -34,7 +36,8 @@ export default {
     GoalsToStart,
     MainNav,
     BaseButton,
-    GoalsInProgress,
+    GoalsInProgressList,
+    EditGoalForm,
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())

@@ -39,10 +39,14 @@ export default {
       type: String,
       value: '',
     },
+    startDate: {
+      type: String,
+      default: '',
+    },
   },
-  setup() {
-    const date = ref('')
-    const minDate = new Date()
+  setup(props) {
+    const date = ref(props.startDate ? props.startDate : '')
+    const minDate = props.startDate ? '' : new Date()
     const { d } = useI18n()
     const format = () => d(date.value)
     return {

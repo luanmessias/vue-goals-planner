@@ -13,6 +13,7 @@ import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
 import { useFilterStore } from './filter'
 import { useToggleStore } from './toggle'
+import { useGoalStore } from './goals'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
@@ -29,6 +30,9 @@ export const useTaskStore = defineStore('task', {
     },
     getAllTasksLength(state) {
       return state.tasks.length
+    },
+    getAllDoneTasksLength(state) {
+      return state.tasks.filter((task) => task.done).length
     },
   },
   actions: {
@@ -63,7 +67,9 @@ export const useTaskStore = defineStore('task', {
       const { toggleTaskForm } = useToggleStore()
       const { updateFilters } = useFilterStore()
       const { setMessage } = useMessageStore()
-      const alreadyExists = this.tasks.some(({ title }) => title === data.title)
+      const alreadyExists = this.tasks.some(
+        ({ title, goal }) => title === data.title && goal === data.goal
+      )
 
       if (alreadyExists) {
         setMessage({
@@ -145,6 +151,23 @@ export const useTaskStore = defineStore('task', {
           active: true,
           text: 'delete.task.form.success',
           error: false,
+        })
+      } catch (error) {
+        this.error = error
+      }
+    },
+    async clearUnusedTasks() {
+      const { updateFilters } = useFilterStore()
+      const { goals } = useGoalStore()
+      try {
+        this.tasks.map(async (task) => {
+          const goal = goals.some((goal) => goal.id === task.goal)
+          if (!goal) {
+            await deleteDoc(doc(projectFirestore, 'tasks', task.id))
+            const taskIndex = this.tasks.findIndex((t) => t.id === task.id)
+            this.tasks.splice(taskIndex, 1)
+            updateFilters(task.goal)
+          }
         })
       } catch (error) {
         this.error = error

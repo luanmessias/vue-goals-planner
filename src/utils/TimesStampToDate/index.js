@@ -8,3 +8,8 @@ export const timeStampToDate = (timestamp) => {
   const seconds = date.getSeconds()
   return new Date(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`)
 }
+
+export const secondsAndNanosecondsToDate = (seconds, nanoseconds) => {
+  const timestamp = seconds + nanoseconds / 1000000000
+  return timeStampToDate(timestamp)
+}

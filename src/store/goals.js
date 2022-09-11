@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
+import { useToggleStore } from '@/store/toggle'
 import {
   query,
   collection,
@@ -8,6 +9,8 @@ import {
   getDocs,
   getDoc,
   addDoc,
+  deleteDoc,
+  setDoc,
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 
@@ -15,11 +18,9 @@ export const useGoalStore = defineStore('goal', {
   state: () => ({
     goals: [],
     goal: null,
+    delGoal: null,
+    editGoal: null,
     loading: false,
-    feedback: {
-      error: false,
-      message: '',
-    },
   }),
   getters: {
     getAllGoals(state) {
@@ -131,12 +132,81 @@ export const useGoalStore = defineStore('goal', {
         }
       }
     },
+    async updateGoal(data) {
+      const { toggleEditGoalForm } = useToggleStore()
+      const { setMessage } = useMessageStore()
+      const alreadyExists =
+        this.goals.some(({ title }) => title === data.title) &&
+        data.title !== this.editGoal.title
+
+      if (alreadyExists) {
+        setMessage({
+          active: true,
+          text: 'add.goal.form.error.exists',
+          error: true,
+        })
+      } else {
+        const updatedGoal = {
+          ...data,
+          updated_at: new Date(),
+        }
+        try {
+          await setDoc(doc(projectFirestore, 'goals', data.id), updatedGoal, {
+            merge: true,
+          })
+          const goalIndex = this.goals.findIndex((goal) => goal.id === data.id)
+          this.goals[goalIndex] = updatedGoal
+          setMessage({
+            active: true,
+            text: 'update.goal.form.success',
+            error: false,
+          })
+          toggleEditGoalForm()
+        } catch (error) {
+          this.error = error
+        }
+      }
+    },
+
+    async deleteGoal() {
+      const { setMessage } = useMessageStore()
+      const { clearUnusedTasks } = useTaskStore()
+      const goal = this.delGoal
+      try {
+        await deleteDoc(doc(projectFirestore, 'goals', goal.id))
+        const goalIndex = this.goals.findIndex((g) => g.id === goal.id)
+        this.goals.splice(goalIndex, 1)
+        clearUnusedTasks()
+      } catch (error) {
+        this.error = error
+      } finally {
+        setMessage({
+          active: true,
+          text: 'delete.goal.success',
+          error: false,
+        })
+      }
+    },
     getGoalDonePercentage(goalId) {
       const { tasks } = useTaskStore()
       const goalTasks = tasks.filter((task) => task.goal === goalId)
       const doneTasks = goalTasks.filter((task) => task.done === true)
       const percentage = Math.round((doneTasks.length / goalTasks.length) * 100)
       return percentage
+    },
+    setDelGoal(goalId) {
+      const goal = this.goals.find((goal) => goal.id === goalId)
+      this.delGoal = { ...goal }
+    },
+    clearDelGoal() {
+      this.delGoal = null
+    },
+    setEditGoal(goalId) {
+      const goal = this.goals.find((goal) => goal.id === goalId)
+      this.editGoal = { ...goal }
+    },
+    clearEditGoal() {
+      this.editGoal = null
     },
   },
 })

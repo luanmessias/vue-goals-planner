@@ -1,0 +1,158 @@
+$goal-title-color: #686868;
+$goal-date-color: #bdbdbd;
+$goal-percent-size: 75;
+$goal-percent-bg-color: #ededed;
+$goal-percent-overlay-color: #fff;
+$goal-percent-color: $color-orange-main;
+$goal-percent-txt-color: #686868;
+$goal-details-bg-color: #efefef;
+
+.goal {
+  display: flex;
+  border-radius: em(10);
+  width: 100%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-bottom: $default-page-spacing;
+  overflow: hidden;
+
+  &__content {
+    display: flex;
+    padding: em(15) 0 em(15) em(15);
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: em(14);
+    color: $goal-title-color;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    margin-top: em(15);
+    &__icon {
+      &:deep(svg) {
+        fill: $goal-date-color;
+      }
+    }
+    &__txt {
+      color: $goal-date-color;
+      font-size: em(12);
+    }
+  }
+
+  &__percent {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: em($goal-percent-size);
+    min-width: em($goal-percent-size);
+    height: em($goal-percent-size);
+    border-radius: 50%;
+    background: conic-gradient(
+      $goal-percent-color 14deg,
+      $goal-percent-bg-color 0deg
+    );
+    margin-right: em(10);
+
+    &::before {
+      content: '';
+      display: block;
+      width: em(calc($goal-percent-size - 10));
+      height: em(calc($goal-percent-size - 10));
+      border-radius: 50%;
+      background: $goal-percent-overlay-color;
+      position: absolute;
+    }
+
+    &__value {
+      position: relative;
+      font-size: em(15);
+      font-weight: 700;
+      color: $goal-percent-txt-color;
+    }
+  }
+
+  &__details {
+    margin-left: auto;
+    padding: em(15);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &--active {
+      background-color: $goal-details-bg-color;
+      padding: em(15);
+    }
+
+    &:deep(svg) {
+      fill: $goal-title-color;
+    }
+
+    &__edit {
+      margin: em(10) 0;
+    }
+  }
+
+  &__options {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: em(5);
+    &::before,
+    &::after,
+    &__dot,
+    &__close-dot {
+      content: '';
+      display: inline-block;
+      border-radius: em(50);
+      width: em(5);
+      height: em(5);
+      background-color: $goal-title-color;
+    }
+
+    &__dot {
+      margin: 0 em(3);
+    }
+
+    &__close-dot:first-of-type {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &__close-dot:last-of-type {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    &--active {
+      width: em(15);
+      height: em(15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+}
