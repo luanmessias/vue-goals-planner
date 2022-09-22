@@ -1,6 +1,5 @@
 <template>
   <Teleport to="#modal">
-    <CallbackMessage />
     <transition name="goal__animate">
       <div
         v-if="isEditGoalFormActive"
@@ -50,7 +49,6 @@
 </template>
 
 <script>
-import CallbackMessage from '@/components/CallbackMessage'
 import ArrowLeft from 'icons/ArrowLeft.vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
@@ -66,7 +64,6 @@ export default {
   name: 'EditGoalForm',
   components: {
     ArrowLeft,
-    CallbackMessage,
     BaseInput,
     DateSelector,
     BaseButton,

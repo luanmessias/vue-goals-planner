@@ -1,6 +1,5 @@
 <template>
   <Teleport to="#modal">
-    <CallbackMessage />
     <transition name="confirm__animate">
       <transition name="confirm__animate">
         <div
@@ -51,7 +50,6 @@
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import CloseIcon from 'icons/Close.vue'
-import CallbackMessage from '@/components/CallbackMessage'
 import BaseButton from '@/components/BaseButton'
 import { useDialogStore } from '@/store/dialog'
 
@@ -59,7 +57,6 @@ export default {
   name: 'ConfirmDialog',
   components: {
     CloseIcon,
-    CallbackMessage,
     BaseButton,
   },
   setup() {

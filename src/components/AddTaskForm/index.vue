@@ -1,6 +1,5 @@
 <template>
   <Teleport to="#modal">
-    <CallbackMessage />
     <transition name="task__animate">
       <transition name="task__animate">
         <div
@@ -68,7 +67,6 @@ import BaseInput from '@/components/BaseInput'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
 import { useRoute } from 'vue-router'
-import CallbackMessage from '@/components/CallbackMessage'
 
 export default {
   name: 'AddTaskForm',
@@ -76,7 +74,6 @@ export default {
     BaseButton,
     ArrowLeft,
     BaseInput,
-    CallbackMessage,
   },
   setup() {
     const { isThemeDarkActive, isTaskFormActive } = storeToRefs(

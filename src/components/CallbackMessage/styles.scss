@@ -1,7 +1,7 @@
 .message {
   box-sizing: border-box;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: calc(100% - em(20));
   max-width: em(400);
   border-radius: em(5);
@@ -20,8 +20,15 @@
     color: $color-red-main;
   }
 
+  &__close {
+    margin-left: auto;
+  }
+
   &__icon {
     margin-right: em(10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $color-green-main;
     &--error {
       color: $color-red-main;
@@ -30,7 +37,6 @@
 
   &__text {
     font-size: em(12);
-    margin-top: em(8);
   }
 
   &__loading {

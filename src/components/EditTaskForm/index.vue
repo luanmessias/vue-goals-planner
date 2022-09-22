@@ -1,6 +1,5 @@
 <template>
   <Teleport to="#modal">
-    <CallbackMessage />
     <transition name="task__animate">
       <transition name="task__animate">
         <div
@@ -70,7 +69,6 @@ import ArrowLeft from 'icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
-import CallbackMessage from '@/components/CallbackMessage'
 
 export default {
   name: 'EditTaskForm',
@@ -78,7 +76,6 @@ export default {
     BaseButton,
     ArrowLeft,
     BaseInput,
-    CallbackMessage,
   },
   setup() {
     const { isThemeDarkActive, isEditTaskFormActive } = storeToRefs(

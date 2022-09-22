@@ -17,17 +17,17 @@ export const useMessageStore = defineStore('message', {
   actions: {
     setMessage(data) {
       let timer
-      this.$state.message = data
+      this.message = data
       const runTimer = () => {
         timer = window.setTimeout(() => {
           this.clearMessage()
-        }, this.$state.countdown)
+        }, this.countdown)
       }
       runTimer()
       clearTimeout(timer)
     },
     clearMessage() {
-      this.$state.message = {
+      this.message = {
         active: false,
         text: '',
         error: false,
