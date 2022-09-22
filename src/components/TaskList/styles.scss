@@ -1,6 +1,28 @@
+$empty-task-txt-color: #999;
+
 .task-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: $default-page-spacing em(0);
   padding-bottom: em(100);
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: em(250);
+    margin-top: em(25);
+    &__svg {
+      margin-bottom: em(10);
+      opacity: 0.4;
+      border-radius: 100%;
+    }
+    &__text {
+      text-align: center;
+      color: $empty-task-txt-color;
+    }
+  }
 }

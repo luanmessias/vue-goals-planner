@@ -9,6 +9,7 @@ $goal-details-bg-color: #efefef;
 
 .goal {
   display: flex;
+  justify-content: space-between;
   border-radius: em(10);
   width: 100%;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -23,6 +24,8 @@ $goal-details-bg-color: #efefef;
 
   &__link {
     text-decoration: none;
+    display: block;
+    width: inherit;
   }
 
   &__title {
@@ -80,7 +83,6 @@ $goal-details-bg-color: #efefef;
   }
 
   &__details {
-    margin-left: auto;
     padding: em(15);
     transition: all 0.3s ease;
     display: flex;
