@@ -98,6 +98,10 @@ export const useGoalStore = defineStore('goal', {
         this.loading = false
       }
     },
+    goalAlreadyExists(goalTitle) {
+      const alreadyExists = this.goals.some(({ title }) => title === goalTitle)
+      return alreadyExists
+    },
     async addGoal(data) {
       const { setMessage } = useMessageStore()
       const goals = [...this.getAllGoals]
@@ -167,7 +171,6 @@ export const useGoalStore = defineStore('goal', {
         }
       }
     },
-
     async deleteGoal() {
       const { setMessage } = useMessageStore()
       const { clearUnusedTasks } = useTaskStore()

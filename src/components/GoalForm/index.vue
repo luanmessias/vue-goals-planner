@@ -24,7 +24,7 @@
           <BaseInput
             class="goal__name"
             :label="$t('add.goal.form.title')"
-            v-model="goal.title.value"
+            v-model="goal.title.text"
             :error="goal.title.error"
             type="text"
             @input="checkTitle"
@@ -32,7 +32,7 @@
           <div class="goal__deadline">
             <DateSelector
               :placeholder="$t('add.goal.form.deadline')"
-              v-model="goal.deadline.value"
+              v-model="goal.deadline.text"
               :error="goal.deadline.error"
               @update:modelValue="checkDeadline"
             />
@@ -70,17 +70,18 @@ export default {
     CallbackMessage,
   },
   setup() {
+    const { goalAlreadyExists } = useGoalStore()
     const { isThemeDarkActive, isGoalFormActive } = storeToRefs(
       useToggleStore()
     )
     const { toggleGoalForm } = useToggleStore()
     const goal = ref({
       title: {
-        value: '',
+        text: '',
         error: '',
       },
       deadline: {
-        value: '',
+        text: '',
         error: '',
       },
     })
@@ -89,9 +90,9 @@ export default {
     const { addGoal } = useGoalStore()
 
     const clearForm = () => {
-      goal.value.title.value = ''
+      goal.value.title.text = ''
       goal.value.title.error = ''
-      goal.value.deadline.value = ''
+      goal.value.deadline.text = ''
       goal.value.deadline.error = ''
     }
 
@@ -102,7 +103,7 @@ export default {
 
     const checkTitle = () => {
       const { title } = goal.value
-      if (!title.value) {
+      if (!title.text) {
         title.error = 'add.goal.title.error.empty'
         return false
       }
@@ -112,7 +113,7 @@ export default {
 
     const checkDeadline = () => {
       const { deadline } = goal.value
-      if (!deadline.value) {
+      if (!deadline.text) {
         deadline.error = 'add.goal.deadline.error.empty'
         return false
       }
@@ -123,6 +124,7 @@ export default {
     const addGoalAction = () => {
       const titleInput = checkTitle()
       const deadlineInput = checkDeadline()
+      const goalAlreadyExistsInput = goalAlreadyExists(goal.value.title.text)
 
       if (!titleInput || !deadlineInput) {
         setMessage({
@@ -132,10 +134,12 @@ export default {
         })
       } else {
         addGoal({
-          title: goal.value.title.value,
-          deadline: goal.value.deadline.value,
+          title: goal.value.title.text,
+          deadline: goal.value.deadline.text,
         })
-        closeGoalForm()
+        if (!goalAlreadyExistsInput) {
+          closeGoalForm()
+        }
       }
     }
 
