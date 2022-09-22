@@ -59,6 +59,8 @@ import { useGoalStore } from '@/store/goals'
 import { ref } from 'vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
+import { useDialogStore } from '@/store/dialog'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'GoalForm',
@@ -75,6 +77,10 @@ export default {
       useToggleStore()
     )
     const { toggleGoalForm } = useToggleStore()
+    const { openDialog, closeDialog } = useDialogStore()
+    const { goal: storeGoal } = storeToRefs(useGoalStore())
+    const router = useRouter()
+
     const goal = ref({
       title: {
         text: '',
@@ -138,6 +144,27 @@ export default {
           deadline: goal.value.deadline.text,
         })
         if (!goalAlreadyExistsInput) {
+          openDialog({
+            showCloseButton: false,
+            title: 'new.goal.add.task.modal.title',
+            message: 'new.goal.add.task.modal.message',
+            cancelButton: {
+              label: 'new.goal.add.task.modal.button.cancel',
+              action: closeDialog,
+            },
+            confirmButton: {
+              label: 'new.goal.add.task.modal.button.confirm',
+              action: () => {
+                router.push({
+                  name: 'goal',
+                  params: {
+                    id: storeGoal.value.id,
+                  },
+                })
+                closeDialog()
+              },
+            },
+          })
           closeGoalForm()
         }
       }

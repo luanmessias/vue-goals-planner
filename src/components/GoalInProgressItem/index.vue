@@ -55,6 +55,7 @@ import { ref } from 'vue'
 import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
 import ModeEditIcon from 'icons/Pen.vue'
 import { useToggleStore } from '@/store/toggle'
+import { useDialogStore } from '@/store/dialog'
 
 export default {
   name: 'GoalInProgressItem',
@@ -71,9 +72,11 @@ export default {
   },
   setup(props) {
     const { getGoalDonePercentage, setDelGoal, setEditGoal } = useGoalStore()
-    const { toggleConfirmDialog, toggleEditGoalForm } = useToggleStore()
+    const { toggleEditGoalForm } = useToggleStore()
     const percent = getGoalDonePercentage(props.goal.id)
     const goalActive = ref(false)
+    const { openDialog, closeDialog } = useDialogStore()
+    const { deleteGoal, clearDelGoal } = useGoalStore()
 
     const toggleEditGoalFormAction = () => {
       setEditGoal(props.goal.id)
@@ -82,7 +85,26 @@ export default {
 
     const toggleDelGoalDialog = () => {
       setDelGoal(props.goal.id)
-      toggleConfirmDialog()
+      openDialog({
+        showCloseButton: false,
+        title: 'modal.confirmation.title',
+        message: 'delete.goal.confirmation.message',
+        cancelButton: {
+          label: 'delete.goal.button.cancel',
+          action: () => {
+            clearDelGoal()
+            closeDialog()
+          },
+        },
+        confirmButton: {
+          label: 'delete.goal.button.confirm',
+          action: () => {
+            deleteGoal()
+            clearDelGoal()
+            closeDialog()
+          },
+        },
+      })
     }
 
     return {

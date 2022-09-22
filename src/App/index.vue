@@ -5,6 +5,7 @@
       <component v-else :is="Component" />
     </transition>
   </router-view>
+  <Dialog />
 </template>
 
 <script>
@@ -12,11 +13,13 @@ import { ref } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen'
 import { useTaskStore } from '@/store/tasks'
 import { useGoalStore } from '@/store/goals'
+import Dialog from '@/components/Dialog'
 
 export default {
   name: 'AppComponent',
   components: {
     LoadingScreen,
+    Dialog,
   },
   setup() {
     const isLoading = ref(true)

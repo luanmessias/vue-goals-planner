@@ -42,7 +42,7 @@
   "update.goal.form.error": "Please fill all the fields",
   "update.goal.form.success": "Goal updated successfully",
   "new.goal.add.task.modal.title": "Add new tasks",
-  "new.goal.add.task.modal.message": "Do you want to add new tasks to this goal now? You can add them later too, your goal will be listed on \"Goals to star\" section.",
+  "new.goal.add.task.modal.message": "Do you want to add new tasks to this goal now? You can add them later too, your goal will be listed on \"Goals to start\" section.",
   "new.goal.add.task.modal.button.confirm": "Add",
   "new.goal.add.task.modal.button.cancel": "Later"
 }

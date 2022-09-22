@@ -34,6 +34,7 @@ import ModeEditIcon from 'icons/Pen.vue'
 import { ref } from 'vue'
 import { useTaskStore } from '@/store/tasks'
 import { useToggleStore } from '@/store/toggle'
+import { useDialogStore } from '@/store/dialog'
 
 export default {
   name: 'TaskItem',
@@ -50,8 +51,15 @@ export default {
     },
   },
   setup(props) {
-    const { toggleTaskDone, setEditTask, setDelTask } = useTaskStore()
-    const { toggleEditTaskForm, toggleConfirmDialog } = useToggleStore()
+    const {
+      toggleTaskDone,
+      setEditTask,
+      setDelTask,
+      clearDelTask,
+      deleteTask,
+    } = useTaskStore()
+    const { toggleEditTaskForm } = useToggleStore()
+    const { openDialog, closeDialog } = useDialogStore()
     const taskActive = ref(false)
 
     const toggleEditTaskFormAction = () => {
@@ -61,7 +69,27 @@ export default {
 
     const toggleConfirmDialogAction = () => {
       setDelTask(props.task.id)
-      toggleConfirmDialog()
+      openDialog({
+        showCloseButton: false,
+        title: 'modal.confirmation.title',
+        message: 'delete.task.confirmation.message',
+        cancelButton: {
+          label: 'delete.task.button.cancel',
+          action: () => {
+            clearDelTask()
+            closeDialog()
+          },
+        },
+        confirmButton: {
+          label: 'delete.goal.button.confirm',
+          action: () => {
+            deleteTask()
+            clearDelTask()
+            closeDialog()
+            taskActive.value = false
+          },
+        },
+      })
     }
 
     return {
