@@ -45,5 +45,7 @@
   "new.goal.add.task.modal.message": "Do you want to add new tasks to this goal now? You can add them later too, your goal will be listed on \"Goals to start\" section.",
   "new.goal.add.task.modal.button.confirm": "Add",
   "new.goal.add.task.modal.button.cancel": "Later",
-  "task.list.no.tasks.message": "No tasks added yet, click on the button below to add a new task"
+  "task.list.no.tasks.all.message": "No tasks added yet, click on the button below to add a new task",
+  "task.list.no.tasks.todo.message": "No more tasks to do, click on the button below to add a new task",
+  "task.list.no.tasks.done.message": "No tasks done yet, finish your tasks to see them here"
 }

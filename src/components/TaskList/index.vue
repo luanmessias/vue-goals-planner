@@ -7,7 +7,7 @@
       <TaskSleepingIcon size="150px" class="task-list__empty__svg" />
       <p
         class="task-list__empty__text"
-        v-text="$t('task.list.no.tasks.message')"
+        v-text="$t(`task.list.no.tasks.${activeFilter.id}.message`)"
       />
     </div>
   </div>
