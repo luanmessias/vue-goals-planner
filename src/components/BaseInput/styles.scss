@@ -1,4 +1,6 @@
-.form-input {
+$base-input-placeholder-color: rgb(106, 106, 106);
+
+.base-input {
   width: 100%;
   position: relative;
 
@@ -16,6 +18,9 @@
     border-radius: em(12);
     font-size: em(14);
     outline: none;
+    &::placeholder {
+      color: $base-input-placeholder-color;
+    }
 
     &--error {
       border: 2px solid $general-border-color-error;
@@ -31,7 +36,7 @@
     border-radius: em(12);
     font-size: em(14);
     outline: none;
-    
+
     &--error {
       border: 2px solid $general-border-color-error;
     }
@@ -59,6 +64,34 @@
       &-enter-from,
       &-leave-to {
         opacity: 0;
+      }
+    }
+  }
+
+  &--dark {
+    .base-input {
+      &__label {
+        color: $color-green-light;
+      }
+
+      &__field {
+        &::placeholder {
+          color: $color-green-dark;
+        }
+      }
+
+      &__field {
+        background-color: $color-green-light;
+        border-color: $color-green-dark;
+      }
+
+      &__textarea {
+        background-color: $color-green-light;
+        border-color: $color-green-dark;
+      }
+
+      &__error {
+        color: $color-red-light;
       }
     }
   }

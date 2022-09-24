@@ -14,10 +14,6 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     transition: all 0.3s ease-in-out;
-
-    &--dark {
-      background-color: $color-green-light;
-    }
   }
 
   &__info {
@@ -27,11 +23,6 @@
       color: #ffffff;
       margin-bottom: 3px;
       transition: all 0.3s ease-in-out;
-
-
-      &--dark {
-        color: $color-green-main;
-      }
     }
 
     &__tasks {
@@ -42,11 +33,21 @@
         color: $color-orange-main;
         font-weight: 500;
       }
-
-      &--dark {
-        color: $color-green-main;
+    }
+  }
+  &--dark {
+    .banner {
+      &__container {
+        background-color: $color-green-main;
       }
-
+      &__info {
+        &__title {
+          color: $color-green-light;
+        }
+        &__tasks {
+          color: $color-green-light;
+        }
+      }
     }
   }
 }

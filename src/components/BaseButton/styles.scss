@@ -51,4 +51,12 @@ $button-color-text: #ffffff;
     align-items: center;
     justify-content: center;
   }
+
+  &--dark {
+    &.base-bt {
+      &--confirm {
+        background-color: $color-green-dark;
+      }
+    }
+  }
 }

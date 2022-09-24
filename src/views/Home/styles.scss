@@ -1,13 +1,8 @@
 .home-page {
   width: 100%;
   height: 100%;
-  background-color: $light-theme-bg;
   transition: all 0.3s ease-in-out;
   padding-bottom: em(100);
-
-  &--dark {
-    background-color: $color-green-main;
-  }
 
   &__button {
     position: fixed;

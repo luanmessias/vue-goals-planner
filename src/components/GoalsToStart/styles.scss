@@ -15,12 +15,6 @@ $date-color: #787878;
       font-weight: 800;
       color: $color-green-main;
     }
-
-    &--dark {
-      h1 {
-        color: $color-green-light;
-      }
-    }
   }
 
   &__length {
@@ -72,6 +66,31 @@ $date-color: #787878;
       &__txt {
         color: $date-color;
         font-size: em(12);
+      }
+    }
+  }
+  &--dark {
+    .goals {
+      &__header {
+        h1 {
+          color: $color-green-light;
+        }
+      }
+      &__item {
+        background-color: $color-orange-dark;
+        &__title {
+          color: $color-orange-light;
+        }
+        &__date {
+          &__icon {
+            &:deep(svg) {
+              fill: $color-orange-light;
+            }
+          }
+          &__txt {
+            color: $color-orange-light;
+          }
+        }
       }
     }
   }

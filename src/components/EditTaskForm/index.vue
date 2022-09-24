@@ -6,12 +6,7 @@
           v-if="isEditTaskFormActive"
           :class="['task', { 'task--dark': isThemeDarkActive }]"
         >
-          <div
-            :class="[
-              'task__container',
-              { 'task__container--dark': isThemeDarkActive },
-            ]"
-          >
+          <div class="task__container">
             <div class="task__header">
               <div
                 class="task__header__return"

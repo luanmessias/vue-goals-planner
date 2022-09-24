@@ -32,9 +32,6 @@
     width: calc(100% - 2 * #{$default-page-spacing});
     padding: $default-page-spacing;
     border-radius: em(15);
-    &--dark {
-      background-color: $color-green-main;
-    }
   }
 
   &__content {
@@ -77,6 +74,22 @@
       .task__container {
         transform: translateY(100%);
         opacity: 0;
+      }
+    }
+  }
+
+  &--dark {
+    .confirm {
+      &__header {
+        &__title {
+          color: $color-green-light;
+        }
+      }
+      &__container {
+        background-color: $color-green-main;
+      }
+      &__content {
+        color: $color-green-light;
       }
     }
   }

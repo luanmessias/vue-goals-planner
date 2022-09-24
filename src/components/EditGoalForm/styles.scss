@@ -84,4 +84,20 @@ $input-spacing: em(30) 0;
       }
     }
   }
+
+  &--dark {
+    .goal {
+      &__header {
+        &__return {
+          color: $color-green-light;
+        }
+        &__title {
+          color: $color-green-light;
+        }
+      }
+      &__container {
+        background-color: $color-green-main;
+      }
+    }
+  }
 }

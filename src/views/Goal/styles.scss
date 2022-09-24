@@ -4,7 +4,6 @@ $header-icon-color: #717171;
 .goal-page {
   width: 100%;
   height: 100%;
-  background-color: $light-theme-bg;
   transition: all 0.3s ease-in-out;
 
   &__header {
@@ -33,10 +32,6 @@ $header-icon-color: #717171;
     }
   }
 
-  &--dark {
-    background-color: $color-green-main;
-  }
-
   &__button {
     position: fixed;
     bottom: em(30);
@@ -62,6 +57,22 @@ $header-icon-color: #717171;
     color: $until-date-color;
     &__icon {
       size: 300;
+    }
+  }
+
+  &--dark {
+    .goal-page {
+      &__menu {
+        &__item {
+          color: $color-green-light;
+        }
+      }
+      &__title {
+        color: $color-green-light;
+      }
+      &__until-date {
+        color: $color-green-light;
+      }
     }
   }
 }

@@ -1,8 +1,15 @@
 <template>
-  <div :class="['task', { 'task--active': taskActive }]" :key="task.id">
+  <div
+    :class="[
+      'task',
+      { 'task--dark': isThemeDarkActive },
+      { 'task--active': taskActive },
+    ]"
+    :key="task.id"
+  >
     <div class="task__toggle" @click="toggleTaskDone(task)">
-      <TaskCircleDoneIcon v-if="task.done" />
-      <TaskCircleIcon v-else />
+      <TaskCircleDoneIcon class="task__toggle__icon" v-if="task.done" />
+      <TaskCircleIcon class="task__toggle__icon" v-else />
     </div>
 
     <span class="task__title" v-text="task.title" />
@@ -19,8 +26,14 @@
     <div class="task__details" v-if="taskActive">
       <div class="task__details__info" v-text="task.description" />
       <div class="task__details__menu">
-        <ModeEditIcon @click="toggleEditTaskFormAction" />
-        <DeleteOutlineIcon @click="toggleConfirmDialogAction" />
+        <ModeEditIcon
+          class="task__details__menu__icon"
+          @click="toggleEditTaskFormAction"
+        />
+        <DeleteOutlineIcon
+          class="task__details__menu__icon"
+          @click="toggleConfirmDialogAction"
+        />
       </div>
     </div>
   </div>
@@ -35,6 +48,7 @@ import { ref } from 'vue'
 import { useTaskStore } from '@/store/tasks'
 import { useToggleStore } from '@/store/toggle'
 import { useDialogStore } from '@/store/dialog'
+import { storeToRefs } from 'pinia'
 
 export default {
   name: 'TaskItem',
@@ -60,6 +74,7 @@ export default {
     } = useTaskStore()
     const { toggleEditTaskForm } = useToggleStore()
     const { openDialog, closeDialog } = useDialogStore()
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const taskActive = ref(false)
 
     const toggleEditTaskFormAction = () => {
@@ -97,6 +112,7 @@ export default {
       toggleTaskDone,
       toggleEditTaskFormAction,
       toggleConfirmDialogAction,
+      isThemeDarkActive,
     }
   },
 }

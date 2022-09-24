@@ -1,11 +1,13 @@
 <template>
-  <div class="goal">
+  <div :class="['goal', { 'goal--dark': isThemeDarkActive }]">
     <router-link class="goal__link" :to="`/goal/${goal.id}`">
       <div class="goal__content">
         <div
           class="goal__percent"
           :style="{
-            background: `conic-gradient(#ffb057 ${percent}%, #ededed 0deg)`,
+            background: isThemeDarkActive
+              ? `conic-gradient(#ffb057 ${percent}%, #0c2026 0deg)`
+              : `conic-gradient(#ffb057 ${percent}%, #ededed 0deg)`,
           }"
         >
           <span class="goal__percent__value" v-text="`${percent}%`" />
@@ -56,6 +58,7 @@ import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
 import ModeEditIcon from 'icons/Pen.vue'
 import { useToggleStore } from '@/store/toggle'
 import { useDialogStore } from '@/store/dialog'
+import { storeToRefs } from 'pinia'
 
 export default {
   name: 'GoalInProgressItem',
@@ -77,6 +80,7 @@ export default {
     const goalActive = ref(false)
     const { openDialog, closeDialog } = useDialogStore()
     const { deleteGoal, clearDelGoal } = useGoalStore()
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
 
     const toggleEditGoalFormAction = () => {
       setEditGoal(props.goal.id)
@@ -114,6 +118,7 @@ export default {
       goalActive,
       toggleDelGoalDialog,
       toggleEditGoalFormAction,
+      isThemeDarkActive,
     }
   },
 }

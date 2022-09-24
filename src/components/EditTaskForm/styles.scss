@@ -35,9 +35,6 @@
     padding: $default-page-spacing;
     border-top-left-radius: em(20);
     border-top-right-radius: em(20);
-    &--dark {
-      background-color: $color-green-main;
-    }
   }
 
   &__field {
@@ -75,6 +72,22 @@
       .task__container {
         transform: translateY(100%);
         opacity: 0;
+      }
+    }
+  }
+
+  &--dark {
+    .task {
+      &__header {
+        &__return {
+          color: $color-green-light;
+        }
+        &__title {
+          color: $color-green-light;
+        }
+      }
+      &__container {
+        background-color: $color-green-main;
       }
     }
   }

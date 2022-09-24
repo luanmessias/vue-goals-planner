@@ -1,8 +1,6 @@
 <template>
-  <section class="goals">
-    <header
-      :class="['goals__header', { 'goals__header--dark': isThemeDarkActive }]"
-    >
+  <section :class="['goals', { 'goals--dark': isThemeDarkActive }]">
+    <header class="goals__header">
       <h1 v-text="$t('goals.to.start.title')" />
       <span class="goals__length" v-text="getNewGoals.length" />
     </header>

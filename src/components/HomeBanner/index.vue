@@ -1,25 +1,9 @@
 <template>
-  <div class="banner">
-    <div
-      :class="[
-        'banner__container',
-        { 'banner__container--dark': isThemeDarkActive },
-      ]"
-    >
+  <div :class="['banner', { 'banner--dark': isThemeDarkActive }]">
+    <div class="banner__container">
       <div class="banner__info">
-        <h2
-          :class="[
-            'banner__info__title',
-            { 'banner__info__title--dark': isThemeDarkActive },
-          ]"
-          v-text="$t('home.banner.title')"
-        />
-        <p
-          :class="[
-            'banner__info__tasks',
-            { 'banner__info__tasks--dark': isThemeDarkActive },
-          ]"
-        >
+        <h2 class="banner__info__title" v-text="$t('home.banner.title')" />
+        <p class="banner__info__tasks">
           <span>{{ getAllDoneTasksLength }} / {{ getAllTasksLength }}</span>
           {{ $t('home.banner.tasks') }}
         </p>

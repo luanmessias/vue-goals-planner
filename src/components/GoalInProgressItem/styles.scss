@@ -157,4 +157,46 @@ $goal-details-bg-color: #efefef;
       }
     }
   }
+
+  &--dark {
+    background-color: $color-green-main;
+    .goal {
+      &__title {
+        color: $color-green-light;
+      }
+      &__percent {
+        &::before {
+          content: '';
+          background-color: $color-green-main;
+        }
+        &__value {
+          color: $color-green-light;
+        }
+      }
+      &__date {
+        &__icon {
+          &:deep(svg) {
+            fill: $color-green-light;
+          }
+        }
+        &__txt {
+          color: $color-green-light;
+        }
+      }
+      &__details {
+        background-color: $color-green-main;
+        &:deep(svg) {
+          fill: $color-green-light;
+        }
+      }
+      &__options {
+        &::before,
+        &::after,
+        &__dot,
+        &__close-dot {
+          background-color: $color-green-light;
+        }
+      }
+    }
+  }
 }

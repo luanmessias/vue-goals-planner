@@ -55,8 +55,8 @@ $color-task-active-bg: #ededed;
       width: em(40);
       margin-left: 10px;
 
-      &:deep(svg) {
-        fill: $color-task-title;
+      &__icon {
+        color: $color-task-title;
         margin-bottom: em(10);
       }
     }
@@ -135,6 +135,45 @@ $color-task-active-bg: #ededed;
     &-enter-from,
     &-leave-to {
       opacity: 0;
+    }
+  }
+
+  &--dark {
+    &::after {
+      background-color: $color-green-main;
+    }
+    .task {
+      &__toggle {
+        &__icon {
+          color: $color-green-light;
+        }
+      }
+      &__title {
+        color: $color-green-light;
+      }
+      &__options {
+        &::before,
+        &::after,
+        &__dot,
+        &__close-dot {
+          background-color: $color-green-light;
+        }
+      }
+    }
+    &.task--active {
+      background-color: $color-green-main;
+      .task {
+        &__details {
+          &__info {
+            color: $color-green-light;
+          }
+          &__menu {
+            &__icon {
+              color: $color-green-light;
+            }
+          }
+        }
+      }
     }
   }
 }

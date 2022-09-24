@@ -1,7 +1,12 @@
 <template>
   <button
     @click="clickAction"
-    :class="['base-bt', `base-bt--${type}`, `base-bt--${size}`]"
+    :class="[
+      'base-bt',
+      { 'base-bt--dark': isThemeDarkActive },
+      `base-bt--${type}`,
+      `base-bt--${size}`,
+    ]"
   >
     <slot class="base-bt__icon" />
     <span v-text="label" />
@@ -9,6 +14,8 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
+import { useToggleStore } from '@/store/toggle'
 export default {
   name: 'BaseButton',
   props: {
@@ -28,6 +35,13 @@ export default {
       type: String,
       default: 'medium',
     },
+  },
+
+  setup() {
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
+    return {
+      isThemeDarkActive,
+    }
   },
 }
 </script>

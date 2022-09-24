@@ -1,5 +1,5 @@
 <template>
-  <div class="date-selector">
+  <div :class="['date-selector', { 'date-selector--dark': isThemeDarkActive }]">
     <span class="date-selector__label" v-text="label" />
     <transition name="date-selector__error__animate">
       <span v-if="error" class="date-selector__error" v-text="$t(error)" />
@@ -14,6 +14,7 @@
       v-model="date"
       :minDate="minDate"
       :format="format"
+      :dark="isThemeDarkActive"
       noToday
       autoApply
     />
@@ -24,6 +25,8 @@
 import DatePicker from '@vuepic/vue-datepicker'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
+import { useToggleStore } from '@/store/toggle'
 
 export default {
   name: 'DateSelector',
@@ -45,6 +48,7 @@ export default {
     },
   },
   setup(props) {
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const date = ref(props.startDate ? props.startDate : '')
     const minDate = props.startDate ? '' : new Date()
     const { d } = useI18n()
@@ -53,6 +57,7 @@ export default {
       date,
       minDate,
       format,
+      isThemeDarkActive,
     }
   },
 }

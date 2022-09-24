@@ -24,6 +24,9 @@ import GoalForm from '@/components/GoalForm/index.vue'
 import EditGoalForm from '@/components/EditGoalForm/index.vue'
 import AddTaskForm from '@/components/AddTaskForm/index.vue'
 import EditTaskForm from '@/components/EditTaskForm/index.vue'
+import { useToggleStore } from '@/store/toggle'
+import { storeToRefs } from 'pinia'
+import { watchEffect } from 'vue'
 
 export default {
   name: 'AppComponent',
@@ -38,8 +41,17 @@ export default {
   },
   setup() {
     const isLoading = ref(true)
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const { fetchTasks } = useTaskStore()
     const { fetchGoals } = useGoalStore()
+
+    watchEffect(() => {
+      if (isThemeDarkActive.value) {
+        document.body.classList.add('dark')
+      } else {
+        document.body.classList.remove('dark')
+      }
+    })
 
     const fetchData = async () => {
       try {
