@@ -56,7 +56,10 @@ import { watch, ref } from 'vue'
 import { useGoalStore } from '@/store/goals'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
-import { secondsAndNanosecondsToDate } from '@/utils/TimesStampToDate'
+import {
+  secondsAndNanosecondsToDate,
+  dateToSecondsAndNanoseconds,
+} from '@/utils/TimesStampToDate'
 import { useMessageStore } from '@/store/message'
 import BaseButton from '@/components/BaseButton'
 
@@ -143,7 +146,7 @@ export default {
         updateGoal({
           ...editGoal.value,
           title: goal.value.title.txt,
-          description: goal.value.deadline.txt,
+          deadline: dateToSecondsAndNanoseconds(goal.value.deadline.txt),
         })
       }
     }

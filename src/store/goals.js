@@ -160,6 +160,7 @@ export const useGoalStore = defineStore('goal', {
           })
           const goalIndex = this.goals.findIndex((goal) => goal.id === data.id)
           this.goals[goalIndex] = updatedGoal
+          this.setGoal(updatedGoal.id)
           setMessage({
             active: true,
             text: 'update.goal.form.success',
@@ -196,6 +197,9 @@ export const useGoalStore = defineStore('goal', {
       const doneTasks = goalTasks.filter((task) => task.done === true)
       const percentage = Math.round((doneTasks.length / goalTasks.length) * 100)
       return percentage
+    },
+    setGoal(goalId) {
+      this.goal = this.goals.find((goal) => goal.id === goalId)
     },
     setDelGoal(goalId) {
       const goal = this.goals.find((goal) => goal.id === goalId)

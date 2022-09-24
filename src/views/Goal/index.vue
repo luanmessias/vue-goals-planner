@@ -67,14 +67,14 @@ export default {
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const { toggleTaskForm, toggleEditGoalForm } = useToggleStore()
-    const { fetchGoal, setEditGoal, setDelGoal } = useGoalStore()
+    const { setGoal, setEditGoal, setDelGoal } = useGoalStore()
     const { goal } = storeToRefs(useGoalStore())
     const { openDialog, closeDialog } = useDialogStore()
     const { deleteGoal, clearDelGoal } = useGoalStore()
     const route = useRoute()
     const router = useRouter()
 
-    fetchGoal(route.params.id)
+    setGoal(route.params.id)
 
     const toggleEditGoalFormAction = () => {
       setEditGoal(route.params.id)
