@@ -31,6 +31,7 @@
           <div class="goal__deadline">
             <DateSelector
               :placeholder="$t('add.goal.form.deadline')"
+              :label="$t('add.goal.form.title')"
               v-model="goal.deadline.txt"
               :error="goal.deadline.error"
               :startDate="goal.deadline.txt"

@@ -1,3 +1,5 @@
+$input-spacing: em(30) 0;
+
 .goal {
   position: fixed;
   width: 100%;
@@ -41,11 +43,11 @@
   }
 
   &__name {
-    margin: $default-page-spacing 0px;
+    margin: $input-spacing;
   }
 
   &__deadline {
-    margin: $default-page-spacing 0px;
+    margin: $input-spacing;
   }
 
   &__add-button {

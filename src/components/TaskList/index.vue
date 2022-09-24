@@ -4,7 +4,7 @@
       <TaskItem :task="task" />
     </template>
     <div v-if="!activeFilter.data.length" class="task-list__empty">
-      <TaskSleepingIcon size="150px" class="task-list__empty__svg" />
+      <TaskSleepingIcon size="100px" class="task-list__empty__svg" />
       <p
         class="task-list__empty__text"
         v-text="$t(`task.list.no.tasks.${activeFilter.id}.message`)"
