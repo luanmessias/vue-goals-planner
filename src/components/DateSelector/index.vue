@@ -40,7 +40,7 @@ export default {
       value: '',
     },
     startDate: {
-      type: String,
+      type: [String, Date],
       default: '',
     },
   },

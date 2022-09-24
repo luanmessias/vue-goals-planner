@@ -17,7 +17,7 @@
             </div>
             <h1
               class="goal__header__title"
-              v-text="$t('add.goal.page.title')"
+              v-text="$t('update.goal.page.title')"
             />
           </div>
           <BaseInput

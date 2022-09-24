@@ -1,20 +1,33 @@
 <template>
   <div :class="['goal-page', { 'goal-page--dark': isThemeDarkActive }]">
     <MainNav />
-    <div class="goal-page__return">
-      <router-link to="/">
+    <div class="goal-page__menu">
+      <router-link class="goal-page__menu__item" to="/">
         <ArrowLeftIcon :size="30" class="goal-page__return__icon" />
       </router-link>
+      <ModeEditIcon
+        @click="toggleEditGoalFormAction"
+        class="goal-page__menu__item"
+      />
+      <DeleteOutlineIcon
+        @click="toggleDelGoalDialog"
+        class="goal-page__menu__item"
+      />
     </div>
-    <h1 class="goal-page__title" v-text="goal.title" />
-    <div class="goal-page__until-date">
-      <CalendarIcon class="goal-page__until-date__icon" />
-      <span>Until 18/05</span>
+    <div class="goal-page__header">
+      <div class="goal-page__header__title">
+        <h1 class="goal-page__title" v-text="goal.title" />
+        <div class="goal-page__until-date">
+          <CalendarIcon class="goal-page__until-date__icon" />
+          <span>
+            {{ $t('goal.page.until.date') }}
+            {{ $d(timeStampToDate(goal.deadline.seconds)) }}
+          </span>
+        </div>
+      </div>
     </div>
     <TaskFilter />
     <TaskList />
-    <AddTaskForm />
-    <EditTaskForm />
     <BaseButton
       class="goal-page__button"
       :clickAction="toggleTaskForm"
@@ -29,13 +42,15 @@ import CalendarIcon from 'icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import { useGoalStore } from '@/store/goals'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import MainNav from '@/components/MainNav'
 import TaskFilter from '@/components/TaskFilter'
-import AddTaskForm from '@/components/AddTaskForm'
-import EditTaskForm from '@/components/EditTaskForm'
 import TaskList from '@/components/TaskList'
 import BaseButton from '@/components/BaseButton'
+import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
+import ModeEditIcon from 'icons/Pen.vue'
+import { useDialogStore } from '@/store/dialog'
+import { timeStampToDate } from '@/utils/TimesStampToDate'
 
 export default {
   name: 'GoalPage',
@@ -44,21 +59,61 @@ export default {
     CalendarIcon,
     MainNav,
     TaskFilter,
-    AddTaskForm,
-    EditTaskForm,
     TaskList,
     BaseButton,
+    DeleteOutlineIcon,
+    ModeEditIcon,
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
-    const { toggleTaskForm } = useToggleStore()
-    const { fetchGoal } = useGoalStore()
+    const { toggleTaskForm, toggleEditGoalForm } = useToggleStore()
+    const { fetchGoal, setEditGoal, setDelGoal } = useGoalStore()
     const { goal } = storeToRefs(useGoalStore())
+    const { openDialog, closeDialog } = useDialogStore()
+    const { deleteGoal, clearDelGoal } = useGoalStore()
     const route = useRoute()
+    const router = useRouter()
 
     fetchGoal(route.params.id)
 
-    return { isThemeDarkActive, goal, toggleTaskForm }
+    const toggleEditGoalFormAction = () => {
+      setEditGoal(route.params.id)
+      toggleEditGoalForm()
+    }
+
+    const toggleDelGoalDialog = () => {
+      setDelGoal(route.params.id)
+      openDialog({
+        showCloseButton: false,
+        title: 'modal.confirmation.title',
+        message: 'delete.goal.confirmation.message',
+        cancelButton: {
+          label: 'delete.goal.button.cancel',
+          action: () => {
+            clearDelGoal()
+            closeDialog()
+          },
+        },
+        confirmButton: {
+          label: 'delete.goal.button.confirm',
+          action: () => {
+            deleteGoal()
+            clearDelGoal()
+            closeDialog()
+            router.push({ name: 'home' })
+          },
+        },
+      })
+    }
+
+    return {
+      isThemeDarkActive,
+      goal,
+      toggleTaskForm,
+      toggleEditGoalFormAction,
+      toggleDelGoalDialog,
+      timeStampToDate,
+    }
   },
 }
 </script>

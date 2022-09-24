@@ -1,11 +1,37 @@
 $until-date-color: #bdbdbd;
-$return-arrow-color: #717171;
+$header-icon-color: #717171;
 
 .goal-page {
   width: 100%;
   height: 100%;
   background-color: $light-theme-bg;
   transition: all 0.3s ease-in-out;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: $default-page-spacing;
+    padding-top: 0;
+    box-sizing: border-box;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: $default-page-spacing;
+    width: auto;
+    height: auto;
+    border-radius: em(5);
+
+    &__item {
+      margin-right: em(10);
+      color: $header-icon-color;
+    }
+  }
 
   &--dark {
     background-color: $color-green-main;
@@ -18,26 +44,12 @@ $return-arrow-color: #717171;
     transform: translateX(-50%);
   }
 
-  &__return {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    padding: $default-page-spacing;
-
-    &__icon {
-      size: 300;
-      color: $return-arrow-color;
-    }
-  }
-
   &__title {
     display: flex;
     box-sizing: border-box;
     width: 100%;
     font-weight: 700;
     font-size: em(23);
-    padding-left: $default-page-spacing;
     padding-bottom: em(5);
   }
 
@@ -46,7 +58,6 @@ $return-arrow-color: #717171;
     display: flex;
     align-items: center;
     width: 100%;
-    padding-left: $default-page-spacing;
     padding-bottom: em(5);
     color: $until-date-color;
     &__icon {

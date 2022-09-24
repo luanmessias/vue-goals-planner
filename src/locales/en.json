@@ -6,6 +6,7 @@
   "button.add.task": "Add Task",
   "button.update.task": "Update Task",
   "add.goal.page.title": "Add new goal",
+  "update.goal.page.title": "Update goal",
   "add.goal.form.title": "Goal Title",
   "add.goal.title.error.empty": "Please, set a title for your goal",
   "add.goal.deadline.error.empty": "Please, set a deadline for your goal",
@@ -47,5 +48,6 @@
   "new.goal.add.task.modal.button.cancel": "Later",
   "task.list.no.tasks.all.message": "No tasks added yet, click on the button below to add a new task",
   "task.list.no.tasks.todo.message": "No more tasks to do, click on the button below to add a new task",
-  "task.list.no.tasks.done.message": "No tasks done yet, finish your tasks to see them here"
+  "task.list.no.tasks.done.message": "No tasks done yet, finish your tasks to see them here",
+  "goal.page.until.date": "Until"
 }

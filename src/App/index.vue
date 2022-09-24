@@ -7,6 +7,10 @@
   </router-view>
   <ConfirmDialog />
   <CallbackMessage />
+  <GoalForm />
+  <EditGoalForm />
+  <AddTaskForm />
+  <EditTaskForm />
 </template>
 
 <script>
@@ -16,6 +20,10 @@ import { useTaskStore } from '@/store/tasks'
 import { useGoalStore } from '@/store/goals'
 import CallbackMessage from '@/components/CallbackMessage/index.vue'
 import ConfirmDialog from '@/components/ConfirmDialog/index.vue'
+import GoalForm from '@/components/GoalForm/index.vue'
+import EditGoalForm from '@/components/EditGoalForm/index.vue'
+import AddTaskForm from '@/components/AddTaskForm/index.vue'
+import EditTaskForm from '@/components/EditTaskForm/index.vue'
 
 export default {
   name: 'AppComponent',
@@ -23,6 +31,10 @@ export default {
     LoadingScreen,
     CallbackMessage,
     ConfirmDialog,
+    GoalForm,
+    EditGoalForm,
+    AddTaskForm,
+    EditTaskForm,
   },
   setup() {
     const isLoading = ref(true)
