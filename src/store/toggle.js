@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useToggleStore = defineStore('toggle', {
   state: () => ({
-    isThemeDarkActive: true,
+    isThemeDarkActive: false,
     isGoalFormActive: false,
     isEditGoalFormActive: false,
     isTaskFormActive: false,
