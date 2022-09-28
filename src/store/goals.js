@@ -75,8 +75,9 @@ export const useGoalStore = defineStore('goal', {
       this.goals = []
       this.loading = true
       try {
-        const res = await getDocs(query(collection(projectFirestore, 'goals')))
-        res.forEach((doc) => {
+        const q = query(collection(projectFirestore, 'goals'))
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
           this.goals.push({ id: doc.id, ...doc.data() })
         })
       } catch (error) {

@@ -40,8 +40,9 @@ export const useTaskStore = defineStore('task', {
       this.tasks = []
       this.loading = true
       try {
-        const res = await getDocs(query(collection(projectFirestore, 'tasks')))
-        res.forEach((doc) => {
+        const q = query(collection(projectFirestore, 'tasks'))
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
           this.tasks.push({ id: doc.id, ...doc.data() })
         })
       } catch (error) {
