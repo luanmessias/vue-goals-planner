@@ -42,10 +42,6 @@ export const useTaskStore = defineStore('task', {
       try {
         const q = query(collection(projectFirestore, 'tasks'))
         const querySnapshot = await getDocs(q)
-        console.log(
-          '🚀 ~ file: tasks.js ~ line 45 ~ fetchTasks ~ querySnapshot',
-          querySnapshot
-        )
         querySnapshot.forEach((doc) => {
           this.tasks.push({ id: doc.id, ...doc.data() })
         })

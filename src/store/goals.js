@@ -80,10 +80,6 @@ export const useGoalStore = defineStore('goal', {
         querySnapshot.forEach((doc) => {
           this.goals.push({ id: doc.id, ...doc.data() })
         })
-        console.log(
-          '🚀 ~ file: goals.js ~ line 83 ~ querySnapshot.forEach ~ querySnapshot',
-          querySnapshot
-        )
       } catch (error) {
         this.error = error
       } finally {
