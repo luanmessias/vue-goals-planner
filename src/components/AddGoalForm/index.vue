@@ -59,7 +59,7 @@ import { useDialogStore } from '@/store/dialog'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'GoalForm',
+  name: 'AddGoalForm',
   components: {
     BaseButton,
     ArrowLeft,

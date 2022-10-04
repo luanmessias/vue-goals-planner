@@ -5,12 +5,7 @@
         v-if="isEditGoalFormActive"
         :class="['goal', { 'goal--dark': isThemeDarkActive }]"
       >
-        <div
-          :class="[
-            'goal__container',
-            { 'goal__container--dark': isThemeDarkActive },
-          ]"
-        >
+        <div class="goal__container">
           <div class="goal__header">
             <div class="goal__header__return" @click="closeEditGoalForm">
               <ArrowLeft />
