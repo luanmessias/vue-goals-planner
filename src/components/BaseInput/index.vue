@@ -1,6 +1,6 @@
 <template>
   <div :class="['base-input', { 'base-input--dark': isThemeDarkActive }]">
-    <label class="base-input__label" v-text="label" />
+    <label v-if="!hideLabel" class="base-input__label" v-text="label" />
     <transition name="base-input__error__animate">
       <span v-if="error" class="base-input__error" v-text="$t(error)" />
     </transition>
@@ -53,6 +53,10 @@ export default {
     rows: {
       type: Number,
       default: 3,
+    },
+    hideLabel: {
+      type: Boolean,
+      default: false,
     },
   },
   setup() {

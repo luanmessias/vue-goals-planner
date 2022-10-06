@@ -1,0 +1,57 @@
+.login {
+  background-color: $color-green-main;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: em(350);
+    box-sizing: border-box;
+    padding: 0 $default-page-spacing;
+  }
+
+  &__password {
+    margin: $default-page-spacing 0;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: em(23);
+      color: $color-green-light;
+      font-weight: 700;
+      margin-bottom: $default-page-spacing;
+      margin-top: em(10);
+    }
+  }
+
+  &__or {
+    margin: em(10) 0;
+    color: $color-green-light;
+    font-size: em(16);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__acc {
+    text-align: center;
+    width: 100%;
+    padding: $default-page-spacing 0;
+    color: $color-green-light;
+
+    &__create {
+      color: $color-orange-main;
+      font-weight: 700;
+      margin-left: em(5);
+    }
+  }
+}

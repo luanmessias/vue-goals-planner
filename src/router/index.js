@@ -11,6 +11,11 @@ const routes = [
     name: 'goal',
     component: () => import('@/views/Goal'),
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login'),
+  },
 ]
 
 const router = createRouter({
