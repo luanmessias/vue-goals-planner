@@ -1,6 +1,5 @@
 <template>
   <div :class="['goal-page', { 'goal-page--dark': isThemeDarkActive }]">
-    <MainNav />
     <div class="goal-page__menu">
       <router-link class="goal-page__menu__item" to="/">
         <ArrowLeftIcon :size="30" class="goal-page__return__icon" />
@@ -43,7 +42,6 @@ import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import { useGoalStore } from '@/store/goals'
 import { useRoute, useRouter } from 'vue-router'
-import MainNav from '@/components/MainNav'
 import TaskFilter from '@/components/TaskFilter'
 import TaskList from '@/components/TaskList'
 import BaseButton from '@/components/BaseButton'
@@ -57,7 +55,6 @@ export default {
   components: {
     ArrowLeftIcon,
     CalendarIcon,
-    MainNav,
     TaskFilter,
     TaskList,
     BaseButton,

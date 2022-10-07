@@ -54,6 +54,8 @@ import BaseInput from '@/components/BaseInput'
 import { toggleRegisterForm } from '@/store/toggle'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { ref } from 'vue'
+import { useToggleStore } from '@/store/toggle'
+import { storeToRefs } from 'pinia'
 export default {
   name: 'LoginPage',
   components: {
@@ -63,6 +65,7 @@ export default {
     BaseInput,
   },
   setup() {
+    const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const user = ref({
       email: {
         text: '',
@@ -124,6 +127,7 @@ export default {
       checkEmail,
       checkPassword,
       toggleRegisterFormAction,
+      isThemeDarkActive,
     }
   },
 }

@@ -1,6 +1,5 @@
 <template>
   <div :class="['home-page', { 'home-page--dark': isThemeDarkActive }]">
-    <MainNav />
     <MainHeader />
     <HomeBanner />
     <GoalsToStart />
@@ -17,7 +16,6 @@
 import MainHeader from '@/components/MainHeader'
 import HomeBanner from '@/components/HomeBanner'
 import GoalsToStart from '@/components/GoalsToStart'
-import MainNav from '@/components/MainNav'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import BaseButton from '@/components/BaseButton'
@@ -29,7 +27,6 @@ export default {
     MainHeader,
     HomeBanner,
     GoalsToStart,
-    MainNav,
     BaseButton,
     GoalsInProgressList,
   },

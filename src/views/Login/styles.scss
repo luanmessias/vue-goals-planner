@@ -1,5 +1,4 @@
 .login {
-  background-color: $color-green-main;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -27,7 +26,7 @@
 
     h1 {
       font-size: em(23);
-      color: $color-green-light;
+      color: $color-green-main;
       font-weight: 700;
       margin-bottom: $default-page-spacing;
       margin-top: em(10);
@@ -52,6 +51,16 @@
       color: $color-orange-main;
       font-weight: 700;
       margin-left: em(5);
+    }
+  }
+
+  &--dark {
+    .login {
+      &__logo {
+        h1 {
+          color: $color-green-light;
+        }
+      }
     }
   }
 }

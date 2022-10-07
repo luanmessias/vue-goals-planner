@@ -5,6 +5,7 @@
       <component v-else :is="Component" />
     </transition>
   </router-view>
+  <MainNav />
   <ConfirmDialog />
   <CallbackMessage />
   <AddGoalForm />
@@ -24,6 +25,7 @@ import AddGoalForm from '@/components/AddGoalForm/index.vue'
 import EditGoalForm from '@/components/EditGoalForm/index.vue'
 import AddTaskForm from '@/components/AddTaskForm/index.vue'
 import EditTaskForm from '@/components/EditTaskForm/index.vue'
+import MainNav from '@/components/MainNav'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 import { watchEffect } from 'vue'
@@ -38,6 +40,7 @@ export default {
     EditGoalForm,
     AddTaskForm,
     EditTaskForm,
+    MainNav,
   },
   setup() {
     const isLoading = ref(true)
