@@ -20,6 +20,8 @@ import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import BaseButton from '@/components/BaseButton'
 import GoalsInProgressList from '@/components/GoalsInProgressList'
+import { useUserStore } from '@/store/user'
+import { onMounted } from 'vue-demi'
 
 export default {
   name: 'HomePage',
@@ -33,6 +35,11 @@ export default {
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const { toggleGoalForm } = useToggleStore()
+    const { isLoggedIn } = useUserStore()
+
+    onMounted(() => {
+      isLoggedIn()
+    })
 
     return {
       isThemeDarkActive,

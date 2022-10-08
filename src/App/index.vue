@@ -12,6 +12,7 @@
   <EditGoalForm />
   <AddTaskForm />
   <EditTaskForm />
+  <RegisterForm />
 </template>
 
 <script>
@@ -26,6 +27,7 @@ import EditGoalForm from '@/components/EditGoalForm/index.vue'
 import AddTaskForm from '@/components/AddTaskForm/index.vue'
 import EditTaskForm from '@/components/EditTaskForm/index.vue'
 import MainNav from '@/components/MainNav'
+import RegisterForm from '@/components/RegisterForm/index.vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 import { watchEffect } from 'vue'
@@ -41,6 +43,7 @@ export default {
     AddTaskForm,
     EditTaskForm,
     MainNav,
+    RegisterForm,
   },
   setup() {
     const isLoading = ref(true)

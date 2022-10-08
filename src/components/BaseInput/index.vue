@@ -1,9 +1,6 @@
 <template>
   <div :class="['base-input', { 'base-input--dark': isThemeDarkActive }]">
     <label v-if="!hideLabel" class="base-input__label" v-text="label" />
-    <transition name="base-input__error__animate">
-      <span v-if="error" class="base-input__error" v-text="$t(error)" />
-    </transition>
     <textarea
       v-if="textarea"
       v-bind="$attrs"
@@ -24,6 +21,9 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
+    <transition name="base-input__error__animate">
+      <span v-if="error" class="base-input__error" v-text="$t(error)" />
+    </transition>
   </div>
 </template>
 

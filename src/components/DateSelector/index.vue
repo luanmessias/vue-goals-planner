@@ -1,9 +1,6 @@
 <template>
   <div :class="['date-selector', { 'date-selector--dark': isThemeDarkActive }]">
     <span class="date-selector__label" v-text="label" />
-    <transition name="date-selector__error__animate">
-      <span v-if="error" class="date-selector__error" v-text="$t(error)" />
-    </transition>
     <DatePicker
       v-bind="$attrs"
       :class="[
@@ -18,6 +15,9 @@
       noToday
       autoApply
     />
+    <transition name="date-selector__error__animate">
+      <span v-if="error" class="date-selector__error" v-text="$t(error)" />
+    </transition>
   </div>
 </template>
 

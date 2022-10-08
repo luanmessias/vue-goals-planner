@@ -9,7 +9,7 @@
     </div>
     <div
       v-if="isMenuActive"
-      @click="closeAMenu"
+      @click="closeMenu"
       class="nav-button nav-button--close"
     >
       <CloseIcon :size="24" />
@@ -41,8 +41,15 @@
               <LocaleSelection v-if="isLocalesActive" class="nav__locales" />
             </transition>
           </div>
+          <div
+            v-if="user"
+            @click="toggleLogoutDialog"
+            :class="['nav__item', { 'nav__item--active': isLocalesActive }]"
+          >
+            <LogoutIcon class="nav__item__icon" :size="24" />
+          </div>
         </div>
-        <div class="nav__overlay" @click="closeAMenu" />
+        <div class="nav__overlay" @click="closeMenu" />
       </div>
     </transition>
   </Teleport>
@@ -54,11 +61,15 @@ import CloseIcon from 'icons/Close.vue'
 import TranslateIcon from 'icons/Translate.vue'
 import LightOnIcon from 'icons/Brightness5.vue'
 import LightOffIcon from 'icons/Brightness2.vue'
+import LogoutIcon from 'icons/Logout.vue'
 import LocaleFlag from '@/components/LocaleFlag'
 import LocaleSelection from '@/components/LocaleSelection'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
+import { useUserStore } from '@/store/user'
+import { useDialogStore } from '@/store/dialog'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'MainNav',
@@ -70,16 +81,44 @@ export default {
     LightOffIcon,
     LocaleFlag,
     LocaleSelection,
+    LogoutIcon,
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const isMenuActive = ref(false)
     const isLocalesActive = ref(false)
     const { toggleTheme } = useToggleStore()
+    const { user } = storeToRefs(useUserStore())
+    const { logout } = useUserStore()
+    const { openDialog, closeDialog } = useDialogStore()
+    const router = useRouter()
 
-    const closeAMenu = () => {
+    const closeMenu = () => {
       isMenuActive.value = false
       isLocalesActive.value = false
+    }
+
+    const toggleLogoutDialog = () => {
+      openDialog({
+        showCloseButton: false,
+        title: 'modal.confirmation.title',
+        message: 'user.dialog.logout.message',
+        cancelButton: {
+          label: 'user.dialog.logout.button.cancel',
+          action: () => {
+            closeDialog()
+          },
+        },
+        confirmButton: {
+          label: 'user.dialog.logout.button.confirm',
+          action: () => {
+            closeDialog()
+            closeMenu()
+            router.push({ name: 'login' })
+            logout()
+          },
+        },
+      })
     }
 
     return {
@@ -87,7 +126,9 @@ export default {
       isThemeDarkActive,
       toggleTheme,
       isLocalesActive,
-      closeAMenu,
+      closeMenu,
+      user,
+      toggleLogoutDialog,
     }
   },
 }

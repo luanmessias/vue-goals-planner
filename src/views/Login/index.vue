@@ -14,7 +14,7 @@
         :label="$t('login.form.email')"
         v-model="user.email.text"
         :error="user.email.error"
-        type="text"
+        type="email"
         @input="checkEmail"
         hideLabel
       />
@@ -23,7 +23,7 @@
         :label="$t('login.form.password')"
         v-model="user.password.text"
         :error="user.password.error"
-        type="text"
+        type="password"
         @input="checkPassword"
         hideLabel
       />
@@ -40,6 +40,7 @@
         <span
           class="login__acc__create"
           v-text="$t('login.form.create.account')"
+          @click="toggleRegisterFormAction"
         />
       </div>
     </div>
@@ -51,11 +52,21 @@ import BaseButton from '@/components/BaseButton'
 import LogoIcon from './img/LogoIcon'
 import GoogleIcon from 'icons/Google'
 import BaseInput from '@/components/BaseInput'
-import { toggleRegisterForm } from '@/store/toggle'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth'
 import { ref } from 'vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
+import { mailValidator } from '@/utils/MailValidator'
+import { passwordValidator } from '@/utils/PasswordValidator'
+import { useMessageStore } from '@/store/message'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
+
 export default {
   name: 'LoginPage',
   components: {
@@ -66,6 +77,10 @@ export default {
   },
   setup() {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
+    const { toggleRegisterForm } = useToggleStore()
+    const { setMessage } = useMessageStore()
+    const { setUser } = useUserStore()
+    const router = useRouter()
     const user = ref({
       email: {
         text: '',
@@ -92,7 +107,11 @@ export default {
     const checkEmail = () => {
       const { email } = user.value
       if (!email.text) {
-        email.error = 'login.form.email'
+        email.error = 'login.form.email.required'
+        return false
+      }
+      if (!mailValidator(email.text)) {
+        email.error = 'login.form.email.invalid'
         return false
       }
       email.error = ''
@@ -102,7 +121,11 @@ export default {
     const checkPassword = () => {
       const { password } = user.value
       if (!password.text) {
-        password.error = 'add.task.form.description.error.empty'
+        password.error = 'login.form.password.required'
+        return false
+      }
+      if (!passwordValidator(password.text)) {
+        password.error = 'login.form.password.invalid'
         return false
       }
       password.error = ''
@@ -121,6 +144,47 @@ export default {
       })
     }
 
+    const loginAction = () => {
+      const auth = getAuth()
+      const { email, password } = user.value
+      if (checkEmail() && checkPassword()) {
+        signInWithEmailAndPassword(auth, email.text, password.text)
+          .then((userCredential) => {
+            setUser(userCredential.user)
+            setMessage({
+              active: true,
+              text: 'login.form.success',
+              error: false,
+            })
+            router.push({ name: 'home' })
+          })
+          .catch((error) => {
+            const errorCode = error.code
+
+            if (errorCode === 'auth/user-not-found') {
+              email.error = 'login.form.user.not.found'
+              return
+            }
+
+            if (errorCode === 'auth/wrong-password') {
+              password.error = 'login.form.wrong.password'
+              return
+            }
+
+            if (errorCode === 'auth/user-disabled') {
+              email.error = 'login.form.user.disabled'
+              return
+            }
+
+            setMessage({
+              active: true,
+              text: 'register.form.error.generic',
+              error: true,
+            })
+          })
+      }
+    }
+
     return {
       signWithGoogle,
       user,
@@ -128,6 +192,7 @@ export default {
       checkPassword,
       toggleRegisterFormAction,
       isThemeDarkActive,
+      loginAction,
     }
   },
 }
