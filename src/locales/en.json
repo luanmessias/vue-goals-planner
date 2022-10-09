@@ -75,5 +75,7 @@
   "user.dialog.logout.message": "Are you sure you want to logout?",
   "user.dialog.logout.button.confirm": "Logout",
   "user.dialog.logout.button.cancel": "Cancel",
-  "user.logout.success": "You are logged out"
+  "user.logout.success": "You are logged out",
+  "home.goals.to.start.empty.message": "No goals to start yet, click on the button below to add a new goal",
+  "home.goals.in.progress.empty.message": "No goals in progress yet, select a goal from \"Goals to start\" section to start working on it"
 }

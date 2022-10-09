@@ -4,25 +4,36 @@
       <h1 v-text="$t('goals.to.start.title')" />
       <span class="goals__length" v-text="getNewGoals.length" />
     </header>
-    <Carousel class="goals__carousel" :items-to-show="2.9" :wrap-around="false">
-      <Slide v-for="(goal, index) in getNewGoals" :key="index">
-        <router-link class="goals__item__link" :to="`/goal/${goal.id}`">
-          <div class="goals__item">
-            <strong
-              class="goals__item__title"
-              v-text="cropString(goal.title, 28)"
-            />
-            <div class="goals__item__date">
-              <CalendarIcon class="goals__item__date__icon" />
-              <span
-                class="goals__item__date__txt"
-                v-text="$d(timeStampToDate(goal.deadline.seconds))"
+    <template v-if="getNewGoals.length">
+      <Carousel
+        class="goals__carousel"
+        :items-to-show="2.9"
+        :wrap-around="false"
+      >
+        <Slide v-for="(goal, index) in getNewGoals" :key="index">
+          <router-link class="goals__item__link" :to="`/goal/${goal.id}`">
+            <div class="goals__item">
+              <strong
+                class="goals__item__title"
+                v-text="cropString(goal.title, 28)"
               />
+              <div class="goals__item__date">
+                <CalendarIcon class="goals__item__date__icon" />
+                <span
+                  class="goals__item__date__txt"
+                  v-text="$d(timeStampToDate(goal.deadline.seconds))"
+                />
+              </div>
             </div>
-          </div>
-        </router-link>
-      </Slide>
-    </Carousel>
+          </router-link>
+        </Slide>
+      </Carousel>
+    </template>
+    <div class="goals__empty" v-else>
+      <div class="goals__empty__content">
+        <span v-text="$t('home.goals.to.start.empty.message')" />
+      </div>
+    </div>
   </section>
 </template>
 

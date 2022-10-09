@@ -1,4 +1,5 @@
 $date-color: #787878;
+$empty-box-background: #e5e5e5;
 
 .goals {
   &__header {
@@ -69,10 +70,26 @@ $date-color: #787878;
       }
     }
   }
+
+  &__empty {
+    padding: em(10) $default-page-spacing;
+    &__content {
+      background-color: $empty-box-background;
+      padding: em(10);
+      border-radius: em(5);
+    }
+  }
+
   &--dark {
     .goals {
       &__header {
         h1 {
+          color: $color-green-light;
+        }
+      }
+      &__empty {
+        &__content {
+          background-color: $color-green-main;
           color: $color-green-light;
         }
       }

@@ -1,17 +1,22 @@
 <template>
-  <div class="goals">
-    <header
-      :class="['goals__header', { 'goals__header--dark': isThemeDarkActive }]"
-    >
+  <div :class="['goals', { 'goals--dark': isThemeDarkActive }]">
+    <header class="goals__header">
       <h1 v-text="$t('goals.in.progress.title')" />
       <span class="goals__length" v-text="getStartedGoals.length" />
     </header>
     <div class="goals__container">
-      <GoalInProgressItem
-        v-for="goal in getStartedGoals"
-        :goal="goal"
-        :key="goal.id"
-      />
+      <template v-if="getStartedGoals.length">
+        <GoalInProgressItem
+          v-for="goal in getStartedGoals"
+          :goal="goal"
+          :key="goal.id"
+        />
+      </template>
+      <div class="goals__empty" v-else>
+        <div class="goals__empty__content">
+          <span v-text="$t('home.goals.in.progress.empty.message')" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

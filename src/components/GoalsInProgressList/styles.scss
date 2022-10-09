@@ -1,3 +1,5 @@
+$empty-box-background: #e5e5e5;
+
 .goals {
   padding-top: $default-page-spacing;
   &__header {
@@ -13,12 +15,6 @@
       font-size: em(23);
       font-weight: 800;
       color: $color-green-main;
-    }
-
-    &--dark {
-      h1 {
-        color: $color-green-light;
-      }
     }
   }
 
@@ -37,5 +33,29 @@
 
   &__container {
     padding: $default-page-spacing;
+  }
+
+  &__empty {
+    &__content {
+      background-color: $empty-box-background;
+      padding: em(10);
+      border-radius: em(5);
+    }
+  }
+
+  &--dark {
+    .goals {
+      &__header {
+        h1 {
+          color: $color-green-light;
+        }
+      }
+      &__empty {
+        &__content {
+          background-color: $color-green-main;
+          color: $color-green-light;
+        }
+      }
+    }
   }
 }
