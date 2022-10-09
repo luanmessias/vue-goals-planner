@@ -141,10 +141,10 @@ export default {
             error: false,
           })
         })
-        .catch((error) => {
+        .catch(() => {
           setMessage({
             active: true,
-            text: `register.form.error.generic - ${error.message}`,
+            text: 'login.form.error.generic',
             error: true,
           })
         })
