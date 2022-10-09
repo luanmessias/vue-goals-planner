@@ -56,7 +56,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
 } from 'firebase/auth'
 import { ref } from 'vue'
 import { useToggleStore } from '@/store/toggle'
@@ -132,7 +132,7 @@ export default {
 
     const signWithGoogle = () => {
       const provider = new GoogleAuthProvider()
-      signInWithPopup(getAuth(), provider)
+      signInWithRedirect(getAuth(), provider)
         .then(() => {
           router.push({ name: 'home' })
           setMessage({

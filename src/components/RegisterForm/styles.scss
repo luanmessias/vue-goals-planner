@@ -77,8 +77,7 @@
   }
 
   &--dark {
-    background-color: $color-green-dark;
-    .task {
+    .register {
       &__header {
         &__return {
           color: $color-green-light;
