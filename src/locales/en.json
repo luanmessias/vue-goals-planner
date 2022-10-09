@@ -74,5 +74,6 @@
   "register.form.submit": "Create account",
   "user.dialog.logout.message": "Are you sure you want to logout?",
   "user.dialog.logout.button.confirm": "Logout",
-  "user.dialog.logout.button.cancel": "Cancel"
+  "user.dialog.logout.button.cancel": "Cancel",
+  "user.logout.success": "You are logged out"
 }

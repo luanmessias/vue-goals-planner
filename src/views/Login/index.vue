@@ -65,7 +65,6 @@ import { mailValidator } from '@/utils/MailValidator'
 import { passwordValidator } from '@/utils/PasswordValidator'
 import { useMessageStore } from '@/store/message'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/store/user'
 
 export default {
   name: 'LoginPage',
@@ -79,7 +78,6 @@ export default {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const { toggleRegisterForm } = useToggleStore()
     const { setMessage } = useMessageStore()
-    const { setUser } = useUserStore()
     const router = useRouter()
     const user = ref({
       email: {
@@ -134,14 +132,22 @@ export default {
 
     const signWithGoogle = () => {
       const provider = new GoogleAuthProvider()
-      signInWithPopup(getAuth(), provider).then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential.accessToken
-        // The signed-in user info.
-        const user = result.user
-        console.log(token, user)
-      })
+      signInWithPopup(getAuth(), provider)
+        .then(() => {
+          router.push({ name: 'home' })
+          setMessage({
+            active: true,
+            text: 'login.form.success',
+            error: false,
+          })
+        })
+        .catch(() => {
+          setMessage({
+            active: true,
+            text: 'register.form.error.generic',
+            error: true,
+          })
+        })
     }
 
     const loginAction = () => {
@@ -149,8 +155,7 @@ export default {
       const { email, password } = user.value
       if (checkEmail() && checkPassword()) {
         signInWithEmailAndPassword(auth, email.text, password.text)
-          .then((userCredential) => {
-            setUser(userCredential.user)
+          .then(() => {
             setMessage({
               active: true,
               text: 'login.form.success',

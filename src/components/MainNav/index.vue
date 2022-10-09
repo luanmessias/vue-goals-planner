@@ -42,7 +42,7 @@
             </transition>
           </div>
           <div
-            v-if="user"
+            v-if="isLoggedIn"
             @click="toggleLogoutDialog"
             :class="['nav__item', { 'nav__item--active': isLocalesActive }]"
           >
@@ -64,12 +64,13 @@ import LightOffIcon from 'icons/Brightness2.vue'
 import LogoutIcon from 'icons/Logout.vue'
 import LocaleFlag from '@/components/LocaleFlag'
 import LocaleSelection from '@/components/LocaleSelection'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
-import { useUserStore } from '@/store/user'
 import { useDialogStore } from '@/store/dialog'
 import { useRouter } from 'vue-router'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { useMessageStore } from '@/store/message'
 
 export default {
   name: 'MainNav',
@@ -88,14 +89,41 @@ export default {
     const isMenuActive = ref(false)
     const isLocalesActive = ref(false)
     const { toggleTheme } = useToggleStore()
-    const { user } = storeToRefs(useUserStore())
-    const { logout } = useUserStore()
     const { openDialog, closeDialog } = useDialogStore()
+    const isLoggedIn = ref(false)
     const router = useRouter()
+    const { setMessage } = useMessageStore()
 
     const closeMenu = () => {
       isMenuActive.value = false
       isLocalesActive.value = false
+    }
+
+    let auth
+    onMounted(() => {
+      auth = getAuth()
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          isLoggedIn.value = true
+        } else {
+          isLoggedIn.value = false
+        }
+      })
+    })
+
+    const handleSignOut = () => {
+      signOut(auth)
+        .then(() => {
+          router.push({ name: 'login' })
+          setMessage({
+            active: true,
+            text: 'user.logout.success',
+            error: false,
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
 
     const toggleLogoutDialog = () => {
@@ -114,8 +142,7 @@ export default {
           action: () => {
             closeDialog()
             closeMenu()
-            router.push({ name: 'login' })
-            logout()
+            handleSignOut()
           },
         },
       })
@@ -127,8 +154,8 @@ export default {
       toggleTheme,
       isLocalesActive,
       closeMenu,
-      user,
       toggleLogoutDialog,
+      isLoggedIn,
     }
   },
 }
