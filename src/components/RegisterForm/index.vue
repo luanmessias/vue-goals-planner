@@ -1,51 +1,49 @@
 <template>
   <Teleport to="#modal">
     <transition name="register__animate">
-      <transition name="register__animate">
-        <div
-          v-if="isRegisterFormActive"
-          :class="['register', { 'register--dark': isThemeDarkActive }]"
-        >
-          <div class="register__container">
-            <div class="register__header">
-              <div
-                class="register__header__return"
-                @click="toggleRegisterFormAction"
-              >
-                <ArrowLeft />
-              </div>
-              <h1
-                class="register__header__title"
-                v-text="$t('register.form.title')"
-              />
+      <div
+        v-if="isRegisterFormActive"
+        :class="['register', { 'register--dark': isThemeDarkActive }]"
+      >
+        <div class="register__container">
+          <div class="register__header">
+            <div
+              class="register__header__return"
+              @click="toggleRegisterFormAction"
+            >
+              <ArrowLeft />
             </div>
-
-            <BaseInput
-              class="register__field register__field--email"
-              :label="$t('login.form.email')"
-              v-model="user.email.text"
-              :error="user.email.error"
-              type="email"
-              @input="checkEmail"
-              hideLabel
-            />
-            <BaseInput
-              class="register__field register__field--password"
-              :label="$t('login.form.password')"
-              v-model="user.password.text"
-              :error="user.password.error"
-              type="password"
-              @input="checkPassword"
-              hideLabel
-            />
-            <BaseButton
-              @click="registerAction"
-              :label="$t('register.form.submit')"
-              class="register__add-button"
+            <h1
+              class="register__header__title"
+              v-text="$t('register.form.title')"
             />
           </div>
+
+          <BaseInput
+            class="register__field register__field--email"
+            :label="$t('login.form.email')"
+            v-model="user.email.text"
+            :error="user.email.error"
+            type="email"
+            @input="checkEmail"
+            hideLabel
+          />
+          <BaseInput
+            class="register__field register__field--password"
+            :label="$t('login.form.password')"
+            v-model="user.password.text"
+            :error="user.password.error"
+            type="password"
+            @input="checkPassword"
+            hideLabel
+          />
+          <BaseButton
+            @click="registerAction"
+            :label="$t('register.form.submit')"
+            class="register__add-button"
+          />
         </div>
-      </transition>
+      </div>
     </transition>
   </Teleport>
 </template>
@@ -64,7 +62,7 @@ import { useMessageStore } from '@/store/message'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'AddTaskForm',
+  name: 'RegisterForm',
   components: {
     BaseButton,
     ArrowLeft,
