@@ -49,7 +49,7 @@
 <script>
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
-import CloseIcon from 'icons/Close.vue'
+import CloseIcon from '@icons/Close.vue'
 import BaseButton from '@/components/BaseButton'
 import { useDialogStore } from '@/store/dialog'
 

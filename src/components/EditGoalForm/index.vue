@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import ArrowLeft from 'icons/ArrowLeft.vue'
+import ArrowLeft from '@icons/ArrowLeft.vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 import { watch, ref } from 'vue'

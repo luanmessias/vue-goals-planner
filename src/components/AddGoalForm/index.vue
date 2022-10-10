@@ -47,7 +47,7 @@
 <script>
 import BaseButton from '@/components/BaseButton'
 import CallbackMessage from '@/components/CallbackMessage'
-import ArrowLeft from 'icons/ArrowLeft.vue'
+import ArrowLeft from '@icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
 import { useMessageStore } from '@/store/message'

@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import TaskCircleIcon from 'icons/PanoramaFisheye.vue'
-import TaskCircleDoneIcon from 'icons/CheckCircle.vue'
-import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
-import ModeEditIcon from 'icons/Pen.vue'
+import TaskCircleIcon from '@icons/PanoramaFisheye.vue'
+import TaskCircleDoneIcon from '@icons/CheckCircle.vue'
+import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
+import ModeEditIcon from '@icons/Pen.vue'
 import { ref } from 'vue'
 import { useTaskStore } from '@/store/tasks'
 import { useToggleStore } from '@/store/toggle'

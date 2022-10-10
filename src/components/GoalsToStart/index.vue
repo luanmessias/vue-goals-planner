@@ -40,7 +40,7 @@
 <script>
 import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
-import CalendarIcon from 'icons/CalendarMonth.vue'
+import CalendarIcon from '@icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import { timeStampToDate } from '@/utils/TimesStampToDate'

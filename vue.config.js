@@ -30,7 +30,7 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        icons: path.resolve(
+        '@icons': path.resolve(
           __dirname,
           'node_modules/vue-material-design-icons'
         ),

@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import ArrowLeftIcon from 'icons/ArrowLeft.vue'
-import CalendarIcon from 'icons/CalendarMonth.vue'
+import ArrowLeftIcon from '@icons/ArrowLeft.vue'
+import CalendarIcon from '@icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
 import { useGoalStore } from '@/store/goals'
@@ -45,8 +45,8 @@ import { useRoute, useRouter } from 'vue-router'
 import TaskFilter from '@/components/TaskFilter'
 import TaskList from '@/components/TaskList'
 import BaseButton from '@/components/BaseButton'
-import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
-import ModeEditIcon from 'icons/Pen.vue'
+import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
+import ModeEditIcon from '@icons/Pen.vue'
 import { useDialogStore } from '@/store/dialog'
 import { timeStampToDate } from '@/utils/TimesStampToDate'
 

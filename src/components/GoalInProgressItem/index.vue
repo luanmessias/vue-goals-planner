@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import CalendarIcon from 'icons/CalendarMonth.vue'
+import CalendarIcon from '@icons/CalendarMonth.vue'
 import { timeStampToDate } from '@/utils/TimesStampToDate'
 import { useGoalStore } from '@/store/goals'
 import { ref } from 'vue'
-import DeleteOutlineIcon from 'icons/DeleteOutline.vue'
-import ModeEditIcon from 'icons/Pen.vue'
+import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
+import ModeEditIcon from '@icons/Pen.vue'
 import { useToggleStore } from '@/store/toggle'
 import { useDialogStore } from '@/store/dialog'
 import { storeToRefs } from 'pinia'

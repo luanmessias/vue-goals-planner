@@ -56,12 +56,12 @@
 </template>
 
 <script>
-import MenuIcon from 'icons/Menu.vue'
-import CloseIcon from 'icons/Close.vue'
-import TranslateIcon from 'icons/Translate.vue'
-import LightOnIcon from 'icons/Brightness5.vue'
-import LightOffIcon from 'icons/Brightness2.vue'
-import LogoutIcon from 'icons/Logout.vue'
+import MenuIcon from '@icons/Menu.vue'
+import CloseIcon from '@icons/Close.vue'
+import TranslateIcon from '@icons/Translate.vue'
+import LightOnIcon from '@icons/Brightness5.vue'
+import LightOffIcon from '@icons/Brightness2.vue'
+import LogoutIcon from '@icons/Logout.vue'
 import LocaleFlag from '@/components/LocaleFlag'
 import LocaleSelection from '@/components/LocaleSelection'
 import { onMounted, ref } from 'vue'

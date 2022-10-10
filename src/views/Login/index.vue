@@ -50,7 +50,7 @@
 <script>
 import BaseButton from '@/components/BaseButton'
 import LogoIcon from './img/LogoIcon'
-import GoogleIcon from 'icons/Google'
+import GoogleIcon from '@icons/Google'
 import BaseInput from '@/components/BaseInput'
 import {
   getAuth,
