@@ -1,8 +1,8 @@
 <template>
   <section :class="['goals', { 'goals--dark': isThemeDarkActive }]">
     <header class="goals__header">
-      <h1 v-text="$t('goals.to.start.title')" />
-      <span class="goals__length" v-text="getNewGoals.length" />
+      <h1 v-text="$t('goals.to.start.title')"></h1>
+      <span class="goals__length" v-text="getNewGoals.length"></span>
     </header>
     <template v-if="getNewGoals.length">
       <Carousel
@@ -16,13 +16,13 @@
               <strong
                 class="goals__item__title"
                 v-text="cropString(goal.title, 28)"
-              />
+              ></strong>
               <div class="goals__item__date">
                 <CalendarIcon class="goals__item__date__icon" />
                 <span
                   class="goals__item__date__txt"
                   v-text="$d(timeStampToDate(goal.deadline.seconds))"
-                />
+                ></span>
               </div>
             </div>
           </router-link>
@@ -31,7 +31,7 @@
     </template>
     <div class="goals__empty" v-else>
       <div class="goals__empty__content">
-        <span v-text="$t('home.goals.to.start.empty.message')" />
+        <span v-text="$t('home.goals.to.start.empty.message')"></span>
       </div>
     </div>
   </section>

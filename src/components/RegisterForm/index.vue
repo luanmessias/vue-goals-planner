@@ -16,7 +16,7 @@
             <h1
               class="register__header__title"
               v-text="$t('register.form.title')"
-            />
+            ></h1>
           </div>
 
           <BaseInput

@@ -8,8 +8,8 @@
       `base-bt--${size}`,
     ]"
   >
-    <slot class="base-bt__icon" />
-    <span v-text="label" />
+    <slot class="base-bt__icon"></slot>
+    <span v-text="label"></span>
   </button>
 </template>
 

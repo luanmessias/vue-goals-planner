@@ -1,8 +1,8 @@
 <template>
   <div :class="['goals', { 'goals--dark': isThemeDarkActive }]">
     <header class="goals__header">
-      <h1 v-text="$t('goals.in.progress.title')" />
-      <span class="goals__length" v-text="getStartedGoals.length" />
+      <h1 v-text="$t('goals.in.progress.title')"></h1>
+      <span class="goals__length" v-text="getStartedGoals.length"></span>
     </header>
     <div class="goals__container">
       <template v-if="getStartedGoals.length">
@@ -14,7 +14,7 @@
       </template>
       <div class="goals__empty" v-else>
         <div class="goals__empty__content">
-          <span v-text="$t('home.goals.in.progress.empty.message')" />
+          <span v-text="$t('home.goals.in.progress.empty.message')"></span>
         </div>
       </div>
     </div>

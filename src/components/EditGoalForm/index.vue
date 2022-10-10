@@ -13,7 +13,7 @@
             <h1
               class="goal__header__title"
               v-text="$t('update.goal.page.title')"
-            />
+            ></h1>
           </div>
           <BaseInput
             class="goal__name"

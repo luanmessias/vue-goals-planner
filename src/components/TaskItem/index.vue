@@ -12,19 +12,19 @@
       <TaskCircleIcon class="task__toggle__icon" v-else />
     </div>
 
-    <span class="task__title" v-text="task.title" />
+    <span class="task__title" v-text="task.title"></span>
 
     <div
       :class="['task__options', { 'task__options--active': taskActive }]"
       @click="taskActive = !taskActive"
     >
-      <div v-if="taskActive" class="task__options__close-dot" />
-      <div class="task__options__dot" />
-      <div v-if="taskActive" class="task__options__close-dot" />
+      <div v-if="taskActive" class="task__options__close-dot"></div>
+      <div class="task__options__dot"></div>
+      <div v-if="taskActive" class="task__options__close-dot"></div>
     </div>
 
     <div class="task__details" v-if="taskActive">
-      <div class="task__details__info" v-text="task.description" />
+      <div class="task__details__info" v-text="task.description"></div>
       <div class="task__details__menu">
         <ModeEditIcon
           class="task__details__menu__icon"

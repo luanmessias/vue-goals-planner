@@ -1,5 +1,5 @@
 <template>
-  <div :class="['locale-flag', `locale-flag--${flag}`]" />
+  <div :class="['locale-flag', `locale-flag--${flag}`]"></div>
 </template>
 
 <script>

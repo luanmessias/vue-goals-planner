@@ -10,14 +10,14 @@
           class="message__icon message__icon--error"
         />
         <CheckCircleOutline v-else class="message__icon" />
-        <span class="message__text" v-text="$t(message.text)" />
+        <span class="message__text" v-text="$t(message.text)"></span>
         <div
           :class="[
             'message__loading',
             { 'message__loading--error': message.error },
           ]"
           :style="`width:${loadingPercent}%`"
-        />
+        ></div>
         <div class="message__close" @click="closeMessage">
           <CloseIcon />
         </div>

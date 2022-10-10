@@ -75,5 +75,7 @@
   "user.dialog.logout.message": "¿Estás seguro de que quieres cerrar sesión?",
   "user.dialog.logout.button.confirm": "Cerrar sesión",
   "user.dialog.logout.button.cancel": "Cancelar",
-  "user.logout.success": "Cierre de sesión exitoso"
+  "user.logout.success": "Cierre de sesión exitoso",
+  "home.goals.to.start.empty.message": "Aún no hay objetivos para comenzar, haga clic en el botón a continuación para agregar un nuevo objetivo",
+  "home.goals.in.progress.empty.message": "Aún no hay objetivos en progreso, seleccione un objetivo de la sección \"Objetivos para comenzar\" para comenzar a trabajar en él"
 }

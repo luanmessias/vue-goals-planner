@@ -8,7 +8,7 @@
       <p
         class="task-list__empty__text"
         v-text="$t(`task.list.no.tasks.${activeFilter.id}.message`)"
-      />
+      ></p>
     </div>
   </div>
 </template>

@@ -10,10 +10,10 @@
               : `conic-gradient(#ffb057 ${percent}%, #ededed 0deg)`,
           }"
         >
-          <span class="goal__percent__value" v-text="`${percent}%`" />
+          <span class="goal__percent__value" v-text="`${percent}%`"></span>
         </div>
         <div class="goal__info">
-          <h3 class="goal__title" v-text="goal.title" />
+          <h3 class="goal__title" v-text="goal.title"></h3>
           <div class="goal__date">
             <CalendarIcon class="goal__date__icon" />
             <span
@@ -30,9 +30,9 @@
         :class="['goal__options', { 'goal__options--active': goalActive }]"
         @click="goalActive = !goalActive"
       >
-        <div v-if="goalActive" class="goal__options__close-dot" />
-        <div class="goal__options__dot" />
-        <div v-if="goalActive" class="goal__options__close-dot" />
+        <div v-if="goalActive" class="goal__options__close-dot"></div>
+        <div class="goal__options__dot"></div>
+        <div v-if="goalActive" class="goal__options__close-dot"></div>
       </div>
 
       <ModeEditIcon

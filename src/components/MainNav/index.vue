@@ -49,7 +49,7 @@
             <LogoutIcon class="nav__item__icon" :size="24" />
           </div>
         </div>
-        <div class="nav__overlay" @click="closeMenu" />
+        <div class="nav__overlay" @click="closeMenu"></div>
       </div>
     </transition>
   </Teleport>

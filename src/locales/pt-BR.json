@@ -75,5 +75,7 @@
   "user.dialog.logout.message": "Tem certeza de que deseja sair?",
   "user.dialog.logout.button.confirm": "Sair",
   "user.dialog.logout.button.cancel": "Cancelar",
-  "user.logout.success": "Logout realizado com sucesso"
+  "user.logout.success": "Logout realizado com sucesso",
+  "home.goals.to.start.empty.message": "Ainda não há metas para começar, clique no botão abaixo para adicionar uma nova meta",
+  "home.goals.in.progress.empty.message": "  Ainda não há metas em andamento. Selecione uma meta na seção \"Metas para começar\" para começar a trabalhar nela"
 }

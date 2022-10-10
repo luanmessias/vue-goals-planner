@@ -2,7 +2,7 @@
   <div :class="['banner', { 'banner--dark': isThemeDarkActive }]">
     <div class="banner__container">
       <div class="banner__info">
-        <h2 class="banner__info__title" v-text="$t('home.banner.title')" />
+        <h2 class="banner__info__title" v-text="$t('home.banner.title')"></h2>
         <p class="banner__info__tasks">
           <span>{{ getAllDoneTasksLength }} / {{ getAllTasksLength }}</span>
           {{ $t('home.banner.tasks') }}

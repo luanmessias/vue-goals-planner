@@ -12,7 +12,7 @@
       :value="modelValue"
       :rows="rows"
       @input="$emit('update:modelValue', $event.target.value)"
-    />
+    ></textarea>
     <input
       v-else
       v-bind="$attrs"

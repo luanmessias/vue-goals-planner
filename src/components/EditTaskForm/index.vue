@@ -17,7 +17,7 @@
               <h1
                 class="task__header__title"
                 v-text="$t('update.task.page.title')"
-              />
+              ></h1>
             </div>
 
             <div class="task__field">
