@@ -951,7 +951,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/template@^7.0.0", "@babel/template@^7.18.10", "@babel/template@^7.18.6", "@babel/template@^7.3.3":
+"@babel/template@7", "@babel/template@^7.0.0", "@babel/template@^7.18.10", "@babel/template@^7.18.6", "@babel/template@^7.3.3":
   version "7.18.10"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.18.10.tgz#6f9134835970d1dbf0835c0d100c9f38de0c5e71"
   integrity sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==
@@ -1818,6 +1818,13 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@pinia/testing@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@pinia/testing/-/testing-0.0.14.tgz#774791df360a1949c9ea2d8665de35d5a0200251"
+  integrity sha512-ZmZwVNd/NnKYLIfjfuKl0zlJ3UdiXFpsHzSlL6wCeezSlyrqGMxsIQKv0J6fleu38gyCNTPBEipfxrt8V4+VIg==
+  dependencies:
+    vue-demi "*"
 
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
@@ -3153,6 +3160,13 @@ babel-plugin-polyfill-regenerator@^0.4.0:
   integrity sha512-RW1cnryiADFeHmfLS+WW/G431p1PsW5qdRdz0SDRi7TKcUgc7Oh/uXkT7MZ/+tGsT1BkczEAmD5XjUyJ5SWDTw==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.2"
+
+babel-plugin-transform-require-context@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-require-context/-/babel-plugin-transform-require-context-0.1.1.tgz#319b545ca83080b5062776b46cc9b8b346fea9a6"
+  integrity sha512-4ceqYOtzgmq4/QsB8dP7pUrUOCjY/jrRYdt7YkIOWHxtGDQbcf6YZDyLCiPQf6KsEIcIbSQiTRXOsbLiuJfgNQ==
+  dependencies:
+    "@babel/template" "7"
 
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.1"
