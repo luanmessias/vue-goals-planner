@@ -71,6 +71,7 @@ import { useDialogStore } from '@/store/dialog'
 import { useRouter } from 'vue-router'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useMessageStore } from '@/store/message'
+import { useUserStore } from '@/store/user'
 
 export default {
   name: 'MainNav',
@@ -93,6 +94,7 @@ export default {
     const isLoggedIn = ref(false)
     const router = useRouter()
     const { setMessage } = useMessageStore()
+    const { unsetUser } = useUserStore()
 
     const closeMenu = () => {
       isMenuActive.value = false
@@ -115,6 +117,7 @@ export default {
       signOut(auth)
         .then(() => {
           router.push({ name: 'login' })
+          unsetUser()
           setMessage({
             active: true,
             text: 'user.logout.success',

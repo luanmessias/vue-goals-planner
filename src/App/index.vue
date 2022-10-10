@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen'
 import { useTaskStore } from '@/store/tasks'
 import { useGoalStore } from '@/store/goals'
@@ -31,6 +31,8 @@ import RegisterForm from '@/components/RegisterForm/index.vue'
 import { useToggleStore } from '@/store/toggle'
 import { storeToRefs } from 'pinia'
 import { watchEffect } from 'vue'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { useUserStore } from '@/store/user'
 
 export default {
   name: 'AppComponent',
@@ -50,6 +52,7 @@ export default {
     const { isThemeDarkActive } = storeToRefs(useToggleStore())
     const { fetchTasks } = useTaskStore()
     const { fetchGoals } = useGoalStore()
+    const { setUser } = useUserStore()
 
     watchEffect(() => {
       if (isThemeDarkActive.value) {
@@ -69,7 +72,17 @@ export default {
       }
     }
 
-    fetchData()
+    const auth = getAuth()
+    onBeforeMount(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user)
+          fetchData()
+        } else {
+          isLoading.value = false
+        }
+      })
+    })
 
     return {
       isLoading,

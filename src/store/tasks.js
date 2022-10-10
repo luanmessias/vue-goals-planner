@@ -8,12 +8,14 @@ import {
   addDoc,
   setDoc,
   deleteDoc,
+  where,
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
 import { useMessageStore } from './message'
 import { useFilterStore } from './filter'
 import { useToggleStore } from './toggle'
 import { useGoalStore } from './goals'
+import { useUserStore } from './user'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
@@ -37,10 +39,14 @@ export const useTaskStore = defineStore('task', {
   },
   actions: {
     async fetchTasks() {
+      const { user } = useUserStore()
       this.tasks = []
       this.loading = true
       try {
-        const q = query(collection(projectFirestore, 'tasks'))
+        const q = query(
+          collection(projectFirestore, 'tasks'),
+          where('user', '==', user.uid)
+        )
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach((doc) => {
           this.tasks.push({ id: doc.id, ...doc.data() })
@@ -65,6 +71,7 @@ export const useTaskStore = defineStore('task', {
       }
     },
     async addTask(data) {
+      const { user } = useUserStore()
       const { toggleTaskForm } = useToggleStore()
       const { updateFilters } = useFilterStore()
       const { setMessage } = useMessageStore()
@@ -82,6 +89,7 @@ export const useTaskStore = defineStore('task', {
         const newTask = {
           title: data.title,
           description: data.description,
+          user: user.uid,
           goal: data.goal,
           done: false,
           created_at: new Date(),

@@ -11,8 +11,10 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
+  where,
 } from 'firebase/firestore'
 import projectFirestore from '@/firebase/config'
+import { useUserStore } from '@/store/user'
 
 export const useGoalStore = defineStore('goal', {
   state: () => ({
@@ -72,10 +74,14 @@ export const useGoalStore = defineStore('goal', {
   },
   actions: {
     async fetchGoals() {
+      const { user } = useUserStore()
       this.goals = []
       this.loading = true
       try {
-        const q = query(collection(projectFirestore, 'goals'))
+        const q = query(
+          collection(projectFirestore, 'goals'),
+          where('user', '==', user.uid)
+        )
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach((doc) => {
           this.goals.push({ id: doc.id, ...doc.data() })
@@ -104,6 +110,7 @@ export const useGoalStore = defineStore('goal', {
       return alreadyExists
     },
     async addGoal(data) {
+      const { user } = useUserStore()
       const { setMessage } = useMessageStore()
       const goals = [...this.getAllGoals]
       const alreadyExists = goals.some(({ title }) => title === data.title)
@@ -116,6 +123,7 @@ export const useGoalStore = defineStore('goal', {
         })
       } else {
         const newGoal = {
+          user: user.uid,
           title: data.title,
           deadline: data.deadline,
           created_at: new Date(),
