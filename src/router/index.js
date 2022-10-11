@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'home',
