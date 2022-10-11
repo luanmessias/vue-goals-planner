@@ -5,6 +5,7 @@
       <component v-else :is="Component" />
     </transition>
   </router-view>
+  <div id="modal"></div>
   <MainNav />
   <ConfirmDialog />
   <CallbackMessage />
