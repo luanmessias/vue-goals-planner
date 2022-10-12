@@ -8,7 +8,7 @@
       >
         <div class="goal__container">
           <div class="goal__header">
-            <div class="goal__header__return" @click="closeGoalForm">
+            <div class="goal__header__return" @click="closeGoalForm()">
               <ArrowLeft />
             </div>
             <h1
@@ -22,19 +22,19 @@
             v-model="goal.title.text"
             :error="goal.title.error"
             type="text"
-            @input="checkTitle"
+            @input="checkTitle()"
           />
           <div class="goal__deadline">
             <DateSelector
+              :label="$t('add.goal.form.deadline')"
               :placeholder="$t('add.goal.form.deadline')"
-              :label="$t('add.goal.form.title')"
               v-model="goal.deadline.text"
               :error="goal.deadline.error"
-              @update:modelValue="checkDeadline"
+              @update:modelValue="checkDeadline()"
             />
           </div>
           <BaseButton
-            @click="addGoalAction"
+            @click="addGoalAction()"
             :label="$t('button.add.goal')"
             class="goal__add-button"
           />
@@ -99,6 +99,7 @@ export default {
     }
 
     const closeGoalForm = () => {
+      console.log('closeGoalForm')
       toggleGoalForm()
       clearForm()
     }

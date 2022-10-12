@@ -108,12 +108,31 @@ describe('App component', () => {
         const goalNameInput = wrapper.find('.goal__name')
         expect(goalNameInput.exists()).toBe(true)
       })
+
+      it('should render the correct label', () => {
+        const label = i18n.global.t('add.goal.form.title')
+        const goalNameInput = wrapper.find('.goal__name')
+        expect(goalNameInput.text()).toContain(label)
+      })
+
+      it('should call checkTitle on input', async () => {
+        const goalNameInput = wrapper.find('.goal__name')
+        const checkTitle = jest.spyOn(wrapper.vm, 'checkTitle')
+        await goalNameInput.trigger('input')
+        expect(checkTitle).toHaveBeenCalled()
+      })
     })
 
     describe('Goal Deadline Input', () => {
       it('should render the goal deadline input', () => {
         const goalDeadlineInput = wrapper.find('.goal__deadline')
         expect(goalDeadlineInput.exists()).toBe(true)
+      })
+
+      it('should render the correct label', () => {
+        const label = i18n.global.t('add.goal.form.deadline')
+        const goalDeadlineInput = wrapper.find('.goal__deadline')
+        expect(goalDeadlineInput.text()).toContain(label)
       })
     })
 
@@ -123,7 +142,7 @@ describe('App component', () => {
         expect(confirmButton.exists()).toBe(true)
       })
 
-      it('should call the addGoal method when clicked', async () => {
+      it('should call the addGoalAction method when clicked', async () => {
         const confirmButton = wrapper.find('.goal__add-button')
         const addGoal = jest.spyOn(wrapper.vm, 'addGoalAction')
         await confirmButton.trigger('click')
