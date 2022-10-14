@@ -4,7 +4,7 @@
     </a>
     <p>Goals Planner</p>
 </h1>
-<p align="center">This is a vue 3 study project that consists in a small goals planner to register goals and tasks</p>
+<p align="center">This is a vue 3 study project that consists in a small mobile goals planner to register goals and tasks</p>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/luanmessias/vue-goals-planner?color=%5A2D82">
 
