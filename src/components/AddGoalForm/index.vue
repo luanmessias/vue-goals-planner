@@ -1,6 +1,5 @@
 <template>
   <Teleport to="#modal">
-    <CallbackMessage />
     <transition name="goal__animate">
       <div
         v-if="isGoalFormActive"
@@ -46,7 +45,6 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
-import CallbackMessage from '@/components/CallbackMessage'
 import ArrowLeft from '@icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
@@ -65,7 +63,6 @@ export default {
     ArrowLeft,
     BaseInput,
     DateSelector,
-    CallbackMessage,
   },
   setup() {
     const { goalAlreadyExists } = useGoalStore()
@@ -99,7 +96,6 @@ export default {
     }
 
     const closeGoalForm = () => {
-      console.log('closeGoalForm')
       toggleGoalForm()
       clearForm()
     }

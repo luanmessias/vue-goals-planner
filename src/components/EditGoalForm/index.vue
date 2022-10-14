@@ -68,8 +68,10 @@ export default {
     BaseButton,
   },
   setup() {
-    const { isEditGoalFormActive } = storeToRefs(useToggleStore())
-    const { toggleEditGoalForm, isThemeDarkActive } = useToggleStore()
+    const { isEditGoalFormActive, isThemeDarkActive } = storeToRefs(
+      useToggleStore()
+    )
+    const { toggleEditGoalForm } = useToggleStore()
     const { editGoal } = storeToRefs(useGoalStore())
     const { setMessage } = useMessageStore()
     const { updateGoal } = useGoalStore()
