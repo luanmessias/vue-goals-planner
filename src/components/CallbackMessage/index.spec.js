@@ -21,7 +21,7 @@ const createTeleportModal = () => {
 const pinia = createTestingPinia()
 const messageStore = useMessageStore()
 
-describe('AddGoalForm component', () => {
+describe('CallbackMessage component', () => {
   let wrapper
 
   beforeEach(() => {

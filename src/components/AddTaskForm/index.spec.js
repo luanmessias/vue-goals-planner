@@ -55,7 +55,7 @@ describe('AddTaskForm Component', () => {
             },
           },
         })
-        const component = wrapper.find('.goal')
+        const component = wrapper.find('.task')
         expect(component.exists()).toBe(false)
       })
     })

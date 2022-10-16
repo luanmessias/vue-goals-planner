@@ -5,7 +5,7 @@ import { createTestingPinia } from '@pinia/testing'
 import { mount } from '@vue/test-utils'
 import Component from './'
 
-describe('BaseButton Component', () => {
+describe('BaseInput Component', () => {
   let wrapper
   const pinia = createTestingPinia()
   const toggleStore = useToggleStore()
