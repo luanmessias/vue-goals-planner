@@ -24,7 +24,7 @@
                 v-model="task.title.value"
                 :error="task.title.error"
                 type="text"
-                @input="checkTitle"
+                @input="checkTitle()"
               />
             </div>
 
@@ -35,13 +35,13 @@
                 v-model="task.description.value"
                 :error="task.description.error"
                 type="text"
-                @input="checkDescription"
+                @input="checkDescription()"
                 textarea
                 :rows="10"
               />
             </div>
             <BaseButton
-              @click="addTaskAction"
+              @click="addTaskAction()"
               :label="$t('button.add.task')"
               class="task__add-button"
             />
@@ -54,13 +54,13 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
-import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
-import ArrowLeft from '@icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
+import { useToggleStore } from '@/store/toggle'
+import ArrowLeft from '@icons/ArrowLeft.vue'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {

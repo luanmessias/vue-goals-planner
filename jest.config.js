@@ -8,4 +8,7 @@ module.exports = {
   moduleNameMapper: {
     '^@icons/(.*)$': '<rootDir>/node_modules/vue-material-design-icons/$1',
   },
+  transform: {
+    '^.+\\.vue$': '@vue/vue3-jest',
+  },
 }
