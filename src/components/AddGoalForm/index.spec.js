@@ -1,11 +1,11 @@
-import { mount } from '@vue/test-utils'
-import Component from './'
-import i18n from '@/plugins/i18n'
 import en from '@/locales/en.json'
-import { createTestingPinia } from '@pinia/testing'
-import { createRouter, createWebHistory } from 'vue-router'
+import i18n from '@/plugins/i18n'
 import { routes } from '@/router'
 import { useToggleStore } from '@/store/toggle'
+import { createTestingPinia } from '@pinia/testing'
+import { mount } from '@vue/test-utils'
+import { createRouter, createWebHistory } from 'vue-router'
+import Component from './'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -116,9 +116,9 @@ describe('App component', () => {
       })
 
       it('should call checkTitle on input', async () => {
-        const goalNameInput = wrapper.find('.goal__name')
+        const goalNameInput = wrapper.find('input.goal__name')
         const checkTitle = jest.spyOn(wrapper.vm, 'checkTitle')
-        await goalNameInput.trigger('input')
+        await goalNameInput.setValue('test')
         expect(checkTitle).toHaveBeenCalled()
       })
     })
@@ -133,6 +133,13 @@ describe('App component', () => {
         const label = i18n.global.t('add.goal.form.deadline')
         const goalDeadlineInput = wrapper.find('.goal__deadline')
         expect(goalDeadlineInput.text()).toContain(label)
+      })
+
+      it('should call checkDeadline on input', async () => {
+        const goalNameInput = wrapper.find('input.dp__input')
+        const checkDeadline = jest.spyOn(wrapper.vm, 'checkDeadline')
+        await goalNameInput.trigger('input')
+        expect(checkDeadline).toHaveBeenCalled()
       })
     })
 

@@ -44,16 +44,16 @@
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton'
-import ArrowLeft from '@icons/ArrowLeft.vue'
-import BaseInput from '@/components/BaseInput'
-import DateSelector from '@/components/DateSelector'
-import { useMessageStore } from '@/store/message'
-import { useGoalStore } from '@/store/goals'
-import { ref } from 'vue'
-import { useToggleStore } from '@/store/toggle'
-import { storeToRefs } from 'pinia'
+import BaseButton from '@/components/BaseButton/index.vue'
+import BaseInput from '@/components/BaseInput/index.vue'
+import DateSelector from '@/components/DateSelector/index.vue'
 import { useDialogStore } from '@/store/dialog'
+import { useGoalStore } from '@/store/goals'
+import { useMessageStore } from '@/store/message'
+import { useToggleStore } from '@/store/toggle'
+import ArrowLeft from '@icons/ArrowLeft.vue'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
