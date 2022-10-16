@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import CloseIcon from '@icons/Close.vue'
-import CheckCircleOutline from '@icons/CheckCircleOutline.vue'
 import { useMessageStore } from '@/store/message'
-import { storeToRefs } from 'pinia'
-import { watch, ref } from 'vue'
 import BlockIcon from '@icons/BlockHelper.vue'
+import CheckCircleOutline from '@icons/CheckCircleOutline.vue'
+import CloseIcon from '@icons/Close.vue'
+import { storeToRefs } from 'pinia'
+import { ref, watch } from 'vue'
 
 export default {
   name: 'CallbackMessage',
