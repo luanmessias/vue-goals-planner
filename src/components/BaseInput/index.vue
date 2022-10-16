@@ -1,6 +1,6 @@
 <template>
   <div :class="['base-input', { 'base-input--dark': isThemeDarkActive }]">
-    <label v-if="!hideLabel" class="base-input__label" v-text="label" />
+    <label v-if="!hideLabel" class="base-input__label" v-text="label"></label>
     <textarea
       v-if="textarea"
       v-bind="$attrs"
@@ -22,14 +22,14 @@
       @input="$emit('update:modelValue', $event.target.value)"
     />
     <transition name="base-input__error__animate">
-      <span v-if="error" class="base-input__error" v-text="$t(error)" />
+      <span v-if="error" class="base-input__error" v-text="$t(error)"></span>
     </transition>
   </div>
 </template>
 
 <script>
-import { storeToRefs } from 'pinia'
 import { useToggleStore } from '@/store/toggle'
+import { storeToRefs } from 'pinia'
 
 export default {
   name: 'BaseInput',
