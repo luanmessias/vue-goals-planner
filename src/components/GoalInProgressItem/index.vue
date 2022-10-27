@@ -19,7 +19,7 @@
             <span
               class="goal__date__txt"
               v-text="$d(timeStampToDate(goal.deadline.seconds))"
-            />
+            ></span>
           </div>
         </div>
       </div>
@@ -38,27 +38,27 @@
       <ModeEditIcon
         class="goal__details__edit"
         v-if="goalActive"
-        @click="toggleEditGoalFormAction"
+        @click="toggleEditGoalFormAction()"
       />
       <DeleteOutlineIcon
         class="goal__details__delete"
         v-if="goalActive"
-        @click="toggleDelGoalDialog"
+        @click="toggleDelGoalDialog()"
       />
     </div>
   </div>
 </template>
 
 <script>
-import CalendarIcon from '@icons/CalendarMonth.vue'
-import { timeStampToDate } from '@/utils/TimesStampToDate'
+import { useDialogStore } from '@/store/dialog'
 import { useGoalStore } from '@/store/goals'
-import { ref } from 'vue'
+import { useToggleStore } from '@/store/toggle'
+import { timeStampToDate } from '@/utils/TimesStampToDate'
+import CalendarIcon from '@icons/CalendarMonth.vue'
 import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
 import ModeEditIcon from '@icons/Pen.vue'
-import { useToggleStore } from '@/store/toggle'
-import { useDialogStore } from '@/store/dialog'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 export default {
   name: 'GoalInProgressItem',
