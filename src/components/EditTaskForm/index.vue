@@ -10,7 +10,7 @@
             <div class="task__header">
               <div
                 class="task__header__return"
-                @click="toggleEditTaskFormAction"
+                @click="toggleEditTaskFormAction()"
               >
                 <ArrowLeft />
               </div>
@@ -27,7 +27,7 @@
                 v-model="task.title.txt"
                 :error="task.title.error"
                 type="text"
-                @input="checkTitle"
+                @input="checkTitle()"
               />
             </div>
 
@@ -38,13 +38,13 @@
                 v-model="task.description.txt"
                 :error="task.description.error"
                 type="text"
-                @input="checkDescription"
+                @input="checkDescription()"
                 textarea
                 :rows="10"
               />
             </div>
             <BaseButton
-              @click="updateTaskAction"
+              @click="updateTaskAction()"
               :label="$t('button.update.task')"
               class="task__add-button"
             />
@@ -57,13 +57,13 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
-import { ref, watch } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
-import ArrowLeft from '@icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
 import { useMessageStore } from '@/store/message'
 import { useTaskStore } from '@/store/tasks'
+import { useToggleStore } from '@/store/toggle'
+import ArrowLeft from '@icons/ArrowLeft.vue'
+import { storeToRefs } from 'pinia'
+import { ref, watch } from 'vue'
 
 export default {
   name: 'EditTaskForm',
