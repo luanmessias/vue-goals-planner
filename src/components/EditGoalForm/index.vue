@@ -21,7 +21,7 @@
             v-model="goal.title.txt"
             :error="goal.title.error"
             type="text"
-            @input="checkTitle"
+            @input="checkTitle()"
           />
           <div class="goal__deadline">
             <DateSelector
@@ -30,11 +30,11 @@
               v-model="goal.deadline.txt"
               :error="goal.deadline.error"
               :startDate="goal.deadline.txt"
-              @update:modelValue="checkDeadline"
+              @update:modelValue="checkDeadline()"
             />
           </div>
           <BaseButton
-            @click="updateGoalAction"
+            @click="updateGoalAction()"
             :label="$t('button.update.goal')"
             class="goal__add-button"
           />
@@ -45,19 +45,19 @@
 </template>
 
 <script>
-import ArrowLeft from '@icons/ArrowLeft.vue'
-import { useToggleStore } from '@/store/toggle'
-import { storeToRefs } from 'pinia'
-import { watch, ref } from 'vue'
-import { useGoalStore } from '@/store/goals'
+import BaseButton from '@/components/BaseButton'
 import BaseInput from '@/components/BaseInput'
 import DateSelector from '@/components/DateSelector'
-import {
-  secondsAndNanosecondsToDate,
-  dateToSecondsAndNanoseconds,
-} from '@/utils/TimesStampToDate'
+import { useGoalStore } from '@/store/goals'
 import { useMessageStore } from '@/store/message'
-import BaseButton from '@/components/BaseButton'
+import { useToggleStore } from '@/store/toggle'
+import {
+  dateToSecondsAndNanoseconds,
+  secondsAndNanosecondsToDate,
+} from '@/utils/TimesStampToDate'
+import ArrowLeft from '@icons/ArrowLeft.vue'
+import { storeToRefs } from 'pinia'
+import { ref, watch } from 'vue'
 
 export default {
   name: 'EditGoalForm',
