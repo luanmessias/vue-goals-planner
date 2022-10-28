@@ -38,13 +38,13 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue3-carousel'
 import { useGoalStore } from '@/store/goals'
+import { useToggleStore } from '@/store/toggle'
+import { cropString } from '@/utils/CropString'
+import { timeStampToDate } from '@/utils/TimeStampToDate'
 import CalendarIcon from '@icons/CalendarMonth.vue'
 import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
-import { timeStampToDate } from '@/utils/TimesStampToDate'
-import { cropString } from '@/utils/CropString'
+import { Carousel, Slide } from 'vue3-carousel'
 
 export default {
   name: 'GoalsToStart',

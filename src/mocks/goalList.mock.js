@@ -10,7 +10,7 @@ export const VALID_GOALS_LIST = [
   {
     id: '71qLGHkhmN7wo8zzsOjX',
     updated_at: { seconds: 1665779559, nanoseconds: 810000000 },
-    title: 'test goal',
+    title: 'This is a very big title that should be cropped',
     created_at: { seconds: 1665779559, nanoseconds: 810000000 },
     deadline: { seconds: 1666816320, nanoseconds: 0 },
     user: 'YZT8c1g4DLZ8ab9o44GUtaEGph03',

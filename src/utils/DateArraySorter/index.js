@@ -1,4 +1,4 @@
-import { timeStampToDate } from '@/utils/TimesStampToDate'
+import { timeStampToDate } from '@/utils/TimeStampToDate'
 
 export const sortArrayByDate = (arr, Desc) => {
   return arr.sort((a, b) => {

@@ -36,19 +36,19 @@
 </template>
 
 <script>
-import ArrowLeftIcon from '@icons/ArrowLeft.vue'
-import CalendarIcon from '@icons/CalendarMonth.vue'
-import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
-import { useGoalStore } from '@/store/goals'
-import { useRoute, useRouter } from 'vue-router'
+import BaseButton from '@/components/BaseButton'
 import TaskFilter from '@/components/TaskFilter'
 import TaskList from '@/components/TaskList'
-import BaseButton from '@/components/BaseButton'
+import { useDialogStore } from '@/store/dialog'
+import { useGoalStore } from '@/store/goals'
+import { useToggleStore } from '@/store/toggle'
+import { timeStampToDate } from '@/utils/TimeStampToDate'
+import ArrowLeftIcon from '@icons/ArrowLeft.vue'
+import CalendarIcon from '@icons/CalendarMonth.vue'
 import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
 import ModeEditIcon from '@icons/Pen.vue'
-import { useDialogStore } from '@/store/dialog'
-import { timeStampToDate } from '@/utils/TimesStampToDate'
+import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
   name: 'GoalPage',

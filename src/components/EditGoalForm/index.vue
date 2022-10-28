@@ -54,7 +54,7 @@ import { useToggleStore } from '@/store/toggle'
 import {
   dateToSecondsAndNanoseconds,
   secondsAndNanosecondsToDate,
-} from '@/utils/TimesStampToDate'
+} from '@/utils/TimeStampToDate'
 import ArrowLeft from '@icons/ArrowLeft.vue'
 import { storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'

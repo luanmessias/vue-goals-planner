@@ -53,7 +53,7 @@
 import { useDialogStore } from '@/store/dialog'
 import { useGoalStore } from '@/store/goals'
 import { useToggleStore } from '@/store/toggle'
-import { timeStampToDate } from '@/utils/TimesStampToDate'
+import { timeStampToDate } from '@/utils/TimeStampToDate'
 import CalendarIcon from '@icons/CalendarMonth.vue'
 import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
 import ModeEditIcon from '@icons/Pen.vue'
