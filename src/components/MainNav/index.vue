@@ -22,18 +22,28 @@
         <div class="nav__container">
           <div
             @click="toggleTheme"
-            :class="['nav__item', { 'nav__item--active': !isThemeDarkActive }]"
+            :class="[
+              'nav__item nav__item--theme',
+              { 'nav__item--active': !isThemeDarkActive },
+            ]"
           >
             <LightOffIcon
               v-if="isThemeDarkActive"
-              class="nav__item__icon"
+              class="nav__item__icon nav__item__icon--light-off"
               :size="24"
             />
-            <LightOnIcon v-else class="nav__item__icon" :size="24" />
+            <LightOnIcon
+              v-else
+              class="nav__item__icon nav__item__icon--light-on"
+              :size="24"
+            />
           </div>
           <div
             @click="isLocalesActive = !isLocalesActive"
-            :class="['nav__item', { 'nav__item--active': isLocalesActive }]"
+            :class="[
+              'nav__item nav__item--locale',
+              { 'nav__item--active': isLocalesActive },
+            ]"
           >
             <LocaleFlag class="nav__item__flag" :flag="$i18n.locale" />
             <TranslateIcon class="nav__item__icon" :size="24" />
@@ -44,7 +54,10 @@
           <div
             v-if="isLoggedIn"
             @click="toggleLogoutDialog"
-            :class="['nav__item', { 'nav__item--active': isLocalesActive }]"
+            :class="[
+              'nav__item nav__item--logout',
+              { 'nav__item--active': isLocalesActive },
+            ]"
           >
             <LogoutIcon class="nav__item__icon" :size="24" />
           </div>
@@ -56,22 +69,22 @@
 </template>
 
 <script>
-import MenuIcon from '@icons/Menu.vue'
-import CloseIcon from '@icons/Close.vue'
-import TranslateIcon from '@icons/Translate.vue'
-import LightOnIcon from '@icons/Brightness5.vue'
-import LightOffIcon from '@icons/Brightness2.vue'
-import LogoutIcon from '@icons/Logout.vue'
 import LocaleFlag from '@/components/LocaleFlag'
 import LocaleSelection from '@/components/LocaleSelection'
-import { onMounted, ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
 import { useDialogStore } from '@/store/dialog'
-import { useRouter } from 'vue-router'
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useMessageStore } from '@/store/message'
+import { useToggleStore } from '@/store/toggle'
 import { useUserStore } from '@/store/user'
+import LightOffIcon from '@icons/Brightness2.vue'
+import LightOnIcon from '@icons/Brightness5.vue'
+import CloseIcon from '@icons/Close.vue'
+import LogoutIcon from '@icons/Logout.vue'
+import MenuIcon from '@icons/Menu.vue'
+import TranslateIcon from '@icons/Translate.vue'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { storeToRefs } from 'pinia'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'MainNav',
