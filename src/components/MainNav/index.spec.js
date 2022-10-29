@@ -32,11 +32,13 @@ describe('MainNav Component', () => {
     i18n.global.setLocaleMessage('en', en)
     i18n.global.setLocaleMessage('es', es)
     i18n.global.setLocaleMessage('pt-BR', ptBR)
+
     wrapper = mount(Component, {
       global: {
         plugins: [pinia, router, i18n],
         stubs: {
           teleport: true,
+          handleAuthStateChange: true,
         },
       },
     })
@@ -174,15 +176,6 @@ describe('MainNav Component', () => {
 
       describe('logout option', () => {
         it('should render the logout option', () => {
-          jest.mock('firebase/auth', () => {
-            return {
-              getAuth: jest.fn(),
-              onAuthStateChanged: jest.fn((auth, callback) => {
-                callback({ uid: '123' })
-              }),
-            }
-          })
-
           const logoutOption = wrapper.find('.nav__item--logout')
           expect(logoutOption.exists()).toBe(true)
         })
