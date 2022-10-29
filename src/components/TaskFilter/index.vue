@@ -9,15 +9,15 @@
       ]"
       @click="toggleActiveFilter(filter.id)"
     >
-      <span class="task-filter__opt__title" v-text="$t(filter.label)" />
-      <span class="task-filter__opt__length" v-text="filter.data.length" />
+      <span class="task-filter__opt__title" v-text="$t(filter.label)"></span>
+      <span class="task-filter__opt__length" v-text="filter.data.length"></span>
     </div>
   </div>
 </template>
 
 <script>
-import { storeToRefs } from 'pinia'
 import { useFilterStore } from '@/store/filter'
+import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
