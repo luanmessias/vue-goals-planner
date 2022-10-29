@@ -25,7 +25,7 @@
             v-model="user.email.text"
             :error="user.email.error"
             type="email"
-            @input="checkEmail"
+            @input="checkEmail()"
             hideLabel
           />
           <BaseInput
@@ -34,11 +34,11 @@
             v-model="user.password.text"
             :error="user.password.error"
             type="password"
-            @input="checkPassword"
+            @input="checkPassword()"
             hideLabel
           />
           <BaseButton
-            @click="registerAction"
+            @click="registerAction()"
             :label="$t('register.form.submit')"
             class="register__add-button"
           />
@@ -50,15 +50,15 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
-import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useToggleStore } from '@/store/toggle'
-import ArrowLeft from '@icons/ArrowLeft.vue'
 import BaseInput from '@/components/BaseInput'
+import { useMessageStore } from '@/store/message'
+import { useToggleStore } from '@/store/toggle'
 import { mailValidator } from '@/utils/MailValidator'
 import { passwordValidator } from '@/utils/PasswordValidator'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { useMessageStore } from '@/store/message'
+import ArrowLeft from '@icons/ArrowLeft.vue'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
