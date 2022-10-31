@@ -27,12 +27,12 @@
       <div class="task__details__info" v-text="task.description"></div>
       <div class="task__details__menu">
         <ModeEditIcon
-          class="task__details__menu__icon"
-          @click="toggleEditTaskFormAction"
+          class="task__details__menu__icon task__details__menu__icon--edit"
+          @click="toggleEditTaskFormAction()"
         />
         <DeleteOutlineIcon
-          class="task__details__menu__icon"
-          @click="toggleConfirmDialogAction"
+          class="task__details__menu__icon task__details__menu__icon--delete"
+          @click="toggleConfirmDialogAction()"
         />
       </div>
     </div>
@@ -40,15 +40,15 @@
 </template>
 
 <script>
-import TaskCircleIcon from '@icons/PanoramaFisheye.vue'
-import TaskCircleDoneIcon from '@icons/CheckCircle.vue'
-import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
-import ModeEditIcon from '@icons/Pen.vue'
-import { ref } from 'vue'
+import { useDialogStore } from '@/store/dialog'
 import { useTaskStore } from '@/store/tasks'
 import { useToggleStore } from '@/store/toggle'
-import { useDialogStore } from '@/store/dialog'
+import TaskCircleDoneIcon from '@icons/CheckCircle.vue'
+import DeleteOutlineIcon from '@icons/DeleteOutline.vue'
+import TaskCircleIcon from '@icons/PanoramaFisheye.vue'
+import ModeEditIcon from '@icons/Pen.vue'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 export default {
   name: 'TaskItem',
