@@ -14,9 +14,9 @@
 </template>
 
 <script>
+import TaskItem from '@/components/TaskItem'
 import { useFilterStore } from '@/store/filter'
 import { storeToRefs } from 'pinia'
-import TaskItem from '@/components/TaskItem'
 import TaskSleepingIcon from './img/TaskSleepingIcon'
 
 export default {
